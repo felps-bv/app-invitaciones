@@ -95,7 +95,7 @@ export async function fetchRSVPs(): Promise<RSVPRecord[]> {
 export async function createInvitationLink(nombre: string, email?: string): Promise<RSVPRecord | null> {
   const token = 'inv-' + Math.random().toString(36).substring(2, 9) + Date.now().toString(36).substring(4);
   const origin = typeof window !== 'undefined' ? window.location.origin : '';
-  const URLinvitacion = `${origin}/#invitacion/${token}`;
+  const URLinvitacion = `${origin}/?invitation=${token}`;
   
   const payload = {
     nombre: nombre.trim(),

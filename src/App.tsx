@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Sparkles, Calendar, MapPin, Heart, Music, Mail, CheckCircle2, ChevronDown, AlertCircle } from 'lucide-react';
 import { EventDetails, GalleryPhoto, AdminPost, RSVPRecord } from './types';
-import { fetchEventDetails, fetchGalleryPhotos, fetchAdminPosts, getInvitationByToken } from './lib/supabase';
+import { fetchEventDetails, fetchGalleryPhotos, fetchAdminPosts, getInvitationByToken, supabase } from './lib/supabase';
 import { EnvelopeCover } from './components/EnvelopeCover';
 import { AudioPlayer } from './components/AudioPlayer';
 import { CountdownTimer } from './components/CountdownTimer';
@@ -23,11 +23,14 @@ export default function App() {
 
   const [activeInvitation, setActiveInvitation] = useState<RSVPRecord | null>(null);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
+  
+  // NUEVO ESTADO: null = verificando, true = pase VIP, false = rebotado
+  const [isValidLink, setIsValidLink] = useState<boolean | null>(null);
 
   const secretAdminRoute = ((import.meta as any).env || {}).VITE_ADMIN_PATH || '/admin-panel-secret';
 
-  const loadData = async () => {
-    setIsLoading(true);
+  // Separamos la carga de datos masivos para llamarla SOLO si está invitado
+  const loadGeneralData = async () => {
     try {
       const [details, photoList, postList] = await Promise.all([
         fetchEventDetails(),
@@ -39,17 +42,13 @@ export default function App() {
       setPosts(postList);
     } catch (err) {
       console.error('Error loading invitation data:', err);
-    } finally {
-      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    loadData();
-  }, []);
+    const initializeApp = async () => {
+      setIsLoading(true);
 
-  useEffect(() => {
-    const checkRoute = async () => {
       const hash = window.location.hash || '';
       const search = window.location.search || '';
       const pathname = window.location.pathname || '';
@@ -57,7 +56,7 @@ export default function App() {
       const normalizedAdminRoute = secretAdminRoute.startsWith('/') ? secretAdminRoute : '/' + secretAdminRoute;
       const cleanAdminRoute = normalizedAdminRoute.replace(/^\//, '');
 
-      // Detectamos si estamos en la ruta del administrador
+      // 1. Detectar si estamos en la ruta del administrador
       if (
         hash.includes(cleanAdminRoute) || 
         pathname.includes(cleanAdminRoute) || 
@@ -65,25 +64,47 @@ export default function App() {
         hash.includes('admin-panel-secret')
       ) {
         setIsAdminOpen(true);
-      } else {
-        setIsAdminOpen(false);
+        setIsValidLink(true); // El admin siempre tiene permiso de ver
+        await loadGeneralData();
+        setIsLoading(false);
+        return;
       }
 
-      // Lógica para detectar token de invitación personalizada
+      setIsAdminOpen(false);
+
+      // 2. Lógica para detectar token de invitación en la URL
       let invToken = '';
       if (hash.includes('invitacion/')) invToken = hash.split('invitacion/')[1];
       else if (search.includes('invitation=')) invToken = new URLSearchParams(search).get('invitation') || '';
       else if (hash.startsWith('#inv-')) invToken = hash.replace('#', '');
+      else if (search.includes('id=')) invToken = new URLSearchParams(search).get('id') || '';
 
-      if (invToken) {
+      // 3. Si no hay token, bloqueamos la entrada directamente
+      if (!invToken) {
+        setIsValidLink(false);
+        setIsLoading(false);
+        return;
+      }
+
+      // 4. Si hay token, lo validamos con Supabase
+      try {
         const inv = await getInvitationByToken(invToken);
-        if (inv) setActiveInvitation(inv);
+        if (inv) {
+          setActiveInvitation(inv);
+          setIsValidLink(true);
+          await loadGeneralData(); // Carga las fotos/detalles SOLO si pasó la validación
+        } else {
+          setIsValidLink(false); // Token falso o borrado
+        }
+      } catch (error) {
+        console.error("Error verificando invitación:", error);
+        setIsValidLink(false);
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    checkRoute();
-    window.addEventListener('hashchange', checkRoute);
-    return () => window.removeEventListener('hashchange', checkRoute);
+    initializeApp();
   }, [secretAdminRoute]);
 
   const handleOpenInvitation = () => {
@@ -97,7 +118,7 @@ export default function App() {
       <div className="min-h-screen bg-[#f5f2ed] flex items-center justify-center text-[#d4af37]">
         <div className="text-center space-y-3">
           <Sparkles className="w-10 h-10 mx-auto animate-spin" />
-          <p className="font-serif-display text-xl text-[#3d3d3d]">Cargando Invitación Especial...</p>
+          <p className="font-serif-display text-xl text-[#3d3d3d]">Verificando Invitación Especial...</p>
         </div>
       </div>
     );
@@ -108,19 +129,37 @@ export default function App() {
     return (
       <div className="min-h-screen bg-gray-50">
         <AdminPanel
-          isOpen={true} // Siempre abierto porque ya es pantalla completa
+          isOpen={true}
           onClose={() => {
-            // Limpiamos la ruta para regresar a la vista de invitado
             window.location.hash = '';
+            window.location.search = '';
             setIsAdminOpen(false);
           }}
-          onEventUpdated={loadData}
+          onEventUpdated={loadGeneralData}
         />
       </div>
     );
   }
 
-  // 3. PANTALLA "BASE DE DATOS VACÍA" (Para invitados)
+  // 3. PANTALLA "ACCESO DENEGADO" (NUEVO)
+  if (isValidLink === false) {
+    return (
+      <div className="min-h-screen bg-[#f5f2ed] flex flex-col items-center justify-center text-[#3d3d3d] p-6">
+        <div className="bg-white p-8 rounded-sm shadow-xl border border-[#e9e4de] max-w-md w-full text-center">
+          <AlertCircle className="w-12 h-12 text-[#b5a48b] mx-auto mb-4 opacity-50" />
+          <h1 className="font-serif text-2xl mb-3 text-[#1a1a1a]">Acceso Reservado</h1>
+          <p className="text-[#3d3d3d] text-sm opacity-80 mb-6 leading-relaxed">
+            Esta invitación es personal y privada. Parece que ingresaste sin un enlace válido o tu invitación ha expirado.
+          </p>
+          <p className="text-xs uppercase tracking-widest text-[#b5a48b] font-medium border-t border-[#e9e4de] pt-6">
+            Por favor, solicita tu enlace por WhatsApp
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // 4. PANTALLA "BASE DE DATOS VACÍA" (Para invitados)
   if (!eventDetails) {
     return (
       <div className="min-h-screen bg-[#f5f2ed] flex flex-col items-center justify-center text-[#3d3d3d] p-6">
