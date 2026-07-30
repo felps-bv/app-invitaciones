@@ -1,0 +1,6 @@
+{
+  "name": "Invitación XV Años Digital",
+  "description": "Invitación digital elegante para XV años con confirmación de asistencia, verificador de correo, música de fondo, galería y panel de control.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
