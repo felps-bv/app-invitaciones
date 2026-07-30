@@ -64,12 +64,6 @@ export const EnvelopeCover: React.FC<EnvelopeCoverProps> = ({
                   <MailOpen className="w-4 h-4 text-[#d4af37]" />
                   <span>Abrir Invitación</span>
                 </button>
-
-                {/* Music badge indicator */}
-                <div className="mt-6 flex items-center gap-2 text-[10px] uppercase tracking-wider text-[#b5a48b]">
-                  <Music className="w-3.5 h-3.5 text-[#d4af37] animate-spin" style={{ animationDuration: '6s' }} />
-                  <span>Con música de fondo</span>
-                </div>
               </div>
 
             </div>

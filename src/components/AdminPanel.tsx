@@ -650,7 +650,9 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                               {copiedLinkId === rsvp.id ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
                             </button>
                             <a 
-                              href={`whatsapp://send?text=¡Hola! Te comparto tu invitación digital: ${encodeURIComponent(rsvp.URLinvitacion)}`}
+                              href={`https://api.whatsapp.com/send?text=${encodeURIComponent(`¡Hola! Te comparto tu invitación digital: ${window.location.origin}/?invitation=${rsvp.token}`)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
                               className="p-2 text-gray-500 hover:text-green-600 hover:bg-green-50 rounded transition-colors"
                               title="Enviar por WhatsApp"
                             >
