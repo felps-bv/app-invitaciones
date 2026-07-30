@@ -30,7 +30,7 @@ export default function App() {
   const secretAdminRoute = ((import.meta as any).env || {}).VITE_ADMIN_PATH || '/admin-panel-secret';
 
   // Separamos la carga de datos masivos para llamarla SOLO si está invitado
-  const loadGeneralData = async () => {
+  const loadData = async () => {
     try {
       const [details, photoList, postList] = await Promise.all([
         fetchEventDetails(),
@@ -65,7 +65,7 @@ export default function App() {
       ) {
         setIsAdminOpen(true);
         setIsValidLink(true); // El admin siempre tiene permiso de ver
-        await loadGeneralData();
+        await loadData();
         setIsLoading(false);
         return;
       }
@@ -92,7 +92,7 @@ export default function App() {
         if (inv) {
           setActiveInvitation(inv);
           setIsValidLink(true);
-          await loadGeneralData(); // Carga las fotos/detalles SOLO si pasó la validación
+          await loadData(); // Carga las fotos/detalles SOLO si pasó la validación
         } else {
           setIsValidLink(false); // Token falso o borrado
         }
@@ -135,7 +135,7 @@ export default function App() {
             window.location.search = '';
             setIsAdminOpen(false);
           }}
-          onEventUpdated={loadGeneralData}
+          onEventUpdated={loadData}
         />
       </div>
     );
