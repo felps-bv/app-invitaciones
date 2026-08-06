@@ -627,7 +627,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         <li key={rsvp.id} className="p-4 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                           <div className="flex-1">
                             <div className="flex items-center gap-2 mb-1">
-                              <span className="font-medium text-gray-900">{rsvp.nombre}</span>
+                              <span className="font-medium text-gray-900">{rsvp.nombre},</span>
+                              <span className="font-medium text-gray-900">{rsvp.acompanantes} acompañantes</span>
                               {/* BADGES DE STATUS */}
                               {rsvp.confirmado === true && (
                                 <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded-full font-medium">
