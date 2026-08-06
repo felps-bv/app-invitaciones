@@ -34,12 +34,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
       if (activeInvitation?.attending && activeInvitation?.attending !== 'Pendiente') {
         setAttending(activeInvitation.attending as 'Asistiré' | 'No podré asistir');
       }
-      
-      // Manejo seguro del cero (0 es falsy, por eso validamos contra undefined)
-      if (activeInvitation?.acompanantes !== undefined) {
-        setCompanionsCount(activeInvitation.acompanantes);
-      }
-      
+
       if (activeInvitation?.mensaje) {
         setMessage(activeInvitation.mensaje);
       }
@@ -68,16 +63,6 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
         rsvpResult = await confirmGuestRSVP(identifier, {
           email: email.trim().toLowerCase(),
           attending,
-          acompanantes: attending === 'Asistiré' ? Number(companionsCount) : 0,
-          mensaje: message.trim()
-        });
-      } else {
-        // Confirmación directa para visitantes generales
-        const newInv = await createInvitationLink(name.trim(), email.trim().toLowerCase());
-        rsvpResult = await confirmGuestRSVP(newInv.id, {
-          email: email.trim().toLowerCase(),
-          attending,
-          acompanantes: attending === 'Asistiré' ? Number(companionsCount) : 0,
           mensaje: message.trim()
         });
       }
@@ -112,7 +97,6 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
       setEmail('');
     }
     setAttending('Asistiré');
-    setCompanionsCount(0);
     setMessage('');
     setErrorMsg('');
     setStep('form');
@@ -247,27 +231,20 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
               </div>
             </div>
 
-            {/* Field 4: Dropdown para Número de acompañantes */}
-            {attending === 'Asistiré' && (
-              <div className="pt-2">
-                <label htmlFor="rsvp-companions-select" className="text-[10px] uppercase tracking-wider mb-1 block opacity-60 text-[#3d3d3d]">
-                  Número de Acompañantes
-                </label>
-                <select
-                  id="rsvp-companions-select"
-                  value={companionsCount}
-                  onChange={(e) => setCompanionsCount(Number(e.target.value))}
-                  className="w-full bg-transparent border-b border-[#d4cbbd] py-2 text-sm text-[#1a1a1a] focus:outline-none cursor-pointer"
-                >
-                  <option value={0}>Solo yo (1 persona)</option>
-                  <option value={1}>+1 Acompañante (2 personas)</option>
-                  <option value={2}>+2 Acompañantes (3 personas)</option>
-                  <option value={3}>+3 Acompañantes (4 personas)</option>
-                  <option value={4}>+4 Acompañantes (5 personas)</option>
-                  <option value={5}>+5 Acompañantes (6 personas)</option>
-                </select>
-              </div>
-            )}
+            <div className="pt-2">
+              <label className="block text-sm text-[#3d3d3d] mb-1 font-medium">
+                Pases asignados
+              </label>
+              <input
+                type="text"
+                disabled
+                value={`${1 + activeInvitation.acompanantes} persona(s)`}
+                className="w-full p-3 border border-[#e9e4de] rounded bg-[#f5f2ed] text-[#8a8a8a] cursor-not-allowed opacity-80"
+              />
+              <p className="text-xs text-[#8a8a8a] mt-1">
+                Esta invitación es válida para este número de personas.
+              </p>
+            </div>
 
             {/* Field 5: Mensaje de felicitación opcional */}
             <div className="pt-2">

@@ -92,11 +92,11 @@ export async function fetchRSVPs(): Promise<RSVPRecord[]> {
   return [];
 }
 
-export async function createInvitationLink(nombre: string, email?: string): Promise<RSVPRecord | null> {
+export async function createInvitationLink(nombre: string, acompanantes:Number, email?: string): Promise<RSVPRecord | null> {
   const token = 'inv-' + Math.random().toString(36).substring(2, 9) + Date.now().toString(36).substring(4);
   const origin = typeof window !== 'undefined' ? window.location.origin : '';
   const URLinvitacion = `${origin}/?invitation=${token}`;
-  
+
   const payload = {
     nombre: nombre.trim(),
     email: email ? email.trim() : '',
@@ -105,7 +105,7 @@ export async function createInvitationLink(nombre: string, email?: string): Prom
     attending: 'Pendiente',
     confirmado: null,
     is_verified: false,
-    acompanantes: 0,
+    acompanantes: acompanantes,
     mensaje: ''
   };
 
@@ -145,7 +145,7 @@ export async function getInvitationByToken(tokenOrRoute: string): Promise<RSVPRe
 
 export async function confirmGuestRSVP(
   idOrToken: string,
-  data: { email: string; attending: 'Asistiré' | 'No podré asistir'; acompanantes: number; mensaje?: string; }
+  data: { email: string; attending: 'Asistiré' | 'No podré asistir'; mensaje?: string; }
 ): Promise<RSVPRecord | null> {
   const isAttending = data.attending === 'Asistiré';
   const existingRecord = await getInvitationByToken(idOrToken);
@@ -159,7 +159,6 @@ export async function confirmGuestRSVP(
     confirmado: isAttending,
     is_verified: true,
     email: data.email.trim(),
-    acompanantes: isAttending ? Number(data.acompanantes) : 0,
     mensaje: data.mensaje ? data.mensaje.trim() : '',
     attending: data.attending,
     updated_at: new Date().toISOString()

@@ -44,6 +44,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   const [audioTracks, setAudioTracks] = useState<AudioTrack[]>([]);
 
   const [newFamilyName, setNewFamilyName] = useState('');
+  const [newCompanionsCount, setNewCompanionsCount] = useState(0);
   const [newFamilyEmail, setNewFamilyEmail] = useState('');
   const [createdLink, setCreatedLink] = useState<RSVPRecord | null>(null);
   const [copiedLinkId, setCopiedLinkId] = useState<string | null>(null);
@@ -162,12 +163,13 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
     setLoading(true);
     setStatusMsg('');
     try {
-      const newInvitation = await createInvitationLink(newFamilyName, newFamilyEmail);
+      const newInvitation = await createInvitationLink(newFamilyName, newCompanionsCount, newFamilyEmail);
       if (newInvitation) {
         // Actualizamos la lista local inmediatamente
         setRsvps([newInvitation, ...rsvps]);
         setCreatedLink(newInvitation);
         setNewFamilyName('');
+        setNewCompanionsCount('');
         setNewFamilyEmail('');
         setStatusMsg('Enlace generado exitosamente.');
         setTimeout(() => setStatusMsg(''), 3000);
@@ -563,6 +565,17 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         placeholder="Familia / Invitado"
                         className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37] text-sm"
                         required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-gray-700 mb-1">Acompañantes</label>
+                      <input 
+                        type="number" 
+                        min="0"
+                        value={newCompanionsCount} 
+                        onChange={(e) => setNewCompanionsCount(Number(e.target.value))}
+                        className="border p-2 rounded w-24"
+                        title="Número de acompañantes"
                       />
                     </div>
                     <div>
