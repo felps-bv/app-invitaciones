@@ -92,7 +92,7 @@ export async function fetchRSVPs(): Promise<RSVPRecord[]> {
   return [];
 }
 
-export async function createInvitationLink(nombre: string, acompanantes:Number, email?: string): Promise<RSVPRecord | null> {
+export async function createInvitationLink(nombre: string, acompanantes: number, email?: string): Promise<RSVPRecord | null> {
   const token = 'inv-' + Math.random().toString(36).substring(2, 9) + Date.now().toString(36).substring(4);
   const origin = typeof window !== 'undefined' ? window.location.origin : '';
   const URLinvitacion = `${origin}/?invitation=${token}`;
@@ -123,6 +123,24 @@ export async function createInvitationLink(nombre: string, acompanantes:Number, 
   }
   return null;
 }
+
+export const updateRSVPAdmin = async (id: string, updates: { nombre: string; email?: string; acompanantes: number }) => {
+  try {
+    const { error } = await supabase
+      .from('rsvps')
+      .update(updates)
+      .eq('id', id);
+
+    if (error) {
+      console.error('Error al actualizar RSVP:', error);
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error('Error de red al actualizar RSVP:', error);
+    return false;
+  }
+};
 
 export async function getInvitationByToken(tokenOrRoute: string): Promise<RSVPRecord | null> {
   if (!tokenOrRoute) return null;

@@ -10,11 +10,11 @@ import { EventDetails, RSVPRecord, GalleryPhoto, AdminPost, AudioTrack } from '.
 import { 
   supabase,
   fetchEventDetails, updateEventDetails, 
-  fetchRSVPs, deleteRSVP, createInvitationLink,
+  fetchRSVPs, deleteRSVP, createInvitationLink, updateRSVPAdmin
   fetchGalleryPhotos, addGalleryPhoto, deleteGalleryPhoto, 
   fetchAdminPosts, createAdminPost, deleteAdminPost, 
   fetchAudioTracks, addAudioTrack, selectMainAudioTrack, deleteAudioTrack,
-  uploadFileToSupabaseStorage 
+  uploadFileToSupabaseStorage
 } from '../lib/supabase';
 
 interface AdminPanelProps {
@@ -48,6 +48,16 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   const [newFamilyEmail, setNewFamilyEmail] = useState('');
   const [createdLink, setCreatedLink] = useState<RSVPRecord | null>(null);
   const [copiedLinkId, setCopiedLinkId] = useState<string | null>(null);
+
+  // Controla cuál registro está en modo "edición"
+  const [editingId, setEditingId] = useState(null);
+
+  // Guarda temporalmente los datos mientras se escriben
+  const [editFormData, setEditFormData] = useState({ 
+    nombre: '', 
+    email: '', 
+    acompanantes: 0
+  });
 
   const [rsvpSearch, setRsvpSearch] = useState('');
   const [loading, setLoading] = useState(false);
@@ -181,6 +191,31 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
       setStatusMsg('Hubo un problema de red.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleStartEdit = (rsvp: any) => {
+    setEditingId(rsvp.id);
+    setEditFormData({
+      nombre: rsvp.nombre,
+      email: rsvp.email || '',
+      acompanantes: rsvp.acompanantes || 1
+    });
+  };
+
+  const handleCancelEdit = () => {
+    setEditingId(null);
+  };
+
+  const handleSaveEdit = async (id: string) => {
+    const success = await updateRSVPAdmin(id, editFormData);
+    if (success) {
+      setRsvps(rsvps.map(r => r.id === id ? { ...r, ...editFormData } : r));
+      setStatusMsg('Registro actualizado con éxito.');
+      setTimeout(() => setStatusMsg(''), 3000);
+      setEditingId(null);
+    } else {
+      alert('Error al guardar los cambios.');
     }
   };
 
@@ -554,7 +589,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   <h3 className="text-lg font-medium text-gray-800 mb-4 flex items-center gap-2">
                     <LinkIcon className="w-5 h-5 text-[#d4af37]" /> Nuevo Enlace
                   </h3>
-                  
+
                   <form onSubmit={handleCreateLink} className="space-y-4">
                     <div>
                       <label className="block text-sm text-gray-700 mb-1">Nombre (Ej: Familia López)</label>
@@ -574,7 +609,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         min="0"
                         value={newCompanionsCount} 
                         onChange={(e) => setNewCompanionsCount(Number(e.target.value))}
-                        className="border p-2 rounded w-24"
+                        className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37] text-sm"
                         title="Número de acompañantes"
                       />
                     </div>
@@ -625,6 +660,49 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     <ul className="divide-y divide-gray-100">
                       {filteredRSVPs.map((rsvp) => (
                         <li key={rsvp.id} className="p-4 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+                        {editingId === rsvp.id ? (
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 mb-1">
+                              <input 
+                                type="text" 
+                                value={editFormData.nombre} 
+                                onChange={(e) => setEditFormData({...editFormData, nombre: e.target.value})}
+                                className="w-full border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
+                                placeholder="Nombre"
+                              />
+                              <input 
+                                type="email" 
+                                value={editFormData.email} 
+                                onChange={(e) => setEditFormData({...editFormData, email: e.target.value})}
+                                className="w-full border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
+                                placeholder="Correo (opcional)"
+                              /><input 
+                                type="number" 
+                                min="0"
+                                value={editFormData.acompanantes} 
+                                onChange={(e) => setEditFormData({...editFormData, acompanantes: Number(e.target.value)})}
+                                className="w-16 border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
+                              />
+                            </div>
+                          </div>
+
+                          <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                            <button 
+                              onClick={() => handleSaveEdit(rsvp.id)}
+                              className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                              title="Editar invitado"
+                            >
+                              Guardar
+                            </button>
+                            <button 
+                              onClick={handleCancelEdit}
+                              className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                              title="Cancelar Edición"
+                            >
+                              Cancelar
+                            </button>
+                          </div>
+                        ) : (
                           <div className="flex-1">
                             <div className="flex items-center gap-2 mb-1">
                               <span className="font-medium text-gray-900">{rsvp.nombre},</span>
@@ -646,7 +724,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                                 </span>
                               )}
                             </div>
-                            
+
                             {rsvp.mensaje && (
                               <p className="text-sm text-gray-600 flex items-start gap-1 mt-2 bg-gray-50 p-2 rounded border border-gray-100 italic">
                                 <MessageSquare className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-gray-400" />
@@ -673,6 +751,13 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                               <MessageCircle className="w-4 h-4" />
                             </a>
                             <button
+                              onClick={() => handleStartEdit(rsvp)}
+                              className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                              title="Editar invitado"
+                            >
+                              <Edit2 className="w-4 h-4" />
+                            </button>
+                            <button
                               onClick={() => handleDeleteRSVP(rsvp.id)}
                               className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
                               title="Eliminar invitado"
@@ -680,6 +765,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                               <Trash2 className="w-4 h-4" />
                             </button>
                           </div>
+                        )}
                         </li>
                       ))}
                     </ul>

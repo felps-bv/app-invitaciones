@@ -14,7 +14,6 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
   const [name, setName] = useState(activeInvitation?.nombre || '');
   const [email, setEmail] = useState(activeInvitation?.email || '');
   const [attending, setAttending] = useState<'Asistiré' | 'No podré asistir'>('Asistiré');
-  const [companionsCount, setCompanionsCount] = useState<number>(activeInvitation?.acompanantes || 0);
   const [message, setMessage] = useState(activeInvitation?.mensaje || '');
 
   // Workflow states: 'form' | 'success'
@@ -150,10 +149,9 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
         {/* STEP 1: FORM STATE */}
         {step === 'form' && (
           <form onSubmit={handleConfirmRSVP} className="space-y-6 font-sans">
-            
             {/* Field 1: Nombre Completo o de Familia */}
             <div>
-              <label htmlFor="rsvp-name-input" className="text-[18px] uppercase tracking-wider mb-1 block opacity-90 text-[#3d3d3d]">
+              <label htmlFor="rsvp-name-input" className="text-[12px] uppercase tracking-wider mb-1 block opacity-90 text-[#3d3d3d]">
                 Nombre de la Familia / Invitado <span className="text-[#d4af37]">*</span>
               </label>
               <div className="relative">
@@ -175,7 +173,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
 
             {/* Field 2: Correo Electrónico */}
             <div>
-              <label htmlFor="rsvp-email-input" className="text-[18px] uppercase tracking-wider mb-1 block opacity-90 text-[#3d3d3d]">
+              <label htmlFor="rsvp-email-input" className="text-[12px] uppercase tracking-wider mb-1 block opacity-90 text-[#3d3d3d]">
                 Correo Electrónico (Opcional)
               </label>
               <div className="relative">
@@ -193,7 +191,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
 
             {/* Field 3: Radio Option ("Asistiré" / "No podré asistir") */}
             <div className="pt-2">
-              <label className="text-[18px] uppercase tracking-wider mb-3 block opacity-90 text-[#3d3d3d]">
+              <label className="text-[12px] uppercase tracking-wider mb-3 block opacity-90 text-[#3d3d3d]">
                 ¿Asistirás? <span className="text-[#d4af37]">*</span>
               </label>
               <div className="flex gap-6">
@@ -233,7 +231,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
 
             {/* Field 5: Mensaje de felicitación opcional */}
             <div className="pt-2">
-              <label htmlFor="rsvp-message-input" className="text-[18px] uppercase tracking-wider mb-1 block opacity-90 text-[#3d3d3d]">
+              <label htmlFor="rsvp-message-input" className="text-[12px] uppercase tracking-wider mb-1 block opacity-90 text-[#3d3d3d]">
                 Mensaje o Felicitación para la Quinceañera (Opcional)
               </label>
               <textarea
@@ -247,7 +245,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
             </div>
 
             <div className="pt-2">
-              <label className="block text-sm text-[#3d3d3d] mb-1 font-medium">
+              <label className="text-[12px] uppercase tracking-wider mb-1 block opacity-90 text-[#3d3d3d]">
                 Pases asignados
               </label>
               <input
@@ -256,7 +254,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                 value={`${1 + activeInvitation.acompanantes} persona(s)`}
                 className="w-full p-3 border border-[#e9e4de] rounded bg-[#f5f2ed] text-[#8a8a8a] cursor-not-allowed opacity-80"
               />
-              <p className="text-xs text-[#8a8a8a] mt-1">
+              <p className="text-xs text-[#8a8a8a] mt-1 border-b border-[#d4cbbd] mb-1 py-2">
                 Esta invitación es válida para este número de personas.
               </p>
             </div>
@@ -323,10 +321,10 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                   <span className="font-mono text-[11px] truncate max-w-[180px]">{confirmedRSVP?.email}</span>
                 </div>
               )}
-              {confirmedRSVP?.message && (
+              {confirmedRSVP?.mensaje && (
                 <div className="flex justify-between border-b border-[#d4cbbd] pb-2">
                   <span className="opacity-90">Mensaje:</span>
-                  <span className="font-mono text-[11px] truncate max-w-[180px]">{confirmedRSVP?.message}</span>
+                  <span className="font-mono text-[11px] truncate max-w-[180px]">{confirmedRSVP?.mensaje}</span>
                 </div>
               )}
             </div>
