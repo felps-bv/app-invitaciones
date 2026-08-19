@@ -285,13 +285,13 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
     }
   };
 
-  const handleDeletePhoto = async (id: string) => {
+  const handleDeletePhoto = async (id: string, imageUrl: string) => {
     if (!window.confirm('¿Seguro que deseas eliminar esta foto de la galería?')) return;
     
     // Nota: Esto solo borra el registro de la BD. 
     // Para borrar físicamente el archivo del Storage requiere otra llamada a Supabase, 
     // pero por ahora borrar el registro es suficiente para que no salga en la app.
-    const success = await deleteGalleryPhoto(id);
+    const success = await deleteGalleryPhoto(id, imageUrl);
     if (success) {
       setPhotos(photos.filter(p => p.id !== id));
     } else {
@@ -361,7 +361,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
     }
   };
 
-  const handleDeleteAudioTrack = async (id: string, isCurrentMain: boolean) => {
+  const handleDeleteAudioTrack = async (id: string, trackUrl: string, isCurrentMain: boolean) => {
     if (isCurrentMain) {
       alert('⚠️ No puedes eliminar la canción principal. Por favor, selecciona otra canción como principal antes de borrar esta.');
       return;
@@ -369,7 +369,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
     
     if (!window.confirm('¿Seguro que deseas eliminar esta pista de audio?')) return;
     
-    const success = await deleteAudioTrack(id);
+    const success = await deleteAudioTrack(id, trackUrl);
     if (success) {
       setAudioTracks(audioTracks.filter(t => t.id !== id));
     } else {
@@ -423,10 +423,10 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
     }
   };
 
-  const handleDeletePost = async (id: string) => {
+  const handleDeletePost = async (id: string, imageUrl: string) => {
     if (!window.confirm('¿Seguro que deseas eliminar este anuncio?')) return;
     
-    const success = await deleteAdminPost(id);
+    const success = await deleteAdminPost(id, imageUrl);
     if (success) {
       setPosts(posts.filter(p => p.id !== id));
     } else {
@@ -967,6 +967,21 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
                       />
                     </div>
+
+                    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                      <div className="flex justify-between items-center mb-6">
+                        <h3 className="text-lg font-medium text-gray-800">Imagen de Portada</h3>
+                      </div>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        <div key={photo.id} className="relative group rounded-lg overflow-hidden border border-gray-200 bg-gray-50 aspect-square">
+                          <img 
+                            src={photo.url} 
+                            alt="Foto de portada" 
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1091,7 +1106,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                             <div>
                               {photo.caption && <p className="text-sm line-clamp-2 mb-2">{photo.caption}</p>}
                               <button
-                                onClick={() => handleDeletePhoto(photo.id)}
+                                onClick={() => handleDeletePhoto(photo.id, photo.url)}
                                 className="bg-red-600 hover:bg-red-700 text-white p-1.5 rounded-full transition-colors self-start"
                                 title="Eliminar Foto"
                               >
@@ -1221,7 +1236,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                                 </button>
                               )}
                               <button
-                                onClick={() => handleDeleteAudioTrack(track.id, !!isMainTrack)}
+                                onClick={() => handleDeleteAudioTrack(track.id, track.url, !!isMainTrack)}
                                 disabled={isMainTrack}
                                 className={`p-2 rounded transition-colors ${
                                   isMainTrack 
@@ -1353,7 +1368,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                             </div>
 
                             <button
-                              onClick={() => handleDeletePost(post.id)}
+                              onClick={() => handleDeletePost(post.id, post.image_url)}
                               className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors self-end sm:self-start"
                               title="Eliminar Anuncio"
                             >

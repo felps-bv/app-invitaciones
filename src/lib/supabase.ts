@@ -124,6 +124,12 @@ export async function createInvitationLink(nombre: string, acompanantes: number,
   return null;
 }
 
+const getStorageFilePath = (publicUrl: string) => {
+  if (!publicUrl) return null;
+  const urlParts = publicUrl.split('/public/xv_media/'); 
+  return urlParts.length > 1 ? urlParts[1] : null;
+};
+
 export const updateRSVPAdmin = async (id: string, updates: { nombre: string; email?: string; acompanantes: number }) => {
   try {
     const { error } = await supabase
@@ -259,18 +265,37 @@ export async function addGalleryPhoto(
   return null;
 }
 
-export async function deleteGalleryPhoto(id: string): Promise<boolean> {
+export const deleteGalleryPhoto = async (id: string, imageUrl: string) => {
   try {
-    const { error } = await supabase.from('gallery_photos').delete().eq('id', id);
-    if (!error) return true;
-    
-    console.error('Error al borrar foto en Supabase:', error);
-    return false;
-  } catch (err) {
-    console.error('Excepción al borrar foto:', err);
+    const filePath = getStorageFilePath(imageUrl);
+
+    if (filePath) {
+      const { error: storageError } = await supabase.storage
+        .from('xv_media')
+        .remove([filePath]);
+
+      if (storageError) {
+        console.error('Error al borrar el archivo del storage:', storageError);
+        return false; 
+      }
+    }
+
+    const { error: dbError } = await supabase
+      .from('gallery_photos')
+      .delete()
+      .eq('id', id);
+
+    if (dbError) {
+      console.error('Error al borrar el registro de la base de datos:', dbError);
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error de red al eliminar foto:', error);
     return false;
   }
-}
+};
 
 // 4. Admin Posts / Announcements (CERO CACHÉ)
 export async function fetchAdminPosts(): Promise<AdminPost[]> {
@@ -319,8 +344,23 @@ export async function createAdminPost(
   return null;
 }
 
-export async function deleteAdminPost(id: string): Promise<boolean> {
+export async function deleteAdminPost(id: string, imageUrl: string): Promise<boolean> {
   try {
+    if (imageUrl) {
+      const filePath = getStorageFilePath(imageUrl);
+
+      if (filePath) {
+        const { error: storageError } = await supabase.storage
+          .from('xv_media')
+          .remove([filePath]);
+
+        if (storageError) {
+          console.error('Error al borrar el archivo del storage:', storageError);
+          return false; 
+        }
+      }
+    }
+  
     const { error } = await supabase.from('admin_posts').delete().eq('id', id);
     if (!error) return true;
     
@@ -423,8 +463,21 @@ export async function selectMainAudioTrack(track: AudioTrack): Promise<boolean> 
   }
 }
 
-export async function deleteAudioTrack(id: string): Promise<boolean> {
+export async function deleteAudioTrack(id: string, trackUrl: string): Promise<boolean> {
   try {
+    const filePath = getStorageFilePath(trackUrl);
+
+    if (filePath) {
+      const { error: storageError } = await supabase.storage
+        .from('xv_media')
+        .remove([filePath]);
+
+      if (storageError) {
+        console.error('Error al borrar el archivo del storage:', storageError);
+        return false; 
+      }
+    }
+
     const { error } = await supabase.from('audio_tracks').delete().eq('id', id);
     if (!error) return true;
     
