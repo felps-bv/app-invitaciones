@@ -199,7 +199,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
     setEditFormData({
       nombre: rsvp.nombre,
       email: rsvp.email || '',
-      acompanantes: rsvp.acompanantes || 1
+      acompanantes: rsvp.acompanantes || 0
     });
   };
 
@@ -973,9 +973,9 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         <h3 className="text-lg font-medium text-gray-800">Imagen de Portada</h3>
                       </div>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                        <div key={photo.id} className="relative group rounded-lg overflow-hidden border border-gray-200 bg-gray-50 aspect-square">
+                        <div className="relative group rounded-lg overflow-hidden border border-gray-200 bg-gray-50 aspect-square">
                           <img 
-                            src={photo.url} 
+                            src={eventDetails.cover_image_url} 
                             alt="Foto de portada" 
                             className="w-full h-full object-cover"
                           />
