@@ -43,7 +43,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   const [posts, setPosts] = useState<AdminPost[]>([]);
   const [audioTracks, setAudioTracks] = useState<AudioTrack[]>([]);
   const [coverFile, setCoverFile] = useState(null);
-  const [coverPreview, setCoverPreview] = useState(null);
+  const [coverPreviewURL, setCoverPreviewURL] = useState(null);
 
   const [newFamilyName, setNewFamilyName] = useState('');
   const [newCompanionsCount, setNewCompanionsCount] = useState(0);
@@ -155,7 +155,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         const newCoverUrl = await uploadFileToSupabaseStorage(coverFile);
 
         if (newCoverUrl) {
-          setEventDetails({...eventDetails, cover_image_url: newCoverUrl})
+          setStatusMsg('URL: ' + newCoverUrl);
+          setEventDetails({...eventDetails, cover_image_url: newCoverUrl});
         }
       }
 
@@ -172,7 +173,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
     } finally {
       setLoading(false);
       setCoverFile(null);
-      setCoverPreview(null);
+      setCoverPreviewURL(null);
     }
   };
 
@@ -986,8 +987,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       <div className="w-full">
                         <div className="relative group rounded-lg overflow-hidden border border-gray-200 bg-gray-50 aspect-square">
                           <img 
-                            src={coverPreview || eventDetails.cover_image_url} 
-                            alt="Foto de portada" 
+                            src={coverPreviewURL || eventDetails.cover_image_url}
+                            alt="Foto de portada"
                             className="w-full h-full object-cover"
                           />
                         </div>
@@ -1000,7 +1001,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                               const file = e.target.files?.[0];
                               if (file) {
                                 setCoverFile(file);
-                                setCoverPreview(URL.createObjectURL(file));
+                                setCoverPreviewURL(URL.createObjectURL(file));
                               }
                             }}
                             className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-[#f5f2ed] file:text-[#3d3d3d] hover:file:bg-[#d4cbbd] transition-colors"
