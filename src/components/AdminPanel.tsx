@@ -10,7 +10,7 @@ import { EventDetails, RSVPRecord, GalleryPhoto, AdminPost, AudioTrack } from '.
 import { 
   supabase,
   fetchEventDetails, updateEventDetails, 
-  fetchRSVPs, deleteRSVP, createInvitationLink, updateRSVPAdmin
+  fetchRSVPs, deleteRSVP, createInvitationLink, updateRSVPAdmin,
   fetchGalleryPhotos, addGalleryPhoto, deleteGalleryPhoto, 
   fetchAdminPosts, createAdminPost, deleteAdminPost, 
   fetchAudioTracks, addAudioTrack, selectMainAudioTrack, deleteAudioTrack,
