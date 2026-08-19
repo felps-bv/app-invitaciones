@@ -160,7 +160,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
           updatedDetails.cover_image_url = newCoverUrl;
           setEventDetails(updatedDetails);
           setCoverFile(null);
-          setCoverPreview(null);
+          setCoverPreviewURL(null);
         }
       }
 
