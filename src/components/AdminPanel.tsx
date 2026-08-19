@@ -173,7 +173,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         setStatusMsg('Error al guardar los detalles.');
       }
     } catch (error) {
-      setStatusMsg('Error inesperado al guardar.');
+      setStatusMsg('Error inesperado al guardar: ' + error);
     } finally {
       setLoading(false);
       setCoverFile(null);
