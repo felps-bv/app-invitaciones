@@ -56,12 +56,12 @@ export async function fetchEventDetails(): Promise<EventDetails | null> {
 export async function updateEventDetails(details: EventDetails): Promise<boolean> {
   // Actualizamos el caché local
   localStorage.setItem(STORAGE_KEYS.EVENT_DETAILS, JSON.stringify(details));
-  
+
   try {
     // Solo le pasamos el objeto entero, Supabase ya sabe qué hacer
     // porque las llaves se llaman igual que las columnas.
     const { data } = await supabase.from('event_details').select('id').limit(1);
-    
+
     if (data && data.length > 0) {
       await supabase.from('event_details').update(details).eq('id', data[0].id);
     } else {
@@ -494,7 +494,7 @@ export async function uploadFileToSupabaseStorage(
   file: File, 
   bucketName: string = 'xv_media'
 ): Promise<string | null> {
-  
+
   if (!supabase) {
     console.error('El cliente de Supabase no está inicializado.');
     return null;
@@ -511,7 +511,7 @@ export async function uploadFileToSupabaseStorage(
       .from(bucketName)
       .upload(fileName, file, { 
         cacheControl: '3600', 
-        upsert: false // False porque el nombre es único, no queremos sobreescribir por accidente
+        upsert: false
       });
 
     if (uploadError) {

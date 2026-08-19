@@ -42,6 +42,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   const [photos, setPhotos] = useState<GalleryPhoto[]>([]);
   const [posts, setPosts] = useState<AdminPost[]>([]);
   const [audioTracks, setAudioTracks] = useState<AudioTrack[]>([]);
+  const [coverFile, setCoverFile] = useState(null);
+  const [coverPreview, setCoverPreview] = useState(null);
 
   const [newFamilyName, setNewFamilyName] = useState('');
   const [newCompanionsCount, setNewCompanionsCount] = useState(0);
@@ -144,16 +146,23 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   const handleSaveEventDetails = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!eventDetails) return;
-    
+
     setLoading(true);
     setStatusMsg('');
+
     try {
-      // Como ya alineamos EventDetails con snake_case, updateEventDetails 
-      // acepta el objeto completo sin mapeos extraños.
+      if (coverFile) {
+        const newCoverUrl = await uploadFileToSupabaseStorage(coverFile);
+
+        if (newCoverUrl) {
+          setEventDetails({...eventDetails, cover_image_url: newCoverUrl})
+        }
+      }
+
       const success = await updateEventDetails(eventDetails);
       if (success) {
         setStatusMsg('Detalles del evento guardados correctamente.');
-        onEventUpdated(); // Le avisa al App.tsx que recargue los datos
+        onEventUpdated();
         setTimeout(() => setStatusMsg(''), 3000);
       } else {
         setStatusMsg('Error al guardar los detalles.');
@@ -162,6 +171,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
       setStatusMsg('Error inesperado al guardar.');
     } finally {
       setLoading(false);
+      setCoverFile(null);
+      setCoverPreview(null);
     }
   };
 
@@ -782,9 +793,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         {activeTab === 'event' && eventDetails && (
           <div className="space-y-6">
             <h2 className="text-2xl font-serif text-[#3d3d3d] border-b pb-2">Detalles del Evento</h2>
-            
             <form onSubmit={handleSaveEventDetails} className="space-y-8 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-              
               {/* Sección Principal */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -924,7 +933,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Mensaje de Bienvenida</label>
                     <textarea
-                      value={eventDetails.welcomemessage} // Recordatorio: Todo junto porque así está en la BD
+                      value={eventDetails.welcomemessage}
                       onChange={(e) => setEventDetails({...eventDetails, welcomemessage: e.target.value})}
                       rows={3}
                       className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
@@ -974,12 +983,28 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       <div className="flex justify-between items-center mb-6">
                         <h3 className="text-lg font-medium text-gray-800">Imagen de Portada</h3>
                       </div>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                      <div className="w-full">
                         <div className="relative group rounded-lg overflow-hidden border border-gray-200 bg-gray-50 aspect-square">
                           <img 
-                            src={eventDetails.cover_image_url} 
+                            src={coverPreview || eventDetails.cover_image} 
                             alt="Foto de portada" 
                             className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm text-gray-700 mb-1">Archivo de Imagen</label>
+                          <input 
+                            type="file" 
+                            accept="image/*"
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (file) {
+                                setCoverFile(file);
+                                setCoverPreview(URL.createObjectURL(file));
+                              }
+                            }}
+                            className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-[#f5f2ed] file:text-[#3d3d3d] hover:file:bg-[#d4cbbd] transition-colors"
+                            required
                           />
                         </div>
                       </div>
