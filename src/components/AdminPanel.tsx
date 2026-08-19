@@ -751,13 +751,13 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                               >
                                 <MessageCircle className="w-4 h-4" />
                               </a>
-                              {/* <button
+                              <button
                                 onClick={() => handleStartEdit(rsvp)}
                                 className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
                                 title="Editar invitado"
                               >
                                 <Edit2 className="w-4 h-4" />
-                              </button> */}
+                              </button>
                               <button
                                 onClick={() => handleDeleteRSVP(rsvp.id)}
                                 className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
