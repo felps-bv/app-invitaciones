@@ -986,7 +986,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       <div className="w-full">
                         <div className="relative group rounded-lg overflow-hidden border border-gray-200 bg-gray-50 aspect-square">
                           <img 
-                            src={coverPreview || eventDetails.cover_image} 
+                            src={coverPreview || eventDetails.cover_image_url} 
                             alt="Foto de portada" 
                             className="w-full h-full object-cover"
                           />
