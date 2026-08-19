@@ -155,7 +155,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         const newCoverUrl = await uploadFileToSupabaseStorage(coverFile);
 
         if (newCoverUrl) {
-          setStatusMsg('URL: ' + newCoverUrl);
+          console.log(eventDetails);
           setEventDetails({...eventDetails, cover_image_url: newCoverUrl});
         }
       }
