@@ -447,7 +447,6 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   );
 
   // --- 6. RENDERIZADO CONDICIONAL ---
-
   if (isCheckingAuth) {
     return <div className="min-h-screen bg-gray-50 flex items-center justify-center">Cargando panel...</div>;
   }
@@ -676,7 +675,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                                 onChange={(e) => setEditFormData({...editFormData, email: e.target.value})}
                                 className="w-full border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
                                 placeholder="Correo (opcional)"
-                              /><input 
+                              />
+                              <input 
                                 type="number" 
                                 min="0"
                                 value={editFormData.acompanantes} 
@@ -685,7 +685,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                               />
                             </div>
                           </div>
-                          <div>
+                          <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
                             <button 
                               onClick={() => handleSaveEdit(rsvp.id)}
                               className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
