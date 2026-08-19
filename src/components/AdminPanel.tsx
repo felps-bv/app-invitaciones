@@ -685,7 +685,6 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                               />
                             </div>
                           </div>
-
                           <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
                             <button 
                               onClick={() => handleSaveEdit(rsvp.id)}
