@@ -660,109 +660,112 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       {filteredRSVPs.map((rsvp) => (
                         <li key={rsvp.id} className="p-4 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
                         {editingId === rsvp.id ? (
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-1">
-                              <input 
-                                type="text" 
-                                value={editFormData.nombre} 
-                                onChange={(e) => setEditFormData({...editFormData, nombre: e.target.value})}
-                                className="w-full border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
-                                placeholder="Nombre"
-                              />
-                              <input 
-                                type="email" 
-                                value={editFormData.email} 
-                                onChange={(e) => setEditFormData({...editFormData, email: e.target.value})}
-                                className="w-full border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
-                                placeholder="Correo (opcional)"
-                              />
-                              <input 
-                                type="number" 
-                                min="0"
-                                value={editFormData.acompanantes} 
-                                onChange={(e) => setEditFormData({...editFormData, acompanantes: Number(e.target.value)})}
-                                className="w-16 border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
-                              />
+                          <div>
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-1">
+                                <input 
+                                  type="text" 
+                                  value={editFormData.nombre} 
+                                  onChange={(e) => setEditFormData({...editFormData, nombre: e.target.value})}
+                                  className="w-full border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
+                                  placeholder="Nombre"
+                                />
+                                <input 
+                                  type="email" 
+                                  value={editFormData.email} 
+                                  onChange={(e) => setEditFormData({...editFormData, email: e.target.value})}
+                                  className="w-full border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
+                                  placeholder="Correo (opcional)"
+                                />
+                                <input 
+                                  type="number" 
+                                  min="0"
+                                  value={editFormData.acompanantes} 
+                                  onChange={(e) => setEditFormData({...editFormData, acompanantes: Number(e.target.value)})}
+                                  className="w-16 border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
+                                />
+                              </div>
                             </div>
-                          </div>
-                          <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
-                            <button 
-                              onClick={() => handleSaveEdit(rsvp.id)}
-                              className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
-                              title="Editar invitado"
-                            >
-                              Guardar
-                            </button>
-                            <button 
-                              onClick={handleCancelEdit}
-                              className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
-                              title="Cancelar Edición"
-                            >
-                              Cancelar
-                            </button>
+                            <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                              <button 
+                                onClick={() => handleSaveEdit(rsvp.id)}
+                                className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                                title="Editar invitado"
+                              >
+                                Guardar
+                              </button>
+                              <button 
+                                onClick={handleCancelEdit}
+                                className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                                title="Cancelar Edición"
+                              >
+                                Cancelar
+                              </button>
+                            </div>
                           </div>
                         ) : (
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-1">
-                              <span className="font-medium text-gray-900">{rsvp.nombre},</span>
-                              <span className="font-medium text-gray-900">{rsvp.acompanantes} acompañantes</span>
-                              {/* BADGES DE STATUS */}
-                              {rsvp.confirmado === true && (
-                                <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded-full font-medium">
-                                  <CheckCircle className="w-3 h-3" /> Asistirá (+{rsvp.acompanantes})
-                                </span>
-                              )}
-                              {rsvp.confirmado === false && (
-                                <span className="inline-flex items-center gap-1 bg-red-100 text-red-700 text-[10px] px-2 py-0.5 rounded-full font-medium">
-                                  <X className="w-3 h-3" /> No Asistirá
-                                </span>
-                              )}
-                              {rsvp.confirmado === null && (
-                                <span className="inline-flex items-center bg-yellow-100 text-yellow-700 text-[10px] px-2 py-0.5 rounded-full font-medium">
-                                  Pendiente
-                                </span>
+                          <div>
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className="font-medium text-gray-900">{rsvp.nombre},</span>
+                                <span className="font-medium text-gray-900">{rsvp.acompanantes} acompañantes</span>
+                                {/* BADGES DE STATUS */}
+                                {rsvp.confirmado === true && (
+                                  <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded-full font-medium">
+                                    <CheckCircle className="w-3 h-3" /> Asistirá (+{rsvp.acompanantes})
+                                  </span>
+                                )}
+                                {rsvp.confirmado === false && (
+                                  <span className="inline-flex items-center gap-1 bg-red-100 text-red-700 text-[10px] px-2 py-0.5 rounded-full font-medium">
+                                    <X className="w-3 h-3" /> No Asistirá
+                                  </span>
+                                )}
+                                {rsvp.confirmado === null && (
+                                  <span className="inline-flex items-center bg-yellow-100 text-yellow-700 text-[10px] px-2 py-0.5 rounded-full font-medium">
+                                    Pendiente
+                                  </span>
+                                )}
+                              </div>
+
+                              {rsvp.mensaje && (
+                                <p className="text-sm text-gray-600 flex items-start gap-1 mt-2 bg-gray-50 p-2 rounded border border-gray-100 italic">
+                                  <MessageSquare className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-gray-400" />
+                                  "{rsvp.mensaje}"
+                                </p>
                               )}
                             </div>
-
-                            {rsvp.mensaje && (
-                              <p className="text-sm text-gray-600 flex items-start gap-1 mt-2 bg-gray-50 p-2 rounded border border-gray-100 italic">
-                                <MessageSquare className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-gray-400" />
-                                "{rsvp.mensaje}"
-                              </p>
-                            )}
-                          </div>
-
-                          <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
-                            <button
-                              onClick={() => handleCopyLink(rsvp.URLinvitacion, rsvp.id)}
-                              className="p-2 text-gray-500 hover:text-[#d4af37] hover:bg-[#faf9f7] rounded transition-colors tooltip relative group"
-                              title="Copiar Enlace Mágico"
-                            >
-                              {copiedLinkId === rsvp.id ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
-                            </button>
-                            <a 
-                              href={`https://api.whatsapp.com/send?text=${encodeURIComponent(`¡Hola! Te comparto tu invitación digital: ${window.location.origin}/?invitation=${rsvp.token}`)}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="p-2 text-gray-500 hover:text-green-600 hover:bg-green-50 rounded transition-colors"
-                              title="Enviar por WhatsApp"
-                            >
-                              <MessageCircle className="w-4 h-4" />
-                            </a>
-                            <button
-                              onClick={() => handleStartEdit(rsvp)}
-                              className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
-                              title="Editar invitado"
-                            >
-                              <Edit2 className="w-4 h-4" />
-                            </button>
-                            <button
-                              onClick={() => handleDeleteRSVP(rsvp.id)}
-                              className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
-                              title="Eliminar invitado"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
+                            <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                              <button
+                                onClick={() => handleCopyLink(rsvp.URLinvitacion, rsvp.id)}
+                                className="p-2 text-gray-500 hover:text-[#d4af37] hover:bg-[#faf9f7] rounded transition-colors tooltip relative group"
+                                title="Copiar Enlace Mágico"
+                              >
+                                {copiedLinkId === rsvp.id ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
+                              </button>
+                              <a 
+                                href={`https://api.whatsapp.com/send?text=${encodeURIComponent(`¡Hola! Te comparto tu invitación digital: ${window.location.origin}/?invitation=${rsvp.token}`)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-2 text-gray-500 hover:text-green-600 hover:bg-green-50 rounded transition-colors"
+                                title="Enviar por WhatsApp"
+                              >
+                                <MessageCircle className="w-4 h-4" />
+                              </a>
+                              <button
+                                onClick={() => handleStartEdit(rsvp)}
+                                className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                                title="Editar invitado"
+                              >
+                                <Edit2 className="w-4 h-4" />
+                              </button>
+                              <button
+                                onClick={() => handleDeleteRSVP(rsvp.id)}
+                                className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                                title="Eliminar invitado"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
                           </div>
                         )}
                         </li>
