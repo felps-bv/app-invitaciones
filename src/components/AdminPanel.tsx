@@ -147,6 +147,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
     e.preventDefault();
     if (!eventDetails) return;
 
+    const updatedDetails = { ...eventDetails };
+
     setLoading(true);
     setStatusMsg('');
 
@@ -155,12 +157,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         const newCoverUrl = await uploadFileToSupabaseStorage(coverFile);
 
         if (newCoverUrl) {
-          setEventDetails({...eventDetails, cover_image_url: newCoverUrl});
-          console.log(eventDetails);
+          updatedDetails.cover_image_url = newCoverUrl;
+          setEventDetails(updatedDetails);
+          setCoverFile(null);
+          setCoverPreview(null);
         }
       }
 
-      const success = await updateEventDetails(eventDetails);
+      const success = await updateEventDetails(updatedDetails);
       if (success) {
         setStatusMsg('Detalles del evento guardados correctamente.');
         onEventUpdated();
