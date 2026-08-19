@@ -685,7 +685,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                               />
                             </div>
                           </div>
-                          <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                          <div>
                             <button 
                               onClick={() => handleSaveEdit(rsvp.id)}
                               className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
