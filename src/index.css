@@ -2,7 +2,7 @@
 
 @layer base {
   body {
-    @apply bg-bg-plumbago text-silver-light selection:bg-silver-dark selection:text-night;
+    @apply bg-plumbago text-silver-light selection:bg-silver-dark selection:text-night;
   }
 }
 
