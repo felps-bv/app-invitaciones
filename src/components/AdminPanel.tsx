@@ -748,8 +748,6 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                               )}
 
                               {/* NUEVO: DESGLOSE DE ASISTENTES (Solo se muestra si ya respondieron) */}
-                              {console.log(rsvp);
-                              }
                               {rsvp.asistentes_detalle && rsvp.asistentes_detalle.length > 0 && (
                                 <div className="mt-3 mb-2 bg-white border border-gray-100 rounded p-3 shadow-sm inline-block min-w-full sm:min-w-[250px]">
                                   <span className="text-[10px] uppercase tracking-wider text-gray-500 font-medium block mb-2 border-b pb-1">
