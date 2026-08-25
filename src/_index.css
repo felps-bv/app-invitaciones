@@ -1,18 +1,5 @@
 @import "tailwindcss";
 
-/* NUEVO: Así se declaran los colores personalizados en Tailwind v4 */
-@theme {
-  --color-plumbago: #6B8CA4;
-  --color-plumbago-light: #8F9FA8;
-  
-  --color-night: #0C141A;
-  --color-night-soft: #16242F;
-  
-  --color-silver: #C0C7CB;
-  --color-silver-dark: #9EA4A2;
-  --color-silver-light: #F4F6F8;
-}
-
 @layer base {
   body {
     @apply bg-plumbago text-silver-light selection:bg-silver-dark selection:text-night;
@@ -57,6 +44,7 @@
   animation: pulse-soft 3s ease-in-out infinite;
 }
 
+/* ACTUALIZADO: Pasó de dorado a plata premium */
 .silver-shimmer {
   background: linear-gradient(90deg, #C0C7CB 0%, #F4F6F8 50%, #C0C7CB 100%);
   background-size: 200% 100%;
@@ -65,17 +53,17 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* Scrollbar con temática Plumbago/Night */
+/* ACTUALIZADO: Scrollbar con temática bg-plumbago/Night */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0C141A;
+  background: #0C141A; /* night */
 }
 ::-webkit-scrollbar-thumb {
-  background: #6B8CA4;
+  background: #6B8CA4; /* bg-plumbago */
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #8F9FA8;
+  background: #8F9FA8; /* bg-plumbago-light */
 }
