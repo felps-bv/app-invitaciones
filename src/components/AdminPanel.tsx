@@ -470,12 +470,12 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   // PANTALLA DE LOGIN A PANTALLA COMPLETA
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#f5f2ed] flex flex-col items-center justify-center px-4">
-        <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-xl border border-[#d4cbbd]">
+      <div className="min-h-screen bg-plumbago flex flex-col items-center justify-center px-4">
+        <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-xl border border-plumbago-light">
           <div className="flex justify-center mb-6">
-            <Lock className="w-12 h-12 text-[#d4af37]" />
+            <Lock className="w-12 h-12 text-silver" />
           </div>
-          <h2 className="text-2xl font-serif text-center text-[#3d3d3d] mb-6">Acceso Administrativo</h2>
+          <h2 className="text-2xl font-serif text-center text-silver-light mb-6">Acceso Administrativo</h2>
           
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
@@ -484,7 +484,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 type="email" 
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                 required
               />
             </div>
@@ -494,7 +494,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 type="password" 
                 value={password} 
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                 required
               />
             </div>
@@ -504,7 +504,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full bg-[#3d3d3d] text-white py-3 rounded hover:bg-[#1a1a1a] transition-colors flex items-center justify-center gap-2"
+              className="w-full bg-silver-light text-white py-3 rounded hover:bg-night transition-colors flex items-center justify-center gap-2"
             >
               {loading ? <RefreshCw className="w-5 h-5 animate-spin" /> : 'Iniciar Sesión'}
             </button>
@@ -524,24 +524,24 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
       {/* SIDEBAR NAVEGACIÓN */}
       <aside className="w-full md:w-64 bg-white border-r border-gray-200 p-4 flex flex-col h-full">
         <div className="flex items-center gap-2 mb-8 px-2 py-4 border-b">
-          <Settings className="w-6 h-6 text-[#d4af37]" />
-          <h1 className="font-serif text-xl text-[#3d3d3d]">Panel XV Años</h1>
+          <Settings className="w-6 h-6 text-silver" />
+          <h1 className="font-serif text-xl text-silver-light">Panel XV Años</h1>
         </div>
 
         <nav className="flex-1 space-y-2">
-          <button onClick={() => setActiveTab('rsvps')} className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${activeTab === 'rsvps' ? 'bg-[#f5f2ed] text-[#d4af37] font-medium' : 'text-gray-600 hover:bg-gray-100'}`}>
+          <button onClick={() => setActiveTab('rsvps')} className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${activeTab === 'rsvps' ? 'bg-plumbago text-silver font-medium' : 'text-gray-600 hover:bg-gray-100'}`}>
             <Users className="w-5 h-5" /> Invitados
           </button>
-          <button onClick={() => setActiveTab('event')} className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${activeTab === 'event' ? 'bg-[#f5f2ed] text-[#d4af37] font-medium' : 'text-gray-600 hover:bg-gray-100'}`}>
+          <button onClick={() => setActiveTab('event')} className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${activeTab === 'event' ? 'bg-plumbago text-silver font-medium' : 'text-gray-600 hover:bg-gray-100'}`}>
             <Sparkles className="w-5 h-5" /> Detalles del Evento
           </button>
-          <button onClick={() => setActiveTab('gallery')} className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${activeTab === 'gallery' ? 'bg-[#f5f2ed] text-[#d4af37] font-medium' : 'text-gray-600 hover:bg-gray-100'}`}>
+          <button onClick={() => setActiveTab('gallery')} className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${activeTab === 'gallery' ? 'bg-plumbago text-silver font-medium' : 'text-gray-600 hover:bg-gray-100'}`}>
             <ImageIcon className="w-5 h-5" /> Galería de Fotos
           </button>
-          <button onClick={() => setActiveTab('music')} className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${activeTab === 'music' ? 'bg-[#f5f2ed] text-[#d4af37] font-medium' : 'text-gray-600 hover:bg-gray-100'}`}>
+          <button onClick={() => setActiveTab('music')} className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${activeTab === 'music' ? 'bg-plumbago text-silver font-medium' : 'text-gray-600 hover:bg-gray-100'}`}>
             <Music className="w-5 h-5" /> Música
           </button>
-          <button onClick={() => setActiveTab('posts')} className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${activeTab === 'posts' ? 'bg-[#f5f2ed] text-[#d4af37] font-medium' : 'text-gray-600 hover:bg-gray-100'}`}>
+          <button onClick={() => setActiveTab('posts')} className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${activeTab === 'posts' ? 'bg-plumbago text-silver font-medium' : 'text-gray-600 hover:bg-gray-100'}`}>
             <MessageSquare className="w-5 h-5" /> Anuncios
           </button>
         </nav>
@@ -559,7 +559,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         {activeTab === 'rsvps' && (
           <div className="space-y-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-4 gap-4">
-              <h2 className="text-2xl font-serif text-[#3d3d3d]">Gestión de Invitados</h2>
+              <h2 className="text-2xl font-serif text-silver-light">Gestión de Invitados</h2>
               
               {/* Barra de Búsqueda */}
               <div className="relative w-full sm:w-64">
@@ -569,7 +569,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   placeholder="Buscar familia..."
                   value={rsvpSearch}
                   onChange={(e) => setRsvpSearch(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-full text-sm focus:ring-[#d4af37] focus:border-[#d4af37]"
+                  className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-full text-sm focus:ring-silver focus:border-silver"
                 />
               </div>
             </div>
@@ -577,7 +577,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
             {/* Tarjetas de Métricas */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 flex flex-col items-center text-center">
-                <span className="text-3xl font-serif text-[#3d3d3d]">{totalRSVPs}</span>
+                <span className="text-3xl font-serif text-silver-light">{totalRSVPs}</span>
                 <span className="text-xs text-gray-500 uppercase tracking-wider mt-1">Total Enlaces</span>
               </div>
               <div className="bg-white p-4 rounded-lg shadow-sm border border-green-100 flex flex-col items-center text-center">
@@ -599,7 +599,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
               <div className="lg:col-span-1 space-y-6">
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
                   <h3 className="text-lg font-medium text-gray-800 mb-4 flex items-center gap-2">
-                    <LinkIcon className="w-5 h-5 text-[#d4af37]" /> Nuevo Enlace
+                    <LinkIcon className="w-5 h-5 text-silver" /> Nuevo Enlace
                   </h3>
 
                   <form onSubmit={handleCreateLink} className="space-y-4">
@@ -610,7 +610,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         value={newFamilyName}
                         onChange={(e) => setNewFamilyName(e.target.value)}
                         placeholder="Familia / Invitado"
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37] text-sm"
+                        className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver text-sm"
                         required
                       />
                     </div>
@@ -621,7 +621,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         min="0"
                         value={newCompanionsCount} 
                         onChange={(e) => setNewCompanionsCount(Number(e.target.value))}
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37] text-sm"
+                        className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver text-sm"
                         title="Número de acompañantes"
                       />
                     </div>
@@ -632,14 +632,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         value={newFamilyEmail}
                         onChange={(e) => setNewFamilyEmail(e.target.value)}
                         placeholder="correo@ejemplo.com"
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37] text-sm"
+                        className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver text-sm"
                       />
                     </div>
                     
                     <button 
                       type="submit" 
                       disabled={loading || !newFamilyName.trim()}
-                      className="w-full bg-[#3d3d3d] hover:bg-[#1a1a1a] text-white py-2 rounded flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
+                      className="w-full bg-silver-light hover:bg-night text-white py-2 rounded flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
                     >
                       {loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
                       Generar Enlace
@@ -680,14 +680,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                                   type="text" 
                                   value={editFormData.nombre} 
                                   onChange={(e) => setEditFormData({...editFormData, nombre: e.target.value})}
-                                  className="w-full border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
+                                  className="w-full border border-plumbago-light p-1.5 rounded focus:outline-none focus:border-silver"
                                   placeholder="Nombre"
                                 />
                                 <input 
                                   type="email" 
                                   value={editFormData.email} 
                                   onChange={(e) => setEditFormData({...editFormData, email: e.target.value})}
-                                  className="w-full border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
+                                  className="w-full border border-plumbago-light p-1.5 rounded focus:outline-none focus:border-silver"
                                   placeholder="Correo (opcional)"
                                 />
                                 <input 
@@ -695,7 +695,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                                   min="0"
                                   value={editFormData.acompanantes} 
                                   onChange={(e) => setEditFormData({...editFormData, acompanantes: Number(e.target.value)})}
-                                  className="w-16 border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
+                                  className="w-16 border border-plumbago-light p-1.5 rounded focus:outline-none focus:border-silver"
                                 />
                               </div>
                             </div>
@@ -774,7 +774,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                             <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto mt-2">
                               <button
                                 onClick={() => handleCopyLink(rsvp.URLinvitacion, rsvp.id)}
-                                className="p-2 text-gray-500 hover:text-[#d4af37] hover:bg-[#faf9f7] rounded transition-colors tooltip relative group"
+                                className="p-2 text-gray-500 hover:text-silver hover:bg-night rounded transition-colors tooltip relative group"
                                 title="Copiar Enlace Mágico"
                               >
                                 {copiedLinkId === rsvp.id ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
@@ -818,7 +818,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         {/* PESTAÑA EVENTO */}
         {activeTab === 'event' && eventDetails && (
           <div className="space-y-6">
-            <h2 className="text-2xl font-serif text-[#3d3d3d] border-b pb-2">Detalles del Evento</h2>
+            <h2 className="text-2xl font-serif text-silver-light border-b pb-2">Detalles del Evento</h2>
             <form onSubmit={handleSaveEventDetails} className="space-y-8 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
               {/* Sección Principal */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -828,7 +828,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     type="text"
                     value={eventDetails.quinceanera_name}
                     onChange={(e) => setEventDetails({...eventDetails, quinceanera_name: e.target.value})}
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                     required
                   />
                 </div>
@@ -838,7 +838,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     type="text"
                     value={eventDetails.subtitle}
                     onChange={(e) => setEventDetails({...eventDetails, subtitle: e.target.value})}
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                     required
                   />
                 </div>
@@ -848,7 +848,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     type="datetime-local"
                     value={eventDetails.date}
                     onChange={(e) => setEventDetails({...eventDetails, date: e.target.value})}
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                     required
                   />
                 </div>
@@ -859,7 +859,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
               {/* Sección Ceremonia Religiosa */}
               <div>
                 <h3 className="text-lg font-medium text-gray-800 mb-4 flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-[#d4af37]" /> Ceremonia Religiosa
+                  <Sparkles className="w-5 h-5 text-silver" /> Ceremonia Religiosa
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -868,7 +868,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       type="text"
                       value={eventDetails.church_name}
                       onChange={(e) => setEventDetails({...eventDetails, church_name: e.target.value})}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                     />
                   </div>
                   <div>
@@ -877,7 +877,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       type="text"
                       value={eventDetails.church_address}
                       onChange={(e) => setEventDetails({...eventDetails, church_address: e.target.value})}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                     />
                   </div>
                   <div>
@@ -886,7 +886,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       type="text"
                       value={eventDetails.church_time}
                       onChange={(e) => setEventDetails({...eventDetails, church_time: e.target.value})}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                     />
                   </div>
                   <div>
@@ -895,7 +895,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       type="url"
                       value={eventDetails.church_map_url}
                       onChange={(e) => setEventDetails({...eventDetails, church_map_url: e.target.value})}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                     />
                   </div>
                 </div>
@@ -906,7 +906,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
               {/* Sección Recepción */}
               <div>
                 <h3 className="text-lg font-medium text-gray-800 mb-4 flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-[#d4af37]" /> Recepción / Salón
+                  <Sparkles className="w-5 h-5 text-silver" /> Recepción / Salón
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -915,7 +915,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       type="text"
                       value={eventDetails.hall_name}
                       onChange={(e) => setEventDetails({...eventDetails, hall_name: e.target.value})}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                     />
                   </div>
                   <div>
@@ -924,7 +924,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       type="text"
                       value={eventDetails.hall_address}
                       onChange={(e) => setEventDetails({...eventDetails, hall_address: e.target.value})}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                     />
                   </div>
                   <div>
@@ -933,7 +933,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       type="text"
                       value={eventDetails.hall_time}
                       onChange={(e) => setEventDetails({...eventDetails, hall_time: e.target.value})}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                     />
                   </div>
                   <div>
@@ -942,7 +942,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       type="url"
                       value={eventDetails.hall_map_url}
                       onChange={(e) => setEventDetails({...eventDetails, hall_map_url: e.target.value})}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                     />
                   </div>
                 </div>
@@ -953,7 +953,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
               {/* Información Adicional */}
               <div>
                 <h3 className="text-lg font-medium text-gray-800 mb-4 flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-[#d4af37]" /> Información Adicional
+                  <Sparkles className="w-5 h-5 text-silver" /> Información Adicional
                 </h3>
                 <div className="grid grid-cols-1 gap-6">
                   <div>
@@ -962,7 +962,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       value={eventDetails.welcomemessage}
                       onChange={(e) => setEventDetails({...eventDetails, welcomemessage: e.target.value})}
                       rows={3}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                     />
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -972,7 +972,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         type="text"
                         value={eventDetails.parents_names}
                         onChange={(e) => setEventDetails({...eventDetails, parents_names: e.target.value})}
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                        className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                       />
                     </div>
                     <div>
@@ -981,7 +981,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         type="text"
                         value={eventDetails.godparents_names}
                         onChange={(e) => setEventDetails({...eventDetails, godparents_names: e.target.value})}
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                        className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                       />
                     </div>
                   </div>
@@ -992,7 +992,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         type="text"
                         value={eventDetails.dress_code}
                         onChange={(e) => setEventDetails({...eventDetails, dress_code: e.target.value})}
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                        className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                       />
                     </div>
                     <div>
@@ -1001,7 +1001,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         type="text"
                         value={eventDetails.gift_registry}
                         onChange={(e) => setEventDetails({...eventDetails, gift_registry: e.target.value})}
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37]"
+                        className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
                       />
                     </div>
 
@@ -1029,7 +1029,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                                 setCoverPreviewURL(URL.createObjectURL(file));
                               }
                             }}
-                            className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-[#f5f2ed] file:text-[#3d3d3d] hover:file:bg-[#d4cbbd] transition-colors"
+                            className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-plumbago file:text-silver-light hover:file:bg-[#d4cbbd] transition-colors"
                             required
                           />
                         </div>
@@ -1047,7 +1047,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 <button
                   type="submit"
                   disabled={loading}
-                  className="bg-[#3d3d3d] hover:bg-[#1a1a1a] text-white px-6 py-2 rounded flex items-center gap-2 transition-colors disabled:opacity-70"
+                  className="bg-silver-light hover:bg-night text-white px-6 py-2 rounded flex items-center gap-2 transition-colors disabled:opacity-70"
                 >
                   {loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                   Guardar Cambios
@@ -1060,8 +1060,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         {/* PESTAÑA GALERÍA */}
         {activeTab === 'gallery' && (
           <div className="space-y-6">
-            <h2 className="text-2xl font-serif text-[#3d3d3d] border-b pb-2 flex items-center gap-2">
-              <ImageIcon className="w-6 h-6 text-[#d4af37]" /> Galería de Fotos
+            <h2 className="text-2xl font-serif text-silver-light border-b pb-2 flex items-center gap-2">
+              <ImageIcon className="w-6 h-6 text-silver" /> Galería de Fotos
             </h2>
             
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
@@ -1081,7 +1081,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           setPhotoFile(e.target.files[0]);
                         }
                       }}
-                      className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-[#f5f2ed] file:text-[#3d3d3d] hover:file:bg-[#d4cbbd] transition-colors"
+                      className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-plumbago file:text-silver-light hover:file:bg-[#d4cbbd] transition-colors"
                       required
                     />
                   </div>
@@ -1091,7 +1091,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     <select 
                       value={photoCategory}
                       onChange={(e) => setPhotoCategory(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37] text-sm"
+                      className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver text-sm"
                     >
                       <option value="Sesión Principal">Sesión Principal</option>
                       <option value="Detalles">Detalles (Vestido, Flores...)</option>
@@ -1107,14 +1107,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       value={photoCaption}
                       onChange={(e) => setPhotoCaption(e.target.value)}
                       placeholder="Ej: Preparativos antes de la iglesia..."
-                      className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37] text-sm"
+                      className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver text-sm"
                     />
                   </div>
                   
                   <button 
                     type="submit" 
                     disabled={loading || !photoFile}
-                    className="w-full bg-[#3d3d3d] hover:bg-[#1a1a1a] text-white py-2 rounded flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
+                    className="w-full bg-silver-light hover:bg-night text-white py-2 rounded flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
                   >
                     {loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
                     Subir a la Galería
@@ -1153,7 +1153,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           {/* Overlay on hover */}
                           <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-between p-3 text-white">
                             <div className="text-xs">
-                              <span className="bg-[#d4af37] px-2 py-0.5 rounded-full">{photo.category}</span>
+                              <span className="bg-silver px-2 py-0.5 rounded-full">{photo.category}</span>
                             </div>
                             
                             <div>
@@ -1181,8 +1181,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         {/* PESTAÑA MÚSICA */}
         {activeTab === 'music' && (
           <div className="space-y-6">
-            <h2 className="text-2xl font-serif text-[#3d3d3d] border-b pb-2 flex items-center gap-2">
-              <Music className="w-6 h-6 text-[#d4af37]" /> Música de Fondo
+            <h2 className="text-2xl font-serif text-silver-light border-b pb-2 flex items-center gap-2">
+              <Music className="w-6 h-6 text-silver" /> Música de Fondo
             </h2>
             
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
@@ -1206,7 +1206,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           }
                         }
                       }}
-                      className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-[#f5f2ed] file:text-[#3d3d3d] hover:file:bg-[#d4cbbd] transition-colors"
+                      className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-plumbago file:text-silver-light hover:file:bg-[#d4cbbd] transition-colors"
                       required
                     />
                   </div>
@@ -1218,14 +1218,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       value={audioTitle}
                       onChange={(e) => setAudioTitle(e.target.value)}
                       placeholder="Ej: Vals de las Mariposas"
-                      className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37] text-sm"
+                      className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver text-sm"
                     />
                   </div>
                   
                   <button 
                     type="submit" 
                     disabled={loading || !audioFile}
-                    className="w-full bg-[#3d3d3d] hover:bg-[#1a1a1a] text-white py-2 rounded flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
+                    className="w-full bg-silver-light hover:bg-night text-white py-2 rounded flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
                   >
                     {loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
                     Subir Audio
@@ -1260,19 +1260,19 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           <div 
                             key={track.id} 
                             className={`flex items-center justify-between p-4 rounded-lg border transition-all ${
-                              isMainTrack ? 'bg-[#faf9f7] border-[#d4af37]' : 'bg-white border-gray-200 hover:border-gray-300'
+                              isMainTrack ? 'bg-night border-silver' : 'bg-white border-gray-200 hover:border-gray-300'
                             }`}
                           >
                             <div className="flex items-center gap-4">
-                              <div className={`p-3 rounded-full ${isMainTrack ? 'bg-[#d4af37]/20 text-[#d4af37]' : 'bg-gray-100 text-gray-400'}`}>
+                              <div className={`p-3 rounded-full ${isMainTrack ? 'bg-silver/20 text-silver' : 'bg-gray-100 text-gray-400'}`}>
                                 <Music className="w-5 h-5" />
                               </div>
                               <div>
-                                <h4 className={`font-medium ${isMainTrack ? 'text-[#3d3d3d]' : 'text-gray-700'}`}>
+                                <h4 className={`font-medium ${isMainTrack ? 'text-silver-light' : 'text-gray-700'}`}>
                                   {track.title || 'Pista sin título'}
                                 </h4>
                                 {isMainTrack && (
-                                  <span className="text-xs font-medium text-[#d4af37] flex items-center gap-1 mt-1">
+                                  <span className="text-xs font-medium text-silver flex items-center gap-1 mt-1">
                                     <CheckCircle className="w-3 h-3" /> Reproducción Activa
                                   </span>
                                 )}
@@ -1316,8 +1316,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         {/* PESTAÑA ANUNCIOS */}
         {activeTab === 'posts' && (
           <div className="space-y-6">
-            <h2 className="text-2xl font-serif text-[#3d3d3d] border-b pb-2 flex items-center gap-2">
-              <MessageSquare className="w-6 h-6 text-[#d4af37]" /> Anuncios y Mensajes
+            <h2 className="text-2xl font-serif text-silver-light border-b pb-2 flex items-center gap-2">
+              <MessageSquare className="w-6 h-6 text-silver" /> Anuncios y Mensajes
             </h2>
             
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
@@ -1334,7 +1334,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       value={postTitle}
                       onChange={(e) => setPostTitle(e.target.value)}
                       placeholder="Ej: Aviso importante sobre el itinerario"
-                      className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37] text-sm"
+                      className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver text-sm"
                       required
                     />
                   </div>
@@ -1346,7 +1346,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       onChange={(e) => setPostContent(e.target.value)}
                       rows={4}
                       placeholder="Escribe aquí los detalles para tus invitados..."
-                      className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37] text-sm"
+                      className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver text-sm"
                       required
                     />
                   </div>
@@ -1361,14 +1361,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           setPostImageFile(e.target.files[0]);
                         }
                       }}
-                      className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-[#f5f2ed] file:text-[#3d3d3d] hover:file:bg-[#d4cbbd] transition-colors"
+                      className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-plumbago file:text-silver-light hover:file:bg-[#d4cbbd] transition-colors"
                     />
                   </div>
                   
                   <button 
                     type="submit" 
                     disabled={loading || !postTitle.trim() || !postContent.trim()}
-                    className="w-full bg-[#3d3d3d] hover:bg-[#1a1a1a] text-white py-2 rounded flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
+                    className="w-full bg-silver-light hover:bg-night text-white py-2 rounded flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
                   >
                     {loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
                     Publicar Anuncio
@@ -1402,7 +1402,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           <div key={post.id} className="p-4 rounded-lg border border-gray-200 bg-white flex flex-col sm:flex-row gap-4 items-start justify-between">
                             <div className="flex-1 space-y-2">
                               <div className="flex items-center justify-between">
-                                <h4 className="font-serif text-lg text-[#3d3d3d]">{post.title}</h4>
+                                <h4 className="font-serif text-lg text-silver-light">{post.title}</h4>
                                 <span className="text-[10px] text-gray-400">
                                   {new Date(post.created_at || Date.now()).toLocaleDateString('es-ES', {
                                     day: 'numeric',

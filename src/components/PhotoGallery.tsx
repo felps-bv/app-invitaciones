@@ -23,19 +23,19 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos = [] }) => {
   return (
     <section className="py-12 px-4 max-w-6xl mx-auto">
       <div className="text-center mb-10">
-        <div className="w-12 h-12 mx-auto rounded-full border border-[#d4af37] flex items-center justify-center text-[#d4af37] mb-3">
+        <div className="w-12 h-12 mx-auto rounded-full border border-silver flex items-center justify-center text-silver mb-3">
           <Camera className="w-6 h-6" />
         </div>
 
-        <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-[#b5a48b] font-medium">
+        <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-silver-dark font-medium">
           Recuerdos e Imágenes
         </span>
 
-        <h3 className="font-serif text-3xl sm:text-4xl text-[#1a1a1a] font-light italic mt-1">
+        <h3 className="font-serif text-3xl sm:text-4xl text-silver-light font-light italic mt-1">
           Galería de Fotos
         </h3>
 
-        <p className="font-sans text-xs text-[#3d3d3d] opacity-70 mt-1">
+        <p className="font-sans text-xs text-silver-light opacity-70 mt-1">
           Un vistazo a la emoción de esta bella etapa
         </p>
 
@@ -49,8 +49,8 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos = [] }) => {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-4 py-2 rounded-sm font-sans text-[10px] uppercase tracking-[0.2em] font-medium transition-all cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-[#3d3d3d] text-white shadow-sm'
-                    : 'bg-[#e9e4de] text-[#3d3d3d] hover:bg-[#d4cbbd]'
+                    ? 'bg-silver-light text-white shadow-sm'
+                    : 'bg-[#e9e4de] text-silver-light hover:bg-[#d4cbbd]'
                 }`}
               >
                 {cat}
@@ -66,7 +66,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos = [] }) => {
           <div
             key={photo?.id}
             onClick={() => setActivePhoto(photo)}
-            className="group relative h-72 rounded-sm overflow-hidden bg-[#e9e4de] border border-[#d4cbbd] cursor-pointer shadow-sm hover:shadow-lg transition-all duration-300"
+            className="group relative h-72 rounded-sm overflow-hidden bg-[#e9e4de] border border-plumbago-light cursor-pointer shadow-sm hover:shadow-lg transition-all duration-300"
           >
             <img
               src={photo?.url || (photo as any)?.image_url} // Fallback por si en BD se llama image_url
@@ -76,11 +76,11 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos = [] }) => {
             />
             
             {/* Hover overlay with zoom icon and caption */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/80 via-[#1a1a1a]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end text-white">
+            <div className="absolute inset-0 bg-gradient-to-t from-night/80 via-night/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end text-white">
               <p className="font-serif text-sm font-light italic line-clamp-2">
                 {photo?.caption}
               </p>
-              <div className="flex items-center gap-1 text-[10px] uppercase tracking-wider text-[#d4af37] font-sans mt-1">
+              <div className="flex items-center gap-1 text-[10px] uppercase tracking-wider text-silver font-sans mt-1">
                 <Maximize2 className="w-3 h-3" />
                 <span>Ampliar foto</span>
               </div>
@@ -90,14 +90,14 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos = [] }) => {
       </div>
 
       {filteredPhotos.length === 0 && (
-        <div className="text-center py-12 text-[#b5a48b] font-serif text-base italic">
+        <div className="text-center py-12 text-silver-dark font-serif text-base italic">
           No hay fotografías en esta categoría por el momento.
         </div>
       )}
 
       {/* Lightbox Zoom Modal */}
       {activePhoto && (
-        <div className="fixed inset-0 z-50 bg-[#1a1a1a]/90 backdrop-blur-md p-4 flex items-center justify-center animate-fadeIn">
+        <div className="fixed inset-0 z-50 bg-night/90 backdrop-blur-md p-4 flex items-center justify-center animate-fadeIn">
           <button
             type="button"
             onClick={() => setActivePhoto(null)}

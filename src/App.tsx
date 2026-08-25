@@ -115,10 +115,10 @@ export default function App() {
   // 1. PANTALLA DE CARGA
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#f5f2ed] flex items-center justify-center text-[#d4af37]">
+      <div className="min-h-screen bg-plumbago flex items-center justify-center text-silver">
         <div className="text-center space-y-3">
           <Sparkles className="w-10 h-10 mx-auto animate-spin" />
-          <p className="font-serif-display text-xl text-[#3d3d3d]">Verificando Invitación Especial...</p>
+          <p className="font-serif-display text-xl text-silver-light">Verificando Invitación Especial...</p>
         </div>
       </div>
     );
@@ -144,14 +144,14 @@ export default function App() {
   // 3. PANTALLA "ACCESO DENEGADO" (NUEVO)
   if (isValidLink === false) {
     return (
-      <div className="min-h-screen bg-[#f5f2ed] flex flex-col items-center justify-center text-[#3d3d3d] p-6">
-        <div className="bg-white p-8 rounded-sm shadow-xl border border-[#e9e4de] max-w-md w-full text-center">
-          <AlertCircle className="w-12 h-12 text-[#b5a48b] mx-auto mb-4 opacity-50" />
-          <h1 className="font-serif text-2xl mb-3 text-[#1a1a1a]">Acceso Reservado</h1>
-          <p className="text-[#3d3d3d] text-sm opacity-80 mb-6 leading-relaxed">
+      <div className="min-h-screen bg-plumbago flex flex-col items-center justify-center text-silver-light p-6">
+        <div className="bg-white p-8 rounded-sm shadow-xl border border-plumbago max-w-md w-full text-center">
+          <AlertCircle className="w-12 h-12 text-silver-dark mx-auto mb-4 opacity-50" />
+          <h1 className="font-serif text-2xl mb-3 text-silver-light">Acceso Reservado</h1>
+          <p className="text-silver-light text-sm opacity-80 mb-6 leading-relaxed">
             Esta invitación es personal y privada. Parece que ingresaste sin un enlace válido o tu invitación ha expirado.
           </p>
-          <p className="text-xs uppercase tracking-widest text-[#b5a48b] font-medium border-t border-[#e9e4de] pt-6">
+          <p className="text-xs uppercase tracking-widest text-silver-dark font-medium border-t border-plumbago pt-6">
             Por favor, solicita tu enlace por WhatsApp
           </p>
         </div>
@@ -162,10 +162,10 @@ export default function App() {
   // 4. PANTALLA "BASE DE DATOS VACÍA" (Para invitados)
   if (!eventDetails) {
     return (
-      <div className="min-h-screen bg-[#f5f2ed] flex flex-col items-center justify-center text-[#3d3d3d] p-6">
-        <AlertCircle className="w-12 h-12 text-[#d4af37] mb-4" />
+      <div className="min-h-screen bg-plumbago flex flex-col items-center justify-center text-silver-light p-6">
+        <AlertCircle className="w-12 h-12 text-silver mb-4" />
         <h1 className="font-serif text-3xl mb-2 text-center">Invitación no configurada</h1>
-        <p className="text-center mb-8 max-w-md text-sm text-[#8a8a8a]">
+        <p className="text-center mb-8 max-w-md text-sm text-silver-dark">
           Los detalles de este evento aún no han sido publicados. Si eres el administrador, ingresa por tu ruta secreta.
         </p>
       </div>
@@ -174,7 +174,7 @@ export default function App() {
 
   // 4. MODO INVITACIÓN NORMAL (Para los invitados, si hay datos)
   return (
-    <div className="min-h-screen bg-[#f5f2ed] text-[#3d3d3d] font-sans-clean relative selection:bg-[#d4cbbd] selection:text-[#1a1a1a]">
+    <div className="min-h-screen bg-plumbago text-silver-light font-sans-clean relative selection:bg-silver-dark selection:text-silver-light">
       
       {showEnvelope && (
         <EnvelopeCover
@@ -189,13 +189,13 @@ export default function App() {
         autoPlayTriggered={autoPlayTriggered}
       />
 
-      <header className="sticky top-0 z-30 bg-[#f5f2ed]/90 backdrop-blur-md border-b border-[#d4cbbd] px-6 sm:px-10 py-4 transition-all">
+      <header className="sticky top-0 z-30 bg-plumbago/90 backdrop-blur-md border-b border-plumbago-light px-6 sm:px-10 py-4 transition-all">
         <div className="max-w-6xl mx-auto flex items-center justify-center">
           <a href="#" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 rounded-full bg-white border border-[#d4af37] flex items-center justify-center font-serif text-sm font-light italic text-[#d4af37] group-hover:scale-105 transition-transform">
+            <div className="w-8 h-8 rounded-full bg-white border border-silver flex items-center justify-center font-serif text-sm font-light italic text-silver group-hover:scale-105 transition-transform">
               {eventDetails.quinceanera_name?.charAt(0) || 'Nombre Quinceañera'}
             </div>
-            <span className="font-sans text-xs uppercase tracking-[0.3em] font-medium text-[#3d3d3d]">
+            <span className="font-sans text-xs uppercase tracking-[0.3em] font-medium text-silver-light">
               {eventDetails.quinceanera_name} • XV Años
             </span>
           </a>
@@ -208,9 +208,9 @@ export default function App() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-[#faf9f7] text-[#b5a48b] px-5 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] font-medium mb-6 border border-[#d4cbbd]"
+            className="inline-flex items-center gap-2 bg-night text-silver-dark px-5 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] font-medium mb-6 border border-plumbago-light"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#d4af37]" />
+            <Sparkles className="w-3.5 h-3.5 text-silver" />
             <span>Mis Quince Años</span>
           </motion.div>
 
@@ -218,7 +218,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-serif text-6xl sm:text-7xl lg:text-8xl text-[#1a1a1a] italic font-light tracking-tight mb-4 leading-tight"
+            className="font-serif text-6xl sm:text-7xl lg:text-8xl text-silver-light italic font-light tracking-tight mb-4 leading-tight"
           >
             {eventDetails.quinceanera_name}
           </motion.h1>
@@ -227,7 +227,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-script text-3xl sm:text-4xl text-[#d4af37] mb-8"
+            className="font-script text-3xl sm:text-4xl text-silver mb-8"
           >
             {eventDetails.subtitle}
           </motion.p>
@@ -237,7 +237,7 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative max-w-2xl mx-auto mb-10 rounded-sm overflow-hidden shadow-xl border border-[#d4cbbd] bg-[#e9e4de]"
+              className="relative max-w-2xl mx-auto mb-10 rounded-sm overflow-hidden shadow-xl border border-plumbago-light bg-[#e9e4de]"
             >
               <img
                 src={eventDetails.cover_image_url}
@@ -245,7 +245,7 @@ export default function App() {
                 referrerPolicy="no-referrer"
                 className="w-full h-[350px] sm:h-[450px] object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/70 via-transparent to-transparent flex items-end justify-center p-6 text-white">
+              <div className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent flex items-end justify-center p-6 text-white">
                 <p className="font-serif text-lg sm:text-xl font-light italic tracking-wider">
                   {new Date(eventDetails.date).toLocaleDateString('es-ES', {
                     weekday: 'long',
@@ -261,9 +261,9 @@ export default function App() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="#rsvp-section"
-              className="w-full sm:w-auto bg-[#3d3d3d] hover:bg-[#1a1a1a] text-white font-sans text-[10px] uppercase tracking-[0.2em] px-8 py-4 rounded-sm shadow-md transition-all duration-300 flex items-center justify-center gap-2"
+              className="w-full sm:w-auto bg-silver-light hover:bg-night text-white font-sans text-[10px] uppercase tracking-[0.2em] px-8 py-4 rounded-sm shadow-md transition-all duration-300 flex items-center justify-center gap-2"
             >
-              <Mail className="w-4 h-4 text-[#d4af37]" />
+              <Mail className="w-4 h-4 text-silver" />
               <span>Confirmar Asistencia</span>
             </a>
           </div>
@@ -284,9 +284,9 @@ export default function App() {
         />
       </main>
 
-      <footer className="bg-[#1a1a1a] text-[#f5f2ed] py-14 px-6 text-center border-t border-[#3d3d3d]">
+      <footer className="bg-night text-[#f5f2ed] py-14 px-6 text-center border-t border-silver-light">
         <div className="max-w-4xl mx-auto space-y-4">
-          <div className="w-12 h-12 mx-auto rounded-full border border-[#d4af37] flex items-center justify-center font-serif text-2xl italic text-[#d4af37]">
+          <div className="w-12 h-12 mx-auto rounded-full border border-silver flex items-center justify-center font-serif text-2xl italic text-silver">
             {eventDetails.quinceanera_name?.charAt(0) || 'Nombre Quinceañera'}
           </div>
           <h4 className="font-serif text-3xl font-light italic text-white">
@@ -295,7 +295,7 @@ export default function App() {
           <p className="font-serif text-base text-[#d4cbbd] italic max-w-lg mx-auto">
             "Gracias por formar parte de los mejores recuerdos de mi vida."
           </p>
-          <div className="pt-8 border-t border-[#3d3d3d] text-center text-xs text-[#b5a48b] font-sans">
+          <div className="pt-8 border-t border-silver-light text-center text-xs text-silver-dark font-sans">
             <span className="uppercase tracking-widest text-[10px]">
               © {new Date().getFullYear()} XV Años Digital • {eventDetails.quinceanera_name}
             </span>

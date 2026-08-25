@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@layer base {
+  body {
+    @apply bg-bg-plumbago text-silver-light selection:bg-silver-dark selection:text-night;
+  }
+}
+
 @layer utilities {
   .font-serif-display {
     font-family: 'Playfair Display', Georgia, serif;
@@ -38,26 +44,26 @@
   animation: pulse-soft 3s ease-in-out infinite;
 }
 
-.gold-shimmer {
-  background: linear-gradient(90deg, #D4AF37 0%, #FFF8DC 50%, #D4AF37 100%);
+/* ACTUALIZADO: Pasó de dorado a plata premium */
+.silver-shimmer {
+  background: linear-gradient(90deg, #C0C7CB 0%, #F4F6F8 50%, #C0C7CB 100%);
   background-size: 200% 100%;
   animation: shimmer 3s infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Custom scrollbar */
+/* ACTUALIZADO: Scrollbar con temática bg-plumbago/Night */
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f5f2ed;
+  background: #0C141A; /* night */
 }
 ::-webkit-scrollbar-thumb {
-  background: #d4cbbd;
+  background: #6B8CA4; /* bg-plumbago */
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #b5a48b;
+  background: #8F9FA8; /* bg-plumbago-light */
 }
-

@@ -129,17 +129,17 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
 
   return (
     <section id="rsvp-section" className="py-12 px-4 max-w-3xl mx-auto scroll-mt-20">
-      <div className="bg-[#faf9f7] border border-[#d4cbbd] rounded-sm p-8 sm:p-12 shadow-sm relative overflow-hidden">
+      <div className="bg-night border border-plumbago-light rounded-sm p-8 sm:p-12 shadow-sm relative overflow-hidden">
         
         {/* Banner if personalized link loaded */}
         {activeInvitation && (
-          <div className="mb-8 p-4 bg-[#e9e4de] border border-[#d4af37] rounded-sm flex items-start gap-3">
-            <Sparkles className="w-5 h-5 text-[#d4af37] shrink-0 mt-0.5" />
+          <div className="mb-8 p-4 bg-[#e9e4de] border border-silver rounded-sm flex items-start gap-3">
+            <Sparkles className="w-5 h-5 text-silver shrink-0 mt-0.5" />
             <div>
-              <p className="font-serif text-lg text-[#1a1a1a] font-light italic">
+              <p className="font-serif text-lg text-silver-light font-light italic">
                 ¡Bienvenid@, {activeInvitation.nombre}!
               </p>
-              <p className="font-sans text-xs text-[#3d3d3d] opacity-80 mt-0.5">
+              <p className="font-sans text-xs text-silver-light opacity-80 mt-0.5">
                 Esta es tu invitación personal. Por favor confirma tu asistencia y la de tus acompañantes a continuación.
               </p>
             </div>
@@ -148,19 +148,19 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
 
         {/* Decorative Header */}
         <div className="text-center mb-8">
-          <div className="w-12 h-12 mx-auto rounded-full border border-[#d4af37] flex items-center justify-center text-[#d4af37] mb-3">
+          <div className="w-12 h-12 mx-auto rounded-full border border-silver flex items-center justify-center text-silver mb-3">
             <Mail className="w-6 h-6" />
           </div>
 
-          <span className="font-sans text-[18px] uppercase tracking-[0.3em] text-[#b5a48b] font-medium">
+          <span className="font-sans text-[18px] uppercase tracking-[0.3em] text-silver-dark font-medium">
             Confirma tu Asistencia
           </span>
 
-          <h3 className="font-serif text-3xl sm:text-4xl text-[#1a1a1a] font-light italic mt-1">
+          <h3 className="font-serif text-3xl sm:text-4xl text-silver-light font-light italic mt-1">
             RSVP
           </h3>
 
-          <p className="font-sans text-xs text-[#3d3d3d] opacity-70 mt-1">
+          <p className="font-sans text-xs text-silver-light opacity-70 mt-1">
             Nos llenaría de alegría contar con su presencia en este día tan especial
           </p>
         </div>
@@ -179,15 +179,15 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
             {/* NUEVO: Lista dinámica de Titular y Acompañantes */}
             <div className="pt-2">
               <div className="flex justify-between items-end mb-3">
-                <label className="text-[12px] uppercase tracking-wider block opacity-90 text-[#3d3d3d]">
-                  Pases Asignados ({attendees.length}) <span className="text-[#d4af37]">*</span>
+                <label className="text-[12px] uppercase tracking-wider block opacity-90 text-silver-light">
+                  Pases Asignados ({attendees.length}) <span className="text-silver">*</span>
                 </label>
-                <span className="text-[10px] text-[#8a8a8a] uppercase tracking-wider">
+                <span className="text-[10px] text-silver-dark uppercase tracking-wider">
                   Marca quiénes asistirán
                 </span>
               </div>
               
-              <div className="space-y-3 bg-white p-4 border border-[#e9e4de] rounded-sm">
+              <div className="space-y-3 bg-white p-4 border border-plumbago rounded-sm">
                 {attendees.map((attendee, index) => (
                   <div key={index} className="flex items-center gap-3 pb-3 border-b border-[#faf9f7] last:border-0 last:pb-0">
                     
@@ -199,14 +199,14 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                         onChange={(e) => handleAttendeeChange(index, 'asistira', e.target.checked)}
                         className="peer sr-only"
                       />
-                      <div className="w-6 h-6 border-2 border-[#d4cbbd] rounded-sm peer-checked:bg-[#d4af37] peer-checked:border-[#d4af37] transition-all flex items-center justify-center">
+                      <div className="w-6 h-6 border-2 border-plumbago-light rounded-sm peer-checked:bg-silver peer-checked:border-silver transition-all flex items-center justify-center">
                         {attendee.asistira && <CheckCircle2 className="w-4 h-4 text-white" />}
                       </div>
                     </label>
 
                     {/* Input de Nombre */}
                     <div className="relative flex-1">
-                      <User className="w-4 h-4 absolute left-0 top-1/2 -translate-y-1/2 text-[#b5a48b]" />
+                      <User className="w-4 h-4 absolute left-0 top-1/2 -translate-y-1/2 text-silver-dark" />
                       <input
                         type="text"
                         required={attendee.asistira} // Solo es obligatorio si marcó que sí asiste
@@ -214,7 +214,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                         placeholder={attendee.es_titular ? "Nombre del titular" : `Nombre del acompañante ${index}`}
                         value={attendee.nombre}
                         onChange={(e) => handleAttendeeChange(index, 'nombre', e.target.value)}
-                        className={`w-full pl-7 bg-transparent border-b border-[#d4cbbd] py-2 text-sm text-[#1a1a1a] focus:outline-none focus:border-[#d4af37] transition-all ${
+                        className={`w-full pl-7 bg-transparent border-b border-plumbago-light py-2 text-sm text-silver-light focus:outline-none focus:border-silver transition-all ${
                           attendee.es_titular && activeInvitation?.nombre ? 'opacity-80 cursor-not-allowed font-medium' : ''
                         } ${!attendee.asistira ? 'opacity-40 line-through' : ''}`}
                       />
@@ -226,25 +226,25 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
 
             {/* Field: Correo Electrónico */}
             <div>
-              <label htmlFor="rsvp-email-input" className="text-[12px] uppercase tracking-wider mb-1 block opacity-90 text-[#3d3d3d]">
+              <label htmlFor="rsvp-email-input" className="text-[12px] uppercase tracking-wider mb-1 block opacity-90 text-silver-light">
                 Correo Electrónico (Opcional)
               </label>
               <div className="relative">
-                <Mail className="w-4 h-4 absolute left-0 top-1/2 -translate-y-1/2 text-[#b5a48b]" />
+                <Mail className="w-4 h-4 absolute left-0 top-1/2 -translate-y-1/2 text-silver-dark" />
                 <input
                   id="rsvp-email-input"
                   type="email"
                   placeholder="ejemplo@correo.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-7 bg-transparent border-b border-[#d4cbbd] py-2 text-sm text-[#1a1a1a] focus:outline-none focus:border-[#d4af37] transition-all"
+                  className="w-full pl-7 bg-transparent border-b border-plumbago-light py-2 text-sm text-silver-light focus:outline-none focus:border-silver transition-all"
                 />
               </div>
             </div>
 
             {/* Field: Mensaje de felicitación opcional */}
             <div className="pt-2">
-              <label htmlFor="rsvp-message-input" className="text-[12px] uppercase tracking-wider mb-1 block opacity-90 text-[#3d3d3d]">
+              <label htmlFor="rsvp-message-input" className="text-[12px] uppercase tracking-wider mb-1 block opacity-90 text-silver-light">
                 Mensaje o Felicitación para la Quinceañera (Opcional)
               </label>
               <textarea
@@ -253,7 +253,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                 placeholder="Escribe un mensaje cariñoso..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full bg-transparent border-b border-[#d4cbbd] py-2 text-sm text-[#1a1a1a] focus:outline-none focus:border-[#d4af37] resize-none"
+                className="w-full bg-transparent border-b border-plumbago-light py-2 text-sm text-silver-light focus:outline-none focus:border-silver resize-none"
               />
             </div>
 
@@ -261,16 +261,16 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
             <button
               type="submit"
               disabled={loading}
-              className="mt-6 w-full bg-[#3d3d3d] text-white text-[18px] uppercase tracking-[0.2em] py-4 rounded-sm hover:bg-[#1a1a1a] transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 shadow-sm"
+              className="mt-6 w-full bg-silver-light text-white text-[18px] uppercase tracking-[0.2em] py-4 rounded-sm hover:bg-night transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 shadow-sm"
             >
               {loading ? (
                 <>
-                  <RefreshCw className="w-4 h-4 animate-spin text-[#d4af37]" />
+                  <RefreshCw className="w-4 h-4 animate-spin text-silver" />
                   <span>Guardando Confirmación...</span>
                 </>
               ) : (
                 <>
-                  <Send className="w-4 h-4 text-[#d4af37]" />
+                  <Send className="w-4 h-4 text-silver" />
                   <span>Confirmar Asistencia</span>
                 </>
               )}
@@ -280,41 +280,41 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
 
         {/* STEP 2: SUCCESS SCREEN MODIFICADO */}
         {step === 'success' && (
-          <div className="bg-white p-8 border border-[#e9e4de] rounded-lg shadow-sm text-center space-y-6">
-            <div className="w-12 h-12 mx-auto rounded-full border border-[#d4af37] flex items-center justify-center text-[#d4af37] mb-2">
+          <div className="bg-white p-8 border border-plumbago rounded-lg shadow-sm text-center space-y-6">
+            <div className="w-12 h-12 mx-auto rounded-full border border-silver flex items-center justify-center text-silver mb-2">
               <CheckCircle2 className="w-6 h-6" />
             </div>
 
             <div>
-              <h4 className="font-serif text-2xl text-[#1a1a1a] italic font-light mb-1">
+              <h4 className="font-serif text-2xl text-silver-light italic font-light mb-1">
                 {confirmedRSVP?.confirmado 
                   ? '¡Confirmación Registrada!' 
                   : 'Gracias por avisarnos'}
               </h4>
-              <p className="font-sans text-xs text-[#b5a48b] uppercase tracking-wider font-medium">
+              <p className="font-sans text-xs text-silver-dark uppercase tracking-wider font-medium">
                 Tu respuesta ha sido guardada en la lista oficial
               </p>
             </div>
 
-            <div className="bg-[#faf9f7] p-5 border border-[#d4cbbd] rounded-sm text-left max-w-sm mx-auto space-y-2 text-xs text-[#3d3d3d]">
-              <div className="flex justify-between border-b border-[#d4cbbd] pb-2">
+            <div className="bg-night p-5 border border-plumbago-light rounded-sm text-left max-w-sm mx-auto space-y-2 text-xs text-silver-light">
+              <div className="flex justify-between border-b border-plumbago-light pb-2">
                 <span className="opacity-90">Familia / Titular:</span>
-                <span className="font-serif font-bold text-[#1a1a1a]">{activeInvitation?.nombre}</span>
+                <span className="font-serif font-bold text-silver-light">{activeInvitation?.nombre}</span>
               </div>
-              <div className="flex justify-between border-b border-[#d4cbbd] pb-2">
+              <div className="flex justify-between border-b border-plumbago-light pb-2">
                 <span className="opacity-90">Estado general:</span>
-                <span className="font-semibold text-[#d4af37]">
+                <span className="font-semibold text-silver">
                   {confirmedRSVP?.confirmado ? 'Asistirán' : 'No asistirán'}
                 </span>
               </div>
               
               {/* Desglose de los asistentes confirmados */}
               {confirmedRSVP?.confirmado && (
-                <div className="border-b border-[#d4cbbd] pb-2 pt-1">
+                <div className="border-b border-plumbago-light pb-2 pt-1">
                   <span className="opacity-90 block mb-1">Lugares Confirmados:</span>
                   <ul className="list-disc pl-5 space-y-0.5">
                     {attendees.filter(a => a.asistira).map((a, i) => (
-                      <li key={i} className="font-medium text-[#1a1a1a]">{a.nombre}</li>
+                      <li key={i} className="font-medium text-silver-light">{a.nombre}</li>
                     ))}
                   </ul>
                 </div>
@@ -331,9 +331,9 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
             <button
               type="button"
               onClick={handleResetForm}
-              className="inline-flex items-center gap-2 border border-[#3d3d3d] text-[#3d3d3d] font-sans text-[18px] uppercase tracking-[0.2em] py-3 px-6 rounded-sm hover:bg-[#3d3d3d] hover:text-white transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 border border-silver-light text-silver-light font-sans text-[18px] uppercase tracking-[0.2em] py-3 px-6 rounded-sm hover:bg-silver-light hover:text-white transition-colors cursor-pointer"
             >
-              <RefreshCw className="w-3.5 h-3.5 text-[#d4af37]" />
+              <RefreshCw className="w-3.5 h-3.5 text-silver" />
               <span>Modificar mi respuesta</span>
             </button>
           </div>

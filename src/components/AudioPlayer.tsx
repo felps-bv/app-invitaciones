@@ -61,7 +61,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3 bg-[#faf9f7] text-[#3d3d3d] p-2 pl-4 pr-3 rounded-full shadow-lg border border-[#d4cbbd] transition-all duration-300 hover:border-[#d4af37]">
+    <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3 bg-night text-silver-light p-2 pl-4 pr-3 rounded-full shadow-lg border border-plumbago-light transition-all duration-300 hover:border-silver">
       {/* Hidden HTML5 Audio Element */}
       <audio
         ref={audioRef}
@@ -71,9 +71,9 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       />
 
       {/* Track Label and Soundwave indicator */}
-      <div className="hidden sm:flex items-center gap-2 pr-3 border-r border-[#d4cbbd]">
-        <Music className={`w-3.5 h-3.5 text-[#d4af37] ${isPlaying ? 'animate-bounce' : ''}`} />
-        <span className="text-[10px] uppercase tracking-wider font-medium max-w-[130px] truncate text-[#3d3d3d]">
+      <div className="hidden sm:flex items-center gap-2 pr-3 border-r border-plumbago-light">
+        <Music className={`w-3.5 h-3.5 text-silver ${isPlaying ? 'animate-bounce' : ''}`} />
+        <span className="text-[10px] uppercase tracking-wider font-medium max-w-[130px] truncate text-silver-light">
           {trackTitle || 'Reproducir Música'}
         </span>
       </div>
@@ -83,7 +83,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         type="button"
         onClick={togglePlay}
         aria-label={isPlaying ? 'Pausar música' : 'Reproducir música'}
-        className="w-8 h-8 rounded-full border border-[#d4af37] bg-[#d4af37] text-white hover:bg-[#b5a48b] hover:border-[#b5a48b] flex items-center justify-center transition-transform hover:scale-105 active:scale-95 cursor-pointer shadow-sm"
+        className="w-8 h-8 rounded-full border border-silver bg-silver text-white hover:bg-silver-dark hover:border-silver-dark flex items-center justify-center transition-transform hover:scale-105 active:scale-95 cursor-pointer shadow-sm"
       >
         {isPlaying ? (
           <Pause className="w-3.5 h-3.5 text-white fill-current" />
@@ -97,7 +97,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         type="button"
         onClick={toggleMute}
         aria-label={isMuted ? 'Activar sonido' : 'Silenciar'}
-        className="p-1.5 text-[#b5a48b] hover:text-[#3d3d3d] transition-colors cursor-pointer"
+        className="p-1.5 text-silver-dark hover:text-silver-light transition-colors cursor-pointer"
       >
         {isMuted ? (
           <VolumeX className="w-4 h-4 text-amber-700" />

@@ -30,26 +30,26 @@ export const ShareModal: React.FC<ShareModalProps> = ({
   const whatsappUrl = `https://api.whatsapp.com/send?text=${whatsappText}`;
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#1a1a1a]/60 backdrop-blur-sm p-4 flex items-center justify-center animate-fadeIn">
-      <div className="bg-[#faf9f7] border border-[#d4cbbd] rounded-sm p-6 sm:p-8 max-w-md w-full shadow-2xl relative text-center">
+    <div className="fixed inset-0 z-50 bg-night/60 backdrop-blur-sm p-4 flex items-center justify-center animate-fadeIn">
+      <div className="bg-night border border-plumbago-light rounded-sm p-6 sm:p-8 max-w-md w-full shadow-2xl relative text-center">
         
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-[#b5a48b] hover:text-[#1a1a1a] transition-colors cursor-pointer"
+          className="absolute top-4 right-4 p-2 text-silver-dark hover:text-silver-light transition-colors cursor-pointer"
         >
           <X className="w-4 h-4" />
         </button>
 
-        <div className="w-12 h-12 mx-auto rounded-full border border-[#d4af37] flex items-center justify-center text-[#d4af37] mb-3">
+        <div className="w-12 h-12 mx-auto rounded-full border border-silver flex items-center justify-center text-silver mb-3">
           <Share2 className="w-6 h-6" />
         </div>
 
-        <h3 className="font-serif text-2xl text-[#1a1a1a] font-light italic mb-1">
+        <h3 className="font-serif text-2xl text-silver-light font-light italic mb-1">
           Compartir Invitación
         </h3>
 
-        <p className="font-sans text-xs text-[#3d3d3d] opacity-70 mb-6">
+        <p className="font-sans text-xs text-silver-light opacity-70 mb-6">
           Envía el enlace a tus familiares y amigos fácilmente
         </p>
 
@@ -65,26 +65,26 @@ export const ShareModal: React.FC<ShareModalProps> = ({
         </a>
 
         {/* Copy Link Input */}
-        <div className="mt-4 flex items-center gap-2 bg-white border border-[#d4cbbd] rounded-sm p-2 pl-3">
+        <div className="mt-4 flex items-center gap-2 bg-white border border-plumbago-light rounded-sm p-2 pl-3">
           <input
             type="text"
             readOnly
             value={shareUrl}
-            className="w-full text-xs font-sans text-[#3d3d3d] focus:outline-none bg-transparent truncate"
+            className="w-full text-xs font-sans text-silver-light focus:outline-none bg-transparent truncate"
           />
           <button
             type="button"
             onClick={handleCopy}
-            className="shrink-0 bg-[#3d3d3d] hover:bg-[#1a1a1a] text-white font-sans text-[10px] uppercase tracking-wider font-medium px-4 py-2 rounded-sm transition-colors flex items-center gap-1.5 cursor-pointer"
+            className="shrink-0 bg-silver-light hover:bg-night text-white font-sans text-[10px] uppercase tracking-wider font-medium px-4 py-2 rounded-sm transition-colors flex items-center gap-1.5 cursor-pointer"
           >
             {copied ? (
               <>
-                <Check className="w-3.5 h-3.5 text-[#d4af37]" />
+                <Check className="w-3.5 h-3.5 text-silver" />
                 <span>¡Copiado!</span>
               </>
             ) : (
               <>
-                <Copy className="w-3.5 h-3.5 text-[#d4af37]" />
+                <Copy className="w-3.5 h-3.5 text-silver" />
                 <span>Copiar</span>
               </>
             )}
@@ -92,14 +92,14 @@ export const ShareModal: React.FC<ShareModalProps> = ({
         </div>
 
         {/* QR Code Quick Display */}
-        <div className="mt-6 pt-4 border-t border-[#d4cbbd] flex flex-col items-center">
-          <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-[#b5a48b] font-medium mb-2">
+        <div className="mt-6 pt-4 border-t border-plumbago-light flex flex-col items-center">
+          <p className="text-[10px] font-sans uppercase tracking-[0.2em] text-silver-dark font-medium mb-2">
             Código QR de la Invitación
           </p>
           <img
             src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(shareUrl)}`}
             alt="Código QR de Invitación"
-            className="w-28 h-28 p-1.5 bg-white border border-[#d4cbbd] rounded-sm shadow-sm"
+            className="w-28 h-28 p-1.5 bg-white border border-plumbago-light rounded-sm shadow-sm"
           />
         </div>
 

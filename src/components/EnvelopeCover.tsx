@@ -22,7 +22,7 @@ export const EnvelopeCover: React.FC<EnvelopeCoverProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#3d3d3d]/60 backdrop-blur-md p-4 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-silver-light/60 backdrop-blur-md p-4 overflow-hidden">
       {/* mode="wait" asegura que la primera animación termine antes de iniciar la segunda */}
       <AnimatePresence mode="wait">
         {!isOpen ? (
@@ -35,23 +35,23 @@ export const EnvelopeCover: React.FC<EnvelopeCoverProps> = ({
             className="relative w-full max-w-lg mx-auto"
           >
             {/* Envelope Outer Card */}
-            <div className="relative bg-white shadow-2xl p-8 sm:p-12 text-center flex flex-col items-center border border-[#e9e4de] transform -rotate-1 rounded-sm">
+            <div className="relative bg-white shadow-2xl p-8 sm:p-12 text-center flex flex-col items-center border border-plumbago transform -rotate-1 rounded-sm">
               
               {/* Wax Seal */}
-              <div className="absolute -top-8 w-16 h-16 bg-[#d4af37] rounded-full border-4 border-white shadow-md flex items-center justify-center text-white text-2xl font-serif italic">
+              <div className="absolute -top-8 w-16 h-16 bg-silver rounded-full border-4 border-white shadow-md flex items-center justify-center text-white text-2xl font-serif italic">
                 {eventDetails?.quinceanera_name?.charAt(0) || 'V'}
               </div>
 
-              <div className="border border-[#e9e4de] w-full py-8 sm:py-10 px-6 flex flex-col items-center justify-center">
-                <span className="text-xs uppercase tracking-[0.4em] text-[#b5a48b] font-medium mb-3">
+              <div className="border border-plumbago w-full py-8 sm:py-10 px-6 flex flex-col items-center justify-center">
+                <span className="text-xs uppercase tracking-[0.4em] text-silver-dark font-medium mb-3">
                   Mis Quince Años
                 </span>
 
-                <h2 className="text-3xl sm:text-4xl font-light mb-6 italic font-serif text-[#1a1a1a]">
+                <h2 className="text-3xl sm:text-4xl font-light mb-6 italic font-serif text-silver-light">
                   Estás invitado
                 </h2>
 
-                <p className="text-xs font-sans text-[#3d3d3d] opacity-70 mb-8 max-w-xs">
+                <p className="text-xs font-sans text-silver-light opacity-70 mb-8 max-w-xs">
                   Te invito a celebrar conmigo una noche mágica llena de sueños y alegría.
                 </p>
 
@@ -59,9 +59,9 @@ export const EnvelopeCover: React.FC<EnvelopeCoverProps> = ({
                 <button
                   type="button"
                   onClick={handleOpenClick}
-                  className="px-8 py-3.5 border border-[#3d3d3d] text-[#3d3d3d] text-[11px] uppercase tracking-[0.3em] font-medium hover:bg-[#3d3d3d] hover:text-white transition-colors rounded-sm flex items-center gap-2 cursor-pointer"
+                  className="px-8 py-3.5 border border-silver-light text-silver-light text-[11px] uppercase tracking-[0.3em] font-medium hover:bg-silver-light hover:text-white transition-colors rounded-sm flex items-center gap-2 cursor-pointer"
                 >
-                  <MailOpen className="w-4 h-4 text-[#d4af37]" />
+                  <MailOpen className="w-4 h-4 text-silver" />
                   <span>Abrir Invitación</span>
                 </button>
               </div>
@@ -78,8 +78,8 @@ export const EnvelopeCover: React.FC<EnvelopeCoverProps> = ({
             // absolute inset-0 garantiza el centrado perfecto independientemente del contenedor padre
             className="absolute inset-0 flex flex-col items-center justify-center text-center text-white"
           >
-            <div className="w-20 h-20 rounded-full bg-[#d4af37]/20 border border-[#d4af37] flex items-center justify-center mb-4 animate-ping">
-              <Heart className="w-10 h-10 text-[#d4af37] fill-current" />
+            <div className="w-20 h-20 rounded-full bg-silver/20 border border-silver flex items-center justify-center mb-4 animate-ping">
+              <Heart className="w-10 h-10 text-silver fill-current" />
             </div>
             <p className="font-serif text-2xl tracking-widest text-white italic font-light z-10">
               Abriendo invitación...
