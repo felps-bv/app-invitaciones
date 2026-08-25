@@ -699,7 +699,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                                 />
                               </div>
                             </div>
-                            <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                            <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto mt-2">
                               <button 
                                 onClick={() => handleSaveEdit(rsvp.id)}
                                 className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
@@ -717,9 +717,9 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                             </div>
                           </div>
                         ) : (
-                          <div>
+                          <div className="w-full">
                             <div className="flex-1">
-                              <div className="flex items-center gap-2 mb-1">
+                              <div className="flex items-center gap-2 mb-1 flex-wrap">
                                 <span className="font-medium text-gray-900">{rsvp.nombre},</span>
                                 <span className="font-medium text-gray-900">{rsvp.acompanantes} acompañantes</span>
                                 {/* BADGES DE STATUS */}
@@ -746,8 +746,32 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                                   "{rsvp.mensaje}"
                                 </p>
                               )}
+
+                              {/* NUEVO: DESGLOSE DE ASISTENTES (Solo se muestra si ya respondieron) */}
+                              {rsvp.asistentes_detalle && rsvp.asistentes_detalle.length > 0 && (
+                                <div className="mt-3 mb-2 bg-white border border-gray-100 rounded p-3 shadow-sm inline-block min-w-full sm:min-w-[250px]">
+                                  <span className="text-[10px] uppercase tracking-wider text-gray-500 font-medium block mb-2 border-b pb-1">
+                                    Desglose de pases confirmados:
+                                  </span>
+                                  <ul className="space-y-1.5">
+                                    {rsvp.asistentes_detalle.map((asistente, idx) => (
+                                      <li key={idx} className="text-xs flex items-center gap-2">
+                                        {asistente.asistira ? (
+                                          <CheckCircle className="w-3.5 h-3.5 text-green-500 shrink-0" />
+                                        ) : (
+                                          <X className="w-3.5 h-3.5 text-red-400 shrink-0" />
+                                        )}
+                                        <span className={`text-gray-700 ${!asistente.asistira ? 'line-through opacity-60' : ''}`}>
+                                          {asistente.nombre} {asistente.es_titular && <span className="text-gray-400 text-[10px] ml-1">(Titular)</span>}
+                                        </span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              )}
                             </div>
-                            <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+
+                            <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto mt-2">
                               <button
                                 onClick={() => handleCopyLink(rsvp.URLinvitacion, rsvp.id)}
                                 className="p-2 text-gray-500 hover:text-[#d4af37] hover:bg-[#faf9f7] rounded transition-colors tooltip relative group"
