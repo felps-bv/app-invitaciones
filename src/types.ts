@@ -22,6 +22,14 @@ export interface EventDetails {
   updated_at?: string;
 }
 
+export interface AttendeesDetails {
+  id: number;
+  rsvp_id: string;
+  nombre: string;
+  es_titular?: boolean;
+  asistira?: boolean;
+}
+
 export interface RSVPRecord {
   id: string;
   nombre: string;
@@ -35,14 +43,6 @@ export interface RSVPRecord {
   created_at: string;
   updated_at?: string;
   asistentes_detalle?: AttendeesDetails[]; 
-}
-
-export interface AttendeesDetails {
-  id: number;
-  rsvp_id: string;
-  nombre: string;
-  es_titular?: boolean;
-  asistira?: boolean;
 }
 
 export interface GalleryPhoto {
