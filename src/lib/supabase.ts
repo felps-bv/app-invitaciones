@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 // Importamos también AudioTrack, que lo añadimos a types.ts para tu música de fondo
-import { EventDetails, RSVPRecord, GalleryPhoto, AdminPost, AudioTrack } from '../types';
+import { EventDetails, RSVPRecord, GalleryPhoto, AdminPost, AttendeesDetails , AudioTrack } from '../types';
 
 // Gracias a que configuraste vite-env.d.ts, esto ahora es 100% tipado y seguro
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
