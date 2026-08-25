@@ -137,7 +137,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
             <Sparkles className="w-5 h-5 text-[#d4af37] shrink-0 mt-0.5" />
             <div>
               <p className="font-serif text-lg text-[#1a1a1a] font-light italic">
-                ¡Bienvenida, {activeInvitation.nombre}!
+                ¡Bienvenid@, {activeInvitation.nombre}!
               </p>
               <p className="font-sans text-xs text-[#3d3d3d] opacity-80 mt-0.5">
                 Esta es tu invitación personal. Por favor confirma tu asistencia y la de tus acompañantes a continuación.

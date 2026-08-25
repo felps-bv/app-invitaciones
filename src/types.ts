@@ -32,9 +32,9 @@ export interface RSVPRecord {
   mensaje?: string;
   URLinvitacion: string;
   token: string;
-  attending?: 'Asistiré' | 'No podré asistir' | 'Pendiente';
   created_at: string;
   updated_at?: string;
+  asistentes_detalle?: AttendeesDetails[]; 
 }
 
 export interface AttendeesDetails {

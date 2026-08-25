@@ -75,22 +75,24 @@ export async function updateEventDetails(details: EventDetails): Promise<boolean
 }
 
 // 2. RSVPs & Invitation Links (CERO CACHÉ)
-export async function fetchRSVPs(): Promise<RSVPRecord[]> {
+export const fetchRSVPs = async () => {
   try {
+    // La coma y el asterisco entre paréntesis hacen el "Join" automáticamente
     const { data, error } = await supabase
       .from('rsvps')
-      .select('*')
+      .select('*, asistentes_detalle(*)')
       .order('created_at', { ascending: false });
 
-    if (!error && data) {
-      return data as RSVPRecord[];
+    if (error) {
+      console.error('Error fetching RSVPs:', error);
+      return [];
     }
-    console.error('Error al consultar RSVPs:', error);
-  } catch (err) {
-    console.error('Fallo de red al obtener RSVPs:', err);
+    return data as RSVPRecord[];
+  } catch (error) {
+    console.error('Network error fetching RSVPs:', error);
+    return [];
   }
-  return [];
-}
+};
 
 export async function createInvitationLink(nombre: string, acompanantes: number, email?: string): Promise<RSVPRecord | null> {
   const token = 'inv-' + Math.random().toString(36).substring(2, 9) + Date.now().toString(36).substring(4);
