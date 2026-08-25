@@ -555,146 +555,241 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
 
       {/* ÁREA DE CONTENIDO */}
       <main className="flex-1 p-6 lg:p-10 overflow-y-auto">
-        <ul className="divide-y divide-gray-100">
-          {filteredRSVPs.map((rsvp) => (
-            <li key={rsvp.id} className="p-4 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-            {editingId === rsvp.id ? (
-              <>
-                <div className="flex-1 w-full">
-                  <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 mb-1 w-full">
-                    <input 
-                      type="text" 
-                      value={editFormData.nombre} 
-                      onChange={(e) => setEditFormData({...editFormData, nombre: e.target.value})}
-                      className="w-full border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
-                      placeholder="Nombre"
-                    />
-                    <input 
-                      type="email" 
-                      value={editFormData.email} 
-                      onChange={(e) => setEditFormData({...editFormData, email: e.target.value})}
-                      className="w-full border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
-                      placeholder="Correo (opcional)"
-                    />
-                    <input 
-                      type="number" 
-                      min="0"
-                      value={editFormData.acompanantes} 
-                      onChange={(e) => setEditFormData({...editFormData, acompanantes: Number(e.target.value)})}
-                      className="w-16 border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
-                    />
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
-                  <button 
-                    onClick={() => handleSaveEdit(rsvp.id)}
-                    className="p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded transition-colors"
-                    title="Guardar invitado"
-                  >
-                    <Save className="w-4 h-4" />
-                  </button>
-                  <button 
-                    onClick={handleCancelEdit}
-                    className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
-                    title="Cancelar Edición"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="flex-1 w-full">
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <span className="font-medium text-gray-900">{rsvp.nombre},</span>
-                    <span className="font-medium text-gray-900">{rsvp.acompanantes} acompañantes</span>
-                    
-                    {/* BADGES DE STATUS GENERAL */}
-                    {rsvp.confirmado === true && (
-                      <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded-full font-medium">
-                        <CheckCircle className="w-3 h-3" /> Asistirán
-                      </span>
-                    )}
-                    {rsvp.confirmado === false && (
-                      <span className="inline-flex items-center gap-1 bg-red-100 text-red-700 text-[10px] px-2 py-0.5 rounded-full font-medium">
-                        <X className="w-3 h-3" /> No Asistirán
-                      </span>
-                    )}
-                    {rsvp.confirmado === null && (
-                      <span className="inline-flex items-center bg-yellow-100 text-yellow-700 text-[10px] px-2 py-0.5 rounded-full font-medium">
-                        Pendiente
-                      </span>
-                    )}
-                  </div>
+        {/* PESTAÑA INVITADOS */}
+        {activeTab === 'rsvps' && (
+          <div className="space-y-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-4 gap-4">
+              <h2 className="text-2xl font-serif text-[#3d3d3d]">Gestión de Invitados</h2>
+              
+              {/* Barra de Búsqueda */}
+              <div className="relative w-full sm:w-64">
+                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <input 
+                  type="text" 
+                  placeholder="Buscar familia..."
+                  value={rsvpSearch}
+                  onChange={(e) => setRsvpSearch(e.target.value)}
+                  className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-full text-sm focus:ring-[#d4af37] focus:border-[#d4af37]"
+                />
+              </div>
+            </div>
 
-                  {rsvp.mensaje && (
-                    <p className="text-sm text-gray-600 flex items-start gap-1 mt-2 bg-gray-50 p-2 rounded border border-gray-100 italic">
-                      <MessageSquare className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-gray-400" />
-                      "{rsvp.mensaje}"
-                    </p>
-                  )}
+            {/* Tarjetas de Métricas */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 flex flex-col items-center text-center">
+                <span className="text-3xl font-serif text-[#3d3d3d]">{totalRSVPs}</span>
+                <span className="text-xs text-gray-500 uppercase tracking-wider mt-1">Total Enlaces</span>
+              </div>
+              <div className="bg-white p-4 rounded-lg shadow-sm border border-green-100 flex flex-col items-center text-center">
+                <span className="text-3xl font-serif text-green-600">{totalGuestsCount}</span>
+                <span className="text-xs text-green-700/70 uppercase tracking-wider mt-1">Personas Asistirán</span>
+              </div>
+              <div className="bg-white p-4 rounded-lg shadow-sm border border-yellow-100 flex flex-col items-center text-center">
+                <span className="text-3xl font-serif text-yellow-600">{pendingCount}</span>
+                <span className="text-xs text-yellow-700/70 uppercase tracking-wider mt-1">Pendientes</span>
+              </div>
+              <div className="bg-white p-4 rounded-lg shadow-sm border border-red-100 flex flex-col items-center text-center">
+                <span className="text-3xl font-serif text-red-600">{notAttendingCount}</span>
+                <span className="text-xs text-red-700/70 uppercase tracking-wider mt-1">No Asistirán</span>
+              </div>
+            </div>
 
-                  {/* NUEVO: DESGLOSE DE ASISTENTES (Solo se muestra si ya respondieron) */}
-                  {rsvp.asistentes_detalle && rsvp.asistentes_detalle.length > 0 && (
-                    <div className="mt-3 bg-white border border-gray-100 rounded p-3 shadow-sm inline-block min-w-[250px]">
-                      <span className="text-[10px] uppercase tracking-wider text-gray-500 font-medium block mb-2 border-b pb-1">
-                        Desglose de pases confirmados:
-                      </span>
-                      <ul className="space-y-1.5">
-                        {rsvp.asistentes_detalle.map((asistente, idx) => (
-                          <li key={idx} className="text-xs flex items-center gap-2">
-                            {asistente.asistira ? (
-                              <CheckCircle className="w-3.5 h-3.5 text-green-500 shrink-0" />
-                            ) : (
-                              <X className="w-3.5 h-3.5 text-red-400 shrink-0" />
-                            )}
-                            <span className={`text-gray-700 ${!asistente.asistira ? 'line-through opacity-60' : ''}`}>
-                              {asistente.nombre} {asistente.es_titular && <span className="text-gray-400 text-[10px] ml-1">(Titular)</span>}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Columna Izquierda: Formulario Crear Enlace */}
+              <div className="lg:col-span-1 space-y-6">
+                <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                  <h3 className="text-lg font-medium text-gray-800 mb-4 flex items-center gap-2">
+                    <LinkIcon className="w-5 h-5 text-[#d4af37]" /> Nuevo Enlace
+                  </h3>
+
+                  <form onSubmit={handleCreateLink} className="space-y-4">
+                    <div>
+                      <label className="block text-sm text-gray-700 mb-1">Nombre (Ej: Familia López)</label>
+                      <input 
+                        type="text" 
+                        value={newFamilyName}
+                        onChange={(e) => setNewFamilyName(e.target.value)}
+                        placeholder="Familia / Invitado"
+                        className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37] text-sm"
+                        required
+                      />
                     </div>
+                    <div>
+                      <label className="block text-sm text-gray-700 mb-1">Acompañantes</label>
+                      <input 
+                        type="number" 
+                        min="0"
+                        value={newCompanionsCount} 
+                        onChange={(e) => setNewCompanionsCount(Number(e.target.value))}
+                        className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37] text-sm"
+                        title="Número de acompañantes"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-gray-700 mb-1">Email (Opcional)</label>
+                      <input 
+                        type="email" 
+                        value={newFamilyEmail}
+                        onChange={(e) => setNewFamilyEmail(e.target.value)}
+                        placeholder="correo@ejemplo.com"
+                        className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-[#d4af37] focus:border-[#d4af37] text-sm"
+                      />
+                    </div>
+                    
+                    <button 
+                      type="submit" 
+                      disabled={loading || !newFamilyName.trim()}
+                      className="w-full bg-[#3d3d3d] hover:bg-[#1a1a1a] text-white py-2 rounded flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
+                    >
+                      {loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
+                      Generar Enlace
+                    </button>
+                    {statusMsg && (
+                      <p className={`text-xs text-center mt-2 ${statusMsg.includes('Error') ? 'text-red-500' : 'text-green-600'}`}>
+                        {statusMsg}
+                      </p>
+                    )}
+                  </form>
+                </div>
+              </div>
+
+              {/* Columna Derecha: Lista de Invitados */}
+              <div className="lg:col-span-2 bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden flex flex-col h-[500px]">
+                <div className="p-4 border-b bg-gray-50 flex justify-between items-center">
+                  <h3 className="font-medium text-gray-800">Lista de Enlaces</h3>
+                  <span className="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full">
+                    {filteredRSVPs.length} registros
+                  </span>
+                </div>
+                
+                <div className="overflow-y-auto flex-1 p-0">
+                  {filteredRSVPs.length === 0 ? (
+                    <div className="p-8 text-center text-gray-400">
+                      <Users className="w-12 h-12 mx-auto mb-3 opacity-20" />
+                      <p>No hay invitados registrados.</p>
+                    </div>
+                  ) : (
+                    <ul className="divide-y divide-gray-100">
+                      {filteredRSVPs.map((rsvp) => (
+                        <li key={rsvp.id} className="p-4 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+                        {editingId === rsvp.id ? (
+                          <div>
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-1">
+                                <input 
+                                  type="text" 
+                                  value={editFormData.nombre} 
+                                  onChange={(e) => setEditFormData({...editFormData, nombre: e.target.value})}
+                                  className="w-full border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
+                                  placeholder="Nombre"
+                                />
+                                <input 
+                                  type="email" 
+                                  value={editFormData.email} 
+                                  onChange={(e) => setEditFormData({...editFormData, email: e.target.value})}
+                                  className="w-full border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
+                                  placeholder="Correo (opcional)"
+                                />
+                                <input 
+                                  type="number" 
+                                  min="0"
+                                  value={editFormData.acompanantes} 
+                                  onChange={(e) => setEditFormData({...editFormData, acompanantes: Number(e.target.value)})}
+                                  className="w-16 border border-[#d4cbbd] p-1.5 rounded focus:outline-none focus:border-[#d4af37]"
+                                />
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                              <button 
+                                onClick={() => handleSaveEdit(rsvp.id)}
+                                className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                                title="Editar invitado"
+                              >
+                                Guardar
+                              </button>
+                              <button 
+                                onClick={handleCancelEdit}
+                                className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                                title="Cancelar Edición"
+                              >
+                                Cancelar
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div>
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className="font-medium text-gray-900">{rsvp.nombre},</span>
+                                <span className="font-medium text-gray-900">{rsvp.acompanantes} acompañantes</span>
+                                {/* BADGES DE STATUS */}
+                                {rsvp.confirmado === true && (
+                                  <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded-full font-medium">
+                                    <CheckCircle className="w-3 h-3" /> Asistirá (+{rsvp.acompanantes})
+                                  </span>
+                                )}
+                                {rsvp.confirmado === false && (
+                                  <span className="inline-flex items-center gap-1 bg-red-100 text-red-700 text-[10px] px-2 py-0.5 rounded-full font-medium">
+                                    <X className="w-3 h-3" /> No Asistirá
+                                  </span>
+                                )}
+                                {rsvp.confirmado === null && (
+                                  <span className="inline-flex items-center bg-yellow-100 text-yellow-700 text-[10px] px-2 py-0.5 rounded-full font-medium">
+                                    Pendiente
+                                  </span>
+                                )}
+                              </div>
+
+                              {rsvp.mensaje && (
+                                <p className="text-sm text-gray-600 flex items-start gap-1 mt-2 bg-gray-50 p-2 rounded border border-gray-100 italic">
+                                  <MessageSquare className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-gray-400" />
+                                  "{rsvp.mensaje}"
+                                </p>
+                              )}
+                            </div>
+                            <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                              <button
+                                onClick={() => handleCopyLink(rsvp.URLinvitacion, rsvp.id)}
+                                className="p-2 text-gray-500 hover:text-[#d4af37] hover:bg-[#faf9f7] rounded transition-colors tooltip relative group"
+                                title="Copiar Enlace Mágico"
+                              >
+                                {copiedLinkId === rsvp.id ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
+                              </button>
+                              <a 
+                                href={`https://api.whatsapp.com/send?text=${encodeURIComponent(`¡Hola! Te comparto tu invitación digital: ${window.location.origin}/?invitation=${rsvp.token}`)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-2 text-gray-500 hover:text-green-600 hover:bg-green-50 rounded transition-colors"
+                                title="Enviar por WhatsApp"
+                              >
+                                <MessageCircle className="w-4 h-4" />
+                              </a>
+                              <button
+                                onClick={() => handleStartEdit(rsvp)}
+                                className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                                title="Editar invitado"
+                              >
+                                <Edit2 className="w-4 h-4" />
+                              </button>
+                              <button
+                                onClick={() => handleDeleteRSVP(rsvp.id)}
+                                className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                                title="Eliminar invitado"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                        </li>
+                      ))}
+                    </ul>
                   )}
                 </div>
-
-                <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
-                  <button
-                    onClick={() => handleCopyLink(rsvp.URLinvitacion, rsvp.id)}
-                    className="p-2 text-gray-500 hover:text-[#d4af37] hover:bg-[#faf9f7] rounded transition-colors tooltip relative group"
-                    title="Copiar Enlace Mágico"
-                  >
-                    {copiedLinkId === rsvp.id ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
-                  </button>
-                  <a 
-                    href={`https://api.whatsapp.com/send?text=${encodeURIComponent(`¡Hola! Te comparto tu invitación digital: ${window.location.origin}/?invitation=${rsvp.token}`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 text-gray-500 hover:text-green-600 hover:bg-green-50 rounded transition-colors"
-                    title="Enviar por WhatsApp"
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                  </a>
-                  <button
-                    onClick={() => handleStartEdit(rsvp)}
-                    className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                    title="Editar invitado"
-                  >
-                    <Edit2 className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => handleDeleteRSVP(rsvp.id)}
-                    className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
-                    title="Eliminar invitado"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                </div>
-              </>
-            )}
-            </li>
-          ))}
-        </ul>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* PESTAÑA EVENTO */}
         {activeTab === 'event' && eventDetails && (
