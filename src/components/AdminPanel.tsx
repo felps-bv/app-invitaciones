@@ -519,7 +519,6 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   }
 
   // PANEL DE CONTROL PRINCIPAL A PANTALLA COMPLETA
-  console.log(filteredRSVPs);
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
       {/* SIDEBAR NAVEGACIÓN */}
