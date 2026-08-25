@@ -2,19 +2,27 @@ import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { Mail, User, CheckCircle2, AlertCircle, RefreshCw, Send, Sparkles, Heart } from 'lucide-react';
 import { RSVPRecord } from '../types';
-import { confirmGuestRSVP, createInvitationLink } from '../lib/supabase';
+import { confirmGuestRSVP } from '../lib/supabase';
 
 interface RSVPSectionProps {
   activeInvitation?: RSVPRecord | null;
   onRSVPSubmitted?: () => void;
 }
 
+// NUEVO: Interfaz local para controlar los inputs de la lista dinámica
+export interface AttendeeInput {
+  nombre: string;
+  es_titular: boolean;
+  asistira: boolean;
+}
+
 export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRSVPSubmitted }) => {
-  // Form state
-  const [name, setName] = useState(activeInvitation?.nombre || '');
+  // Form states
   const [email, setEmail] = useState(activeInvitation?.email || '');
-  const [attending, setAttending] = useState<'Asistiré' | 'No podré asistir'>('Asistiré');
   const [message, setMessage] = useState(activeInvitation?.mensaje || '');
+  
+  // NUEVO: Estado principal que manejará todos los lugares (Titular + Acompañantes)
+  const [attendees, setAttendees] = useState<AttendeeInput[]>([]);
 
   // Workflow states: 'form' | 'success'
   const [step, setStep] = useState<'form' | 'success'>('form');
@@ -24,28 +32,43 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
-  // Synchronize when activeInvitation loads o cambia
+  // Generar los campos dinámicos al cargar la invitación
   useEffect(() => {
     if (activeInvitation) {
-      setName(activeInvitation?.nombre || '');
-      setEmail(activeInvitation?.email || '');
+      setEmail(activeInvitation.email || '');
+      setMessage(activeInvitation.mensaje || '');
       
-      if (activeInvitation?.attending && activeInvitation?.attending !== 'Pendiente') {
-        setAttending(activeInvitation.attending as 'Asistiré' | 'No podré asistir');
-      }
+      // Armar el arreglo: 1 Titular + N Acompañantes
+      const numAcompanantes = activeInvitation.acompanantes || 0;
+      const initialAttendees: AttendeeInput[] = [
+        // El titular toma el nombre que el admin registró
+        { nombre: activeInvitation.nombre || '', es_titular: true, asistira: true }
+      ];
 
-      if (activeInvitation?.mensaje) {
-        setMessage(activeInvitation.mensaje);
+      // Los acompañantes empiezan con el nombre vacío
+      for (let i = 0; i < numAcompanantes; i++) {
+        initialAttendees.push({ nombre: '', es_titular: false, asistira: true });
       }
+      
+      setAttendees(initialAttendees);
     }
   }, [activeInvitation]);
+
+  // NUEVO: Manejador para actualizar un campo específico de un asistente
+  const handleAttendeeChange = (index: number, field: keyof AttendeeInput, value: string | boolean) => {
+    const newAttendees = [...attendees];
+    newAttendees[index] = { ...newAttendees[index], [field]: value };
+    setAttendees(newAttendees);
+  };
 
   const handleConfirmRSVP = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
 
-    if (!name.trim()) {
-      setErrorMsg('Por favor ingresa tu nombre completo o de familia.');
+    // Validación: Si alguien tiene marcado "asistirá", debe tener un nombre escrito
+    const missingNames = attendees.some(a => a.asistira && !a.nombre.trim());
+    if (missingNames) {
+      setErrorMsg('Por favor asegúrate de escribir el nombre de todas las personas que asistirán.');
       return;
     }
 
@@ -55,26 +78,29 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
       let rsvpResult: RSVPRecord;
 
       if (activeInvitation) {
-        // Confirmar link de invitación existente (protegemos la lectura del ID o token)
-        const identifier = activeInvitation?.id || activeInvitation?.token;
-        if (!identifier) throw new Error("No se encontró el identificador de la invitación.");
+        const identifier = activeInvitation.id;
+        
+        // El estatus general del enlace será "true" si al menos una persona asiste
+        const alguienAsiste = attendees.some(a => a.asistira);
 
+        // Pasamos todo el bloque de datos a supabase.ts
         rsvpResult = await confirmGuestRSVP(identifier, {
           email: email.trim().toLowerCase(),
-          attending,
-          mensaje: message.trim()
+          mensaje: message.trim(),
+          confirmado: alguienAsiste,
+          attendeesList: attendees // Mandamos el arreglo completo a la base de datos
         });
+      } else {
+        throw new Error("No se encontró la invitación activa.");
       }
 
       setConfirmedRSVP(rsvpResult);
       setStep('success');
 
-      if (onRSVPSubmitted) {
-        onRSVPSubmitted();
-      }
+      if (onRSVPSubmitted) onRSVPSubmitted();
 
-      // Celebración con confeti
-      if (attending === 'Asistiré') {
+      // Confeti solo si hay al menos un asistente
+      if (attendees.some(a => a.asistira)) {
         confetti({
           particleCount: 100,
           spread: 70,
@@ -92,11 +118,11 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
 
   const handleResetForm = () => {
     if (!activeInvitation) {
-      setName('');
       setEmail('');
       setMessage('');
     }
-    setAttending('Asistiré');
+    // Reiniciamos los checkboxes a true pero mantenemos los nombres
+    setAttendees(attendees.map(a => ({ ...a, asistira: true })));
     setErrorMsg('');
     setStep('form');
   };
@@ -111,10 +137,10 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
             <Sparkles className="w-5 h-5 text-[#d4af37] shrink-0 mt-0.5" />
             <div>
               <p className="font-serif text-lg text-[#1a1a1a] font-light italic">
-                ¡Bienvenida, {activeInvitation?.nombre}!
+                ¡Bienvenida, {activeInvitation.nombre}!
               </p>
               <p className="font-sans text-xs text-[#3d3d3d] opacity-80 mt-0.5">
-                Esta es tu invitación personal. Por favor confirma tu asistencia a continuación.
+                Esta es tu invitación personal. Por favor confirma tu asistencia y la de tus acompañantes a continuación.
               </p>
             </div>
           </div>
@@ -135,7 +161,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
           </h3>
 
           <p className="font-sans text-xs text-[#3d3d3d] opacity-70 mt-1">
-            Nos llenaría de alegría contar con tu presencia en este día tan especial
+            Nos llenaría de alegría contar con su presencia en este día tan especial
           </p>
         </div>
 
@@ -149,29 +175,56 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
         {/* STEP 1: FORM STATE */}
         {step === 'form' && (
           <form onSubmit={handleConfirmRSVP} className="space-y-6 font-sans">
-            {/* Field 1: Nombre Completo o de Familia */}
-            <div>
-              <label htmlFor="rsvp-name-input" className="text-[12px] uppercase tracking-wider mb-1 block opacity-90 text-[#3d3d3d]">
-                Nombre de la Familia / Invitado <span className="text-[#d4af37]">*</span>
-              </label>
-              <div className="relative">
-                <User className="w-4 h-4 absolute left-0 top-1/2 -translate-y-1/2 text-[#b5a48b]" />
-                <input
-                  id="rsvp-name-input"
-                  type="text"
-                  required
-                  readOnly={Boolean(activeInvitation?.nombre)}
-                  placeholder="Ej. Familia García o Juan Pérez"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className={`w-full pl-7 bg-transparent border-b border-[#d4cbbd] py-2 text-sm text-[#1a1a1a] focus:outline-none focus:border-[#d4af37] transition-all ${
-                    activeInvitation?.nombre ? 'opacity-80 cursor-not-allowed font-medium' : ''
-                  }`}
-                />
+            
+            {/* NUEVO: Lista dinámica de Titular y Acompañantes */}
+            <div className="pt-2">
+              <div className="flex justify-between items-end mb-3">
+                <label className="text-[12px] uppercase tracking-wider block opacity-90 text-[#3d3d3d]">
+                  Pases Asignados ({attendees.length}) <span className="text-[#d4af37]">*</span>
+                </label>
+                <span className="text-[10px] text-[#8a8a8a] uppercase tracking-wider">
+                  Marca quiénes asistirán
+                </span>
+              </div>
+              
+              <div className="space-y-3 bg-white p-4 border border-[#e9e4de] rounded-sm">
+                {attendees.map((attendee, index) => (
+                  <div key={index} className="flex items-center gap-3 pb-3 border-b border-[#faf9f7] last:border-0 last:pb-0">
+                    
+                    {/* Checkbox de asistencia */}
+                    <label className="flex-shrink-0 cursor-pointer relative flex items-center justify-center">
+                      <input
+                        type="checkbox"
+                        checked={attendee.asistira}
+                        onChange={(e) => handleAttendeeChange(index, 'asistira', e.target.checked)}
+                        className="peer sr-only"
+                      />
+                      <div className="w-6 h-6 border-2 border-[#d4cbbd] rounded-sm peer-checked:bg-[#d4af37] peer-checked:border-[#d4af37] transition-all flex items-center justify-center">
+                        {attendee.asistira && <CheckCircle2 className="w-4 h-4 text-white" />}
+                      </div>
+                    </label>
+
+                    {/* Input de Nombre */}
+                    <div className="relative flex-1">
+                      <User className="w-4 h-4 absolute left-0 top-1/2 -translate-y-1/2 text-[#b5a48b]" />
+                      <input
+                        type="text"
+                        required={attendee.asistira} // Solo es obligatorio si marcó que sí asiste
+                        readOnly={attendee.es_titular && Boolean(activeInvitation?.nombre)}
+                        placeholder={attendee.es_titular ? "Nombre del titular" : `Nombre del acompañante ${index}`}
+                        value={attendee.nombre}
+                        onChange={(e) => handleAttendeeChange(index, 'nombre', e.target.value)}
+                        className={`w-full pl-7 bg-transparent border-b border-[#d4cbbd] py-2 text-sm text-[#1a1a1a] focus:outline-none focus:border-[#d4af37] transition-all ${
+                          attendee.es_titular && activeInvitation?.nombre ? 'opacity-80 cursor-not-allowed font-medium' : ''
+                        } ${!attendee.asistira ? 'opacity-40 line-through' : ''}`}
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Field 2: Correo Electrónico */}
+            {/* Field: Correo Electrónico */}
             <div>
               <label htmlFor="rsvp-email-input" className="text-[12px] uppercase tracking-wider mb-1 block opacity-90 text-[#3d3d3d]">
                 Correo Electrónico (Opcional)
@@ -189,47 +242,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
               </div>
             </div>
 
-            {/* Field 3: Radio Option ("Asistiré" / "No podré asistir") */}
-            <div className="pt-2">
-              <label className="text-[12px] uppercase tracking-wider mb-3 block opacity-90 text-[#3d3d3d]">
-                ¿Asistirás? <span className="text-[#d4af37]">*</span>
-              </label>
-              <div className="flex gap-6">
-                
-                {/* Option 1: Asistiré */}
-                <label className="flex items-center text-sm cursor-pointer text-[#1a1a1a]">
-                  <div
-                    onClick={() => setAttending('Asistiré')}
-                    className={`w-4 h-4 rounded-full border mr-2 flex items-center justify-center ${
-                      attending === 'Asistiré' ? 'border-[#d4af37]' : 'border-[#d4cbbd]'
-                    }`}
-                  >
-                    {attending === 'Asistiré' && (
-                      <div className="w-2 h-2 rounded-full bg-[#d4af37]" />
-                    )}
-                  </div>
-                  <span>Asistiré con gusto</span>
-                </label>
-
-                {/* Option 2: No podré asistir */}
-                <label className="flex items-center text-sm cursor-pointer opacity-70 text-[#3d3d3d]">
-                  <div
-                    onClick={() => setAttending('No podré asistir')}
-                    className={`w-4 h-4 rounded-full border mr-2 flex items-center justify-center ${
-                      attending === 'No podré asistir' ? 'border-[#d4af37]' : 'border-[#d4cbbd]'
-                    }`}
-                  >
-                    {attending === 'No podré asistir' && (
-                      <div className="w-2 h-2 rounded-full bg-[#d4af37]" />
-                    )}
-                  </div>
-                  <span>No podré asistir</span>
-                </label>
-
-              </div>
-            </div>
-
-            {/* Field 5: Mensaje de felicitación opcional */}
+            {/* Field: Mensaje de felicitación opcional */}
             <div className="pt-2">
               <label htmlFor="rsvp-message-input" className="text-[12px] uppercase tracking-wider mb-1 block opacity-90 text-[#3d3d3d]">
                 Mensaje o Felicitación para la Quinceañera (Opcional)
@@ -242,21 +255,6 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                 onChange={(e) => setMessage(e.target.value)}
                 className="w-full bg-transparent border-b border-[#d4cbbd] py-2 text-sm text-[#1a1a1a] focus:outline-none focus:border-[#d4af37] resize-none"
               />
-            </div>
-
-            <div className="pt-2">
-              <label className="text-[12px] uppercase tracking-wider mb-1 block opacity-90 text-[#3d3d3d]">
-                Pases asignados
-              </label>
-              <input
-                type="text"
-                disabled
-                value={`${1 + activeInvitation.acompanantes} persona(s)`}
-                className="w-full p-3 border border-[#e9e4de] rounded bg-[#f5f2ed] text-[#8a8a8a] cursor-not-allowed opacity-80"
-              />
-              <p className="text-xs text-[#8a8a8a] mt-1 border-b border-[#d4cbbd] mb-1 py-2">
-                Esta invitación es válida para este número de personas.
-              </p>
             </div>
 
             {/* Submit Button */}
@@ -280,7 +278,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
           </form>
         )}
 
-        {/* STEP 2: SUCCESS SCREEN */}
+        {/* STEP 2: SUCCESS SCREEN MODIFICADO */}
         {step === 'success' && (
           <div className="bg-white p-8 border border-[#e9e4de] rounded-lg shadow-sm text-center space-y-6">
             <div className="w-12 h-12 mx-auto rounded-full border border-[#d4af37] flex items-center justify-center text-[#d4af37] mb-2">
@@ -289,8 +287,8 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
 
             <div>
               <h4 className="font-serif text-2xl text-[#1a1a1a] italic font-light mb-1">
-                {confirmedRSVP?.attending === 'Asistiré'
-                  ? '¡Confirmación Registrada!'
+                {confirmedRSVP?.confirmado 
+                  ? '¡Confirmación Registrada!' 
                   : 'Gracias por avisarnos'}
               </h4>
               <p className="font-sans text-xs text-[#b5a48b] uppercase tracking-wider font-medium">
@@ -300,29 +298,30 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
 
             <div className="bg-[#faf9f7] p-5 border border-[#d4cbbd] rounded-sm text-left max-w-sm mx-auto space-y-2 text-xs text-[#3d3d3d]">
               <div className="flex justify-between border-b border-[#d4cbbd] pb-2">
-                <span className="opacity-90">Invitado:</span>
-                <span className="font-serif font-bold text-[#1a1a1a]">{confirmedRSVP?.nombre}</span>
+                <span className="opacity-90">Familia / Titular:</span>
+                <span className="font-serif font-bold text-[#1a1a1a]">{activeInvitation?.nombre}</span>
               </div>
               <div className="flex justify-between border-b border-[#d4cbbd] pb-2">
-                <span className="opacity-90">Estado:</span>
+                <span className="opacity-90">Estado general:</span>
                 <span className="font-semibold text-[#d4af37]">
-                  {confirmedRSVP?.confirmado ? 'Confirmado' : confirmedRSVP?.attending}
+                  {confirmedRSVP?.confirmado ? 'Asistirán' : 'No asistirán'}
                 </span>
               </div>
-              {confirmedRSVP?.attending === 'Asistiré' && (
-                <div className="flex justify-between border-b border-[#d4cbbd] pb-2">
-                  <span className="opacity-90">Acompañantes:</span>
-                  <span className="font-bold">{confirmedRSVP?.acompanantes} persona(s)</span>
+              
+              {/* Desglose de los asistentes confirmados */}
+              {confirmedRSVP?.confirmado && (
+                <div className="border-b border-[#d4cbbd] pb-2 pt-1">
+                  <span className="opacity-90 block mb-1">Lugares Confirmados:</span>
+                  <ul className="list-disc pl-5 space-y-0.5">
+                    {attendees.filter(a => a.asistira).map((a, i) => (
+                      <li key={i} className="font-medium text-[#1a1a1a]">{a.nombre}</li>
+                    ))}
+                  </ul>
                 </div>
               )}
-              {confirmedRSVP?.email && (
-                <div className="flex justify-between border-b border-[#d4cbbd] pb-2">
-                  <span className="opacity-90">Correo:</span>
-                  <span className="font-mono text-[11px] truncate max-w-[180px]">{confirmedRSVP?.email}</span>
-                </div>
-              )}
+
               {confirmedRSVP?.mensaje && (
-                <div className="flex justify-between border-b border-[#d4cbbd] pb-2">
+                <div className="flex justify-between pt-1">
                   <span className="opacity-90">Mensaje:</span>
                   <span className="font-mono text-[11px] truncate max-w-[180px]">{confirmedRSVP?.mensaje}</span>
                 </div>

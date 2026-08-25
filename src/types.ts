@@ -37,6 +37,14 @@ export interface RSVPRecord {
   updated_at?: string;
 }
 
+export interface AttendeesDetails {
+  id: number;
+  rsvp_id: string;
+  nombre: string;
+  es_titular?: boolean;
+  asistira?: boolean;
+}
+
 export interface GalleryPhoto {
   id: string;
   url: string;
@@ -60,6 +68,8 @@ export interface AudioTrack {
   is_main: boolean;
   created_at: string;
 }
+
+
 
 // Esta interfaz es para peticiones frontend, se puede quedar como tú la prefieras
 export interface RSVPVerificationRequest {

@@ -167,42 +167,71 @@ export async function getInvitationByToken(tokenOrRoute: string): Promise<RSVPRe
   return null;
 }
 
-export async function confirmGuestRSVP(
-  idOrToken: string,
-  data: { email: string; attending: 'Asistiré' | 'No podré asistir'; mensaje?: string; }
-): Promise<RSVPRecord | null> {
-  const isAttending = data.attending === 'Asistiré';
-  const existingRecord = await getInvitationByToken(idOrToken);
-  
-  if (!existingRecord) {
-    console.error('❌ No se encontró la invitación para actualizar.');
-    return null;
+export const confirmGuestRSVP = async (
+  id: string,
+  data: {
+    email: string;
+    mensaje: string;
+    confirmado: boolean;
+    attendeesList: { nombre: string; es_titular: boolean; asistira: boolean }[];
   }
-
-  const payload = {
-    confirmado: isAttending,
-    is_verified: true,
-    email: data.email.trim(),
-    mensaje: data.mensaje ? data.mensaje.trim() : '',
-    attending: data.attending,
-    updated_at: new Date().toISOString()
-  };
-
+) => {
   try {
-    const { data: updatedData, error } = await supabase
+    // 1. Actualizar el registro principal de la invitación (Tabla: rsvps)
+    const { data: rsvpData, error: rsvpError } = await supabase
       .from('rsvps')
-      .update(payload)
-      .eq('id', existingRecord.id)
+      .update({
+        email: data.email,
+        mensaje: data.mensaje,
+        confirmado: data.confirmado,
+        updated_at: new Date().toISOString(), // Actualizamos la fecha de modificación
+      })
+      .eq('id', id)
       .select()
       .single();
 
-    if (!error && updatedData) return updatedData as RSVPRecord;
-    console.error('Error al actualizar en BD:', error);
-  } catch (err) {
-    console.error('Error de red actualizando RSVP:', err);
+    if (rsvpError) {
+      console.error('Error actualizando la tabla principal rsvps:', rsvpError);
+      throw rsvpError;
+    }
+
+    // 2. Limpiar registros anteriores en caso de que esté modificando su respuesta
+    const { error: deleteError } = await supabase
+      .from('asistentes_detalle')
+      .delete()
+      .eq('rsvp_id', id);
+
+    if (deleteError) {
+      console.error('Error limpiando los asistentes anteriores:', deleteError);
+      throw deleteError;
+    }
+
+    // 3. Preparar el arreglo para la inserción masiva (Tabla: asistentes_detalle)
+    const detallesInsert = data.attendeesList.map((attendee) => ({
+      rsvp_id: id,
+      nombre: attendee.nombre,
+      es_titular: attendee.es_titular,
+      asistira: attendee.asistira,
+    }));
+
+    // 4. Insertar todos los asistentes de un solo golpe
+    const { error: insertError } = await supabase
+      .from('asistentes_detalle')
+      .insert(detallesInsert);
+
+    if (insertError) {
+      console.error('Error insertando los detalles de asistentes:', insertError);
+      throw insertError;
+    }
+
+    // Retornamos los datos actualizados al frontend
+    return rsvpData;
+    
+  } catch (error) {
+    console.error('Error crítico al procesar la confirmación RSVP:', error);
+    throw error;
   }
-  return null;
-}
+};
 
 export async function deleteRSVP(id: string): Promise<boolean> {
   try {
