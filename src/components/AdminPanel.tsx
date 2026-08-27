@@ -471,7 +471,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-plumbago flex flex-col items-center justify-center px-4">
-        <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-xl border border-plumbago-light">
+        <div className="max-w-md w-full bg-night p-8 rounded-lg shadow-xl border border-plumbago-light">
           <div className="flex justify-center mb-6">
             <Lock className="w-12 h-12 text-silver" />
           </div>
