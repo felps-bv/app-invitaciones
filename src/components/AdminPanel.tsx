@@ -1206,7 +1206,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           }
                         }
                       }}
-                      className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-plumbago file:text-night hover:file:bg-[#d4cbbd] transition-colors"
+                      className="w-full text-sm text-silver-light file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-plumbago file:text-night hover:file:bg-[#d4cbbd] transition-colors"
                       required
                     />
                   </div>
@@ -1225,7 +1225,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   <button 
                     type="submit" 
                     disabled={loading || !audioFile}
-                    className="w-full bg-silver-light hover:bg-night text-white py-2 rounded flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
+                    className="w-full bg-silver-light hover:bg-night text-night hover:text-silver-light py-2 rounded flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
                   >
                     {loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
                     Subir Audio
@@ -1260,7 +1260,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           <div 
                             key={track.id} 
                             className={`flex items-center justify-between p-4 rounded-lg border transition-all ${
-                              isMainTrack ? 'bg-night border-silver' : 'bg-white border-gray-200 hover:border-gray-300'
+                              isMainTrack ? 'bg-white border-silver' : 'bg-night border-gray-200 hover:border-gray-300'
                             }`}
                           >
                             <div className="flex items-center gap-4">
