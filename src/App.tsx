@@ -238,7 +238,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-script text-3xl sm:text-4xl mb-8 text-silver-light animate-pulse-soft mt-4"
+            className="font-script text-3xl sm:text-4xl mb-8 text-night-soft animate-pulse-soft mt-4"
           >
             {eventDetails.subtitle}
           </motion.p>
