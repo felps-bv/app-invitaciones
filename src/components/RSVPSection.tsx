@@ -133,13 +133,13 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
         
         {/* Banner if personalized link loaded */}
         {activeInvitation && (
-          <div className="mb-8 p-4 bg-[#e9e4de] border border-silver rounded-sm flex items-start gap-3">
-            <Sparkles className="w-5 h-5 text-silver shrink-0 mt-0.5" />
+          <div className="mb-8 p-4 bg-secondary border border-silver rounded-sm flex items-start gap-3">
+            <Sparkles className="w-5 h-5 text-silver-dark shrink-0 mt-0.5" />
             <div>
-              <p className="font-serif text-lg text-silver-light font-light italic">
+              <p className="font-serif text-lg text-night font-light italic">
                 ¡Bienvenid@, {activeInvitation.nombre}!
               </p>
-              <p className="font-sans text-xs text-silver-light opacity-80 mt-0.5">
+              <p className="font-sans text-xs text-night opacity-80 mt-0.5">
                 Esta es tu invitación personal. Por favor confirma tu asistencia y la de tus acompañantes a continuación.
               </p>
             </div>
@@ -237,7 +237,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                   placeholder="ejemplo@correo.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-7 bg-transparent border-b border-plumbago-light py-2 text-sm text-silver-light focus:outline-none focus:border-silver transition-all"
+                  className="w-full pl-7 bg-secondary border-b border-plumbago-light py-2 text-sm text-night focus:outline-none focus:border-silver transition-all"
                 />
               </div>
             </div>
@@ -253,7 +253,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                 placeholder="Escribe un mensaje cariñoso..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full bg-transparent border-b border-plumbago-light py-2 text-sm text-silver-light focus:outline-none focus:border-silver resize-none"
+                className="w-full bg-secondary border-b border-plumbago-light py-2 text-sm text-night focus:outline-none focus:border-silver resize-none"
               />
             </div>
 

@@ -75,7 +75,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
           <span>Faltan muy pocos días</span>
         </div>
 
-        <h3 className="font-serif text-3xl sm:text-4xl text-silver-light font-light italic mb-2">
+        <h3 className="font-serif text-3xl sm:text-4xl text-night font-light italic mb-2">
           Cuenta Regresiva
         </h3>
         
