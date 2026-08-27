@@ -214,7 +214,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                         placeholder={attendee.es_titular ? "Nombre del titular" : `Nombre del acompañante ${index}`}
                         value={attendee.nombre}
                         onChange={(e) => handleAttendeeChange(index, 'nombre', e.target.value)}
-                        className={`w-full pl-7 bg-secondary border-b border-plumbago-light py-2 text-sm text-night focus:outline-none focus:border-silver transition-all ${
+                        className={`w-full pl-7 bg-white border-b border-plumbago-light py-2 text-sm text-night focus:outline-none focus:border-silver transition-all ${
                           attendee.es_titular && activeInvitation?.nombre ? 'opacity-80 cursor-not-allowed font-medium' : ''
                         } ${!attendee.asistira ? 'opacity-40 line-through' : ''}`}
                       />
@@ -230,14 +230,14 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                 Correo Electrónico (Opcional)
               </label>
               <div className="relative">
-                <Mail className="w-4 h-4 absolute left-0 top-1/2 -translate-y-1/2 text-silver-dark ml-2" />
+                <Mail className="w-4 h-4 absolute left-0 top-1/2 -translate-y-1/2 text-silver-dark ml-2 rounded-sm" />
                 <input
                   id="rsvp-email-input"
                   type="email"
                   placeholder="ejemplo@correo.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-7 bg-secondary border-b border-plumbago-light py-2 text-sm text-night focus:outline-none focus:border-silver transition-all"
+                  className="w-full pl-7 bg-white border-b border-plumbago-light py-2 text-sm text-night focus:outline-none focus:border-silver transition-all"
                 />
               </div>
             </div>
@@ -253,7 +253,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                 placeholder="Escribe un mensaje cariñoso..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full bg-secondary border-b border-plumbago-light py-2 text-sm text-night focus:outline-none focus:border-silver resize-none px-2"
+                className="w-full bg-white border-b border-plumbago-light py-2 text-sm text-night focus:outline-none focus:border-silver resize-none px-2 rounded-sm"
               />
             </div>
 
@@ -261,16 +261,16 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
             <button
               type="submit"
               disabled={loading}
-              className="mt-6 w-full bg-silver-light text-white text-[18px] uppercase tracking-[0.2em] py-4 rounded-sm hover:bg-night transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 shadow-sm"
+              className="mt-6 w-full bg-secondary text-night text-[18px] uppercase tracking-[0.2em] py-4 rounded-sm hover:bg-night transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 shadow-sm"
             >
               {loading ? (
                 <>
-                  <RefreshCw className="w-4 h-4 animate-spin text-silver" />
+                  <RefreshCw className="w-4 h-4 animate-spin text-night" />
                   <span>Guardando Confirmación...</span>
                 </>
               ) : (
                 <>
-                  <Send className="w-4 h-4 text-silver" />
+                  <Send className="w-4 h-4 text-night" />
                   <span>Confirmar Asistencia</span>
                 </>
               )}
