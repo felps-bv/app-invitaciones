@@ -243,7 +243,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
             </div>
 
             {/* Field: Mensaje de felicitación opcional */}
-            <div className="pt-2">
+            <div className="pt-2 rounded-sm">
               <label htmlFor="rsvp-message-input" className="text-[12px] uppercase tracking-wider mb-1 block opacity-90 text-silver-light">
                 Mensaje o Felicitación para la Quinceañera (Opcional)
               </label>
@@ -261,7 +261,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
             <button
               type="submit"
               disabled={loading}
-              className="mt-6 w-full bg-secondary text-night text-[18px] uppercase tracking-[0.2em] py-4 rounded-sm hover:bg-night transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 shadow-sm"
+              className="mt-6 w-full bg-secondary text-night text-[18px] uppercase tracking-[0.2em] py-4 rounded-sm hover:bg-white transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 shadow-sm"
             >
               {loading ? (
                 <>
