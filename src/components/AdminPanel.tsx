@@ -559,17 +559,17 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         {activeTab === 'rsvps' && (
           <div className="space-y-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-4 gap-4">
-              <h2 className="text-2xl font-serif text-night">Gestión de Invitados</h2>
+              <h2 className="text-2xl font-serif text-silver-light">Gestión de Invitados</h2>
               
               {/* Barra de Búsqueda */}
               <div className="relative w-full sm:w-64">
-                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-night-soft" />
                 <input 
                   type="text" 
                   placeholder="Buscar familia..."
                   value={rsvpSearch}
                   onChange={(e) => setRsvpSearch(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-full text-sm focus:ring-silver focus:border-silver"
+                  className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-full text-sm focus:ring-night focus:border-night text-night"
                 />
               </div>
             </div>
@@ -610,7 +610,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         value={newFamilyName}
                         onChange={(e) => setNewFamilyName(e.target.value)}
                         placeholder="Familia / Invitado"
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver text-sm"
+                        className="w-full px-3 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night text-sm"
                         required
                       />
                     </div>
@@ -621,7 +621,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         min="0"
                         value={newCompanionsCount} 
                         onChange={(e) => setNewCompanionsCount(Number(e.target.value))}
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver text-sm"
+                        className="w-full px-3 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night text-sm"
                         title="Número de acompañantes"
                       />
                     </div>
@@ -632,14 +632,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         value={newFamilyEmail}
                         onChange={(e) => setNewFamilyEmail(e.target.value)}
                         placeholder="correo@ejemplo.com"
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver text-sm"
+                        className="w-full px-3 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night text-sm"
                       />
                     </div>
                     
                     <button 
                       type="submit" 
                       disabled={loading || !newFamilyName.trim()}
-                      className="w-full bg-silver-light hover:bg-night text-white py-2 rounded flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
+                      className="w-full bg-silver-light hover:bg-night text-night hover:text-silver-light py-2 rounded flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
                     >
                       {loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
                       Generar Enlace
