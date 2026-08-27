@@ -189,7 +189,7 @@ export default function App() {
         autoPlayTriggered={autoPlayTriggered}
       />
 
-      <header className="sticky top-0 z-30 bg-plumbago/90 backdrop-blur-md border-b border-plumbago-light px-6 sm:px-10 py-4 transition-all">
+      {/* <header className="sticky top-0 z-30 bg-plumbago/90 backdrop-blur-md border-b border-plumbago-light px-6 sm:px-10 py-4 transition-all">
         <div className="max-w-6xl mx-auto flex items-center justify-center">
           <a href="#" className="flex items-center gap-3 group">
             <div className="w-8 h-8 rounded-full bg-white border border-silver flex items-center justify-center font-serif text-sm font-light italic text-silver group-hover:scale-105 transition-transform">
@@ -200,6 +200,17 @@ export default function App() {
             </span>
           </a>
         </div>
+      </header> */}
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center justify-center gap-3 px-6 py-2.5 rounded-full bg-night/40 backdrop-blur-md border border-silver/20 shadow-lg shadow-night/10 transition-all duration-300">
+        {/* Círculo inicial con la inicial */}
+        <div className="w-8 h-8 rounded-full bg-plumbago flex items-center justify-center text-silver-light font-serif text-sm shadow-sm">
+          M
+        </div>
+
+        {/* Texto del header */}
+        <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-silver-light font-medium">
+          María José • XV Años
+        </span>
       </header>
 
       <main className="space-y-12 pb-20">
@@ -227,7 +238,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-script text-3xl sm:text-4xl text-night-soft mb-8"
+            className="font-script text-3xl sm:text-4xl mb-8 text-silver-light animate-pulse-soft mt-4"
           >
             {eventDetails.subtitle}
           </motion.p>
