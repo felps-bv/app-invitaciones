@@ -102,3 +102,7 @@ main {
   /* background-position: center; */
   background-size: contain;
 }
+
+main section {
+  border-radius: 15%;
+}

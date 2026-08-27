@@ -21,9 +21,9 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos = [] }) => {
     : photos.filter(p => (p?.category || 'General') === selectedCategory);
 
   return (
-    <section className="py-12 px-4 max-w-6xl mx-auto bg-gold">
+    <section className="py-12 px-4 max-w-6xl mx-auto bg-plumbago shadow">
       <div className="text-center mb-10">
-        <div className="w-12 h-12 mx-auto rounded-full border border-silver flex items-center justify-center text-night-soft mb-3">
+        <div className="w-12 h-12 mx-auto rounded-full border border-night-soft flex items-center justify-center text-night-soft mb-3">
           <Camera className="w-6 h-6" />
         </div>
 
