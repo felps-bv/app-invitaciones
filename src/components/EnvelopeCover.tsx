@@ -76,12 +76,12 @@ export const EnvelopeCover: React.FC<EnvelopeCoverProps> = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
             // absolute inset-0 garantiza el centrado perfecto independientemente del contenedor padre
-            className="absolute inset-0 flex flex-col items-center justify-center text-center text-white"
+            className="absolute inset-0 flex flex-col items-center justify-center text-center text-night-soft"
           >
             <div className="w-20 h-20 rounded-full bg-silver/20 border border-silver flex items-center justify-center mb-4 animate-ping">
               <Heart className="w-10 h-10 text-silver fill-current" />
             </div>
-            <p className="font-serif text-2xl tracking-widest text-white italic font-light z-10">
+            <p className="font-serif text-2xl tracking-widest text-night italic font-light z-10">
               Abriendo invitación...
             </p>
           </motion.div>
