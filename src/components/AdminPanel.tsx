@@ -479,7 +479,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
           
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico</label>
+              <label className="block text-sm font-medium text-night-soft mb-1">Correo Electrónico</label>
               <input 
                 type="email" 
                 value={email} 
@@ -489,7 +489,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
+              <label className="block text-sm font-medium text-night-soft mb-1">Contraseña</label>
               <input 
                 type="password" 
                 value={password} 
@@ -559,7 +559,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         {activeTab === 'rsvps' && (
           <div className="space-y-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-4 gap-4">
-              <h2 className="text-2xl font-serif text-silver-light">Gestión de Invitados</h2>
+              <h2 className="text-2xl font-serif text-night">Gestión de Invitados</h2>
               
               {/* Barra de Búsqueda */}
               <div className="relative w-full sm:w-64">
@@ -577,7 +577,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
             {/* Tarjetas de Métricas */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 flex flex-col items-center text-center">
-                <span className="text-3xl font-serif text-silver-light">{totalRSVPs}</span>
+                <span className="text-3xl font-serif text-night">{totalRSVPs}</span>
                 <span className="text-xs text-gray-500 uppercase tracking-wider mt-1">Total Enlaces</span>
               </div>
               <div className="bg-white p-4 rounded-lg shadow-sm border border-green-100 flex flex-col items-center text-center">
@@ -604,7 +604,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
 
                   <form onSubmit={handleCreateLink} className="space-y-4">
                     <div>
-                      <label className="block text-sm text-gray-700 mb-1">Nombre (Ej: Familia López)</label>
+                      <label className="block text-sm text-night-soft mb-1">Nombre (Ej: Familia López)</label>
                       <input 
                         type="text" 
                         value={newFamilyName}
@@ -615,7 +615,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       />
                     </div>
                     <div>
-                      <label className="block text-sm text-gray-700 mb-1">Acompañantes</label>
+                      <label className="block text-sm text-night-soft mb-1">Acompañantes</label>
                       <input 
                         type="number" 
                         min="0"
@@ -626,7 +626,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       />
                     </div>
                     <div>
-                      <label className="block text-sm text-gray-700 mb-1">Email (Opcional)</label>
+                      <label className="block text-sm text-night-soft mb-1">Email (Opcional)</label>
                       <input 
                         type="email" 
                         value={newFamilyEmail}
@@ -761,7 +761,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                                         ) : (
                                           <X className="w-3.5 h-3.5 text-red-400 shrink-0" />
                                         )}
-                                        <span className={`text-gray-700 ${!asistente.asistira ? 'line-through opacity-60' : ''}`}>
+                                        <span className={`text-night-soft ${!asistente.asistira ? 'line-through opacity-60' : ''}`}>
                                           {asistente.nombre} {asistente.es_titular && <span className="text-gray-400 text-[10px] ml-1">(Titular)</span>}
                                         </span>
                                       </li>
@@ -818,12 +818,12 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         {/* PESTAÑA EVENTO */}
         {activeTab === 'event' && eventDetails && (
           <div className="space-y-6">
-            <h2 className="text-2xl font-serif text-silver-light border-b pb-2">Detalles del Evento</h2>
+            <h2 className="text-2xl font-serif text-night border-b pb-2">Detalles del Evento</h2>
             <form onSubmit={handleSaveEventDetails} className="space-y-8 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
               {/* Sección Principal */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Nombre de la Quinceañera</label>
+                  <label className="block text-sm font-medium text-night-soft mb-1">Nombre de la Quinceañera</label>
                   <input
                     type="text"
                     value={eventDetails.quinceanera_name}
@@ -833,7 +833,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Subtítulo / Frase Corta</label>
+                  <label className="block text-sm font-medium text-night-soft mb-1">Subtítulo / Frase Corta</label>
                   <input
                     type="text"
                     value={eventDetails.subtitle}
@@ -843,7 +843,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Fecha y Hora del Evento</label>
+                  <label className="block text-sm font-medium text-night-soft mb-1">Fecha y Hora del Evento</label>
                   <input
                     type="datetime-local"
                     value={eventDetails.date}
@@ -863,7 +863,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Nombre de la Iglesia</label>
+                    <label className="block text-sm font-medium text-night-soft mb-1">Nombre de la Iglesia</label>
                     <input
                       type="text"
                       value={eventDetails.church_name}
@@ -872,7 +872,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Dirección de la Iglesia</label>
+                    <label className="block text-sm font-medium text-night-soft mb-1">Dirección de la Iglesia</label>
                     <input
                       type="text"
                       value={eventDetails.church_address}
@@ -881,7 +881,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Hora (Ej: 17:00 HRS)</label>
+                    <label className="block text-sm font-medium text-night-soft mb-1">Hora (Ej: 17:00 HRS)</label>
                     <input
                       type="text"
                       value={eventDetails.church_time}
@@ -890,7 +890,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Link de Google Maps (Iglesia)</label>
+                    <label className="block text-sm font-medium text-night-soft mb-1">Link de Google Maps (Iglesia)</label>
                     <input
                       type="url"
                       value={eventDetails.church_map_url}
@@ -910,7 +910,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Nombre del Salón</label>
+                    <label className="block text-sm font-medium text-night-soft mb-1">Nombre del Salón</label>
                     <input
                       type="text"
                       value={eventDetails.hall_name}
@@ -919,7 +919,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Dirección del Salón</label>
+                    <label className="block text-sm font-medium text-night-soft mb-1">Dirección del Salón</label>
                     <input
                       type="text"
                       value={eventDetails.hall_address}
@@ -928,7 +928,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Hora (Ej: 19:00 HRS)</label>
+                    <label className="block text-sm font-medium text-night-soft mb-1">Hora (Ej: 19:00 HRS)</label>
                     <input
                       type="text"
                       value={eventDetails.hall_time}
@@ -937,7 +937,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Link de Google Maps (Salón)</label>
+                    <label className="block text-sm font-medium text-night-soft mb-1">Link de Google Maps (Salón)</label>
                     <input
                       type="url"
                       value={eventDetails.hall_map_url}
@@ -957,7 +957,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 </h3>
                 <div className="grid grid-cols-1 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Mensaje de Bienvenida</label>
+                    <label className="block text-sm font-medium text-night-soft mb-1">Mensaje de Bienvenida</label>
                     <textarea
                       value={eventDetails.welcomemessage}
                       onChange={(e) => setEventDetails({...eventDetails, welcomemessage: e.target.value})}
@@ -967,7 +967,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Padres</label>
+                      <label className="block text-sm font-medium text-night-soft mb-1">Padres</label>
                       <input
                         type="text"
                         value={eventDetails.parents_names}
@@ -976,7 +976,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Padrinos</label>
+                      <label className="block text-sm font-medium text-night-soft mb-1">Padrinos</label>
                       <input
                         type="text"
                         value={eventDetails.godparents_names}
@@ -987,7 +987,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Código de Vestimenta</label>
+                      <label className="block text-sm font-medium text-night-soft mb-1">Código de Vestimenta</label>
                       <input
                         type="text"
                         value={eventDetails.dress_code}
@@ -996,7 +996,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Mesa de Regalos / Sobres</label>
+                      <label className="block text-sm font-medium text-night-soft mb-1">Mesa de Regalos / Sobres</label>
                       <input
                         type="text"
                         value={eventDetails.gift_registry}
@@ -1018,7 +1018,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           />
                         </div>
                         <div>
-                          <label className="block text-sm text-gray-700 mb-1">Archivo de Imagen</label>
+                          <label className="block text-sm text-night-soft mb-1">Archivo de Imagen</label>
                           <input 
                             type="file" 
                             accept="image/*"
@@ -1029,7 +1029,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                                 setCoverPreviewURL(URL.createObjectURL(file));
                               }
                             }}
-                            className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-plumbago file:text-silver-light hover:file:bg-[#d4cbbd] transition-colors"
+                            className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-plumbago file:text-night hover:file:bg-[#d4cbbd] transition-colors"
                             required
                           />
                         </div>
@@ -1060,7 +1060,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         {/* PESTAÑA GALERÍA */}
         {activeTab === 'gallery' && (
           <div className="space-y-6">
-            <h2 className="text-2xl font-serif text-silver-light border-b pb-2 flex items-center gap-2">
+            <h2 className="text-2xl font-serif text-night border-b pb-2 flex items-center gap-2">
               <ImageIcon className="w-6 h-6 text-silver" /> Galería de Fotos
             </h2>
             
@@ -1072,7 +1072,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   <h3 className="text-lg font-medium text-gray-800 mb-2">Agregar Nueva Foto</h3>
                   
                   <div>
-                    <label className="block text-sm text-gray-700 mb-1">Archivo de Imagen</label>
+                    <label className="block text-sm text-night-soft mb-1">Archivo de Imagen</label>
                     <input 
                       type="file" 
                       accept="image/*"
@@ -1081,13 +1081,13 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           setPhotoFile(e.target.files[0]);
                         }
                       }}
-                      className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-plumbago file:text-silver-light hover:file:bg-[#d4cbbd] transition-colors"
+                      className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-plumbago file:text-night hover:file:bg-[#d4cbbd] transition-colors"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm text-gray-700 mb-1">Categoría</label>
+                    <label className="block text-sm text-night-soft mb-1">Categoría</label>
                     <select 
                       value={photoCategory}
                       onChange={(e) => setPhotoCategory(e.target.value)}
@@ -1101,7 +1101,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   </div>
 
                   <div>
-                    <label className="block text-sm text-gray-700 mb-1">Pie de Foto (Opcional)</label>
+                    <label className="block text-sm text-night-soft mb-1">Pie de Foto (Opcional)</label>
                     <input 
                       type="text" 
                       value={photoCaption}
@@ -1181,7 +1181,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         {/* PESTAÑA MÚSICA */}
         {activeTab === 'music' && (
           <div className="space-y-6">
-            <h2 className="text-2xl font-serif text-silver-light border-b pb-2 flex items-center gap-2">
+            <h2 className="text-2xl font-serif text-night border-b pb-2 flex items-center gap-2">
               <Music className="w-6 h-6 text-silver" /> Música de Fondo
             </h2>
             
@@ -1193,7 +1193,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   <h3 className="text-lg font-medium text-gray-800 mb-2">Subir Nueva Pista</h3>
                   
                   <div>
-                    <label className="block text-sm text-gray-700 mb-1">Archivo de Audio (MP3, WAV)</label>
+                    <label className="block text-sm text-night-soft mb-1">Archivo de Audio (MP3, WAV)</label>
                     <input 
                       type="file" 
                       accept="audio/mp3,audio/wav,audio/mpeg"
@@ -1206,13 +1206,13 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           }
                         }
                       }}
-                      className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-plumbago file:text-silver-light hover:file:bg-[#d4cbbd] transition-colors"
+                      className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-plumbago file:text-night hover:file:bg-[#d4cbbd] transition-colors"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm text-gray-700 mb-1">Título de la Canción</label>
+                    <label className="block text-sm text-night-soft mb-1">Título de la Canción</label>
                     <input 
                       type="text" 
                       value={audioTitle}
@@ -1268,7 +1268,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                                 <Music className="w-5 h-5" />
                               </div>
                               <div>
-                                <h4 className={`font-medium ${isMainTrack ? 'text-silver-light' : 'text-gray-700'}`}>
+                                <h4 className={`font-medium ${isMainTrack ? 'text-night' : 'text-night-soft'}`}>
                                   {track.title || 'Pista sin título'}
                                 </h4>
                                 {isMainTrack && (
@@ -1283,7 +1283,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                               {!isMainTrack && (
                                 <button
                                   onClick={() => handleSelectMainAudio(track)}
-                                  className="text-sm px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded transition-colors"
+                                  className="text-sm px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-night-soft rounded transition-colors"
                                 >
                                   Usar como principal
                                 </button>
@@ -1316,7 +1316,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         {/* PESTAÑA ANUNCIOS */}
         {activeTab === 'posts' && (
           <div className="space-y-6">
-            <h2 className="text-2xl font-serif text-silver-light border-b pb-2 flex items-center gap-2">
+            <h2 className="text-2xl font-serif text-night border-b pb-2 flex items-center gap-2">
               <MessageSquare className="w-6 h-6 text-silver" /> Anuncios y Mensajes
             </h2>
             
@@ -1328,7 +1328,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   <h3 className="text-lg font-medium text-gray-800 mb-2">Nuevo Anuncio</h3>
                   
                   <div>
-                    <label className="block text-sm text-gray-700 mb-1">Título del Aviso</label>
+                    <label className="block text-sm text-night-soft mb-1">Título del Aviso</label>
                     <input 
                       type="text" 
                       value={postTitle}
@@ -1340,7 +1340,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   </div>
 
                   <div>
-                    <label className="block text-sm text-gray-700 mb-1">Contenido del Mensaje</label>
+                    <label className="block text-sm text-night-soft mb-1">Contenido del Mensaje</label>
                     <textarea 
                       value={postContent}
                       onChange={(e) => setPostContent(e.target.value)}
@@ -1352,7 +1352,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   </div>
 
                   <div>
-                    <label className="block text-sm text-gray-700 mb-1">Imagen Ilustrativa (Opcional)</label>
+                    <label className="block text-sm text-night-soft mb-1">Imagen Ilustrativa (Opcional)</label>
                     <input 
                       type="file" 
                       accept="image/*"
@@ -1361,7 +1361,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           setPostImageFile(e.target.files[0]);
                         }
                       }}
-                      className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-plumbago file:text-silver-light hover:file:bg-[#d4cbbd] transition-colors"
+                      className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-plumbago file:text-night hover:file:bg-[#d4cbbd] transition-colors"
                     />
                   </div>
                   
@@ -1402,7 +1402,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           <div key={post.id} className="p-4 rounded-lg border border-gray-200 bg-white flex flex-col sm:flex-row gap-4 items-start justify-between">
                             <div className="flex-1 space-y-2">
                               <div className="flex items-center justify-between">
-                                <h4 className="font-serif text-lg text-silver-light">{post.title}</h4>
+                                <h4 className="font-serif text-lg text-night">{post.title}</h4>
                                 <span className="text-[10px] text-gray-400">
                                   {new Date(post.created_at || Date.now()).toLocaleDateString('es-ES', {
                                     day: 'numeric',
