@@ -62,19 +62,19 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ eventD
               <Church className="w-6 h-6" />
             </div>
 
-            <span className="inline-block text-silver-dark font-sans text-[10px] uppercase tracking-[0.2em] font-medium mb-2">
+            <span className="inline-block text-night-soft font-sans text-[10px] uppercase tracking-[0.2em] font-medium mb-2">
               Ceremonia Religiosa
             </span>
 
-            <h4 className="font-serif text-2xl text-night-soft font-light italic mb-2">
+            <h4 className="font-serif text-2xl text-night font-light italic mb-2">
               {eventDetails?.church_name}
             </h4>
 
-            <p className="font-serif text-base text-silver font-normal mb-3 border-l-2 border-silver pl-3 italic">
+            <p className="font-serif text-base text-night-soft font-normal mb-3 border-l-2 border-silver pl-3 italic">
               {eventDetails?.church_time}
             </p>
 
-            <p className="font-sans text-xs text-night-soft opacity-70 leading-relaxed mb-6">
+            <p className="font-sans text-xs text-night opacity-70 leading-relaxed mb-6">
               {eventDetails?.church_address}
             </p>
           </div>
@@ -93,23 +93,23 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ eventD
         {/* Reception Hall Card */}
         <div className="bg-secondary border border-plumbago-light rounded-sm p-8 shadow-sm flex flex-col justify-between hover:border-silver transition-all duration-300">
           <div>
-            <div className="w-12 h-12 rounded-full border border-silver flex items-center justify-center text-silver mb-6">
+            <div className="w-12 h-12 rounded-full border border-silver flex items-center justify-center text-night mb-6">
               <PartyPopper className="w-6 h-6" />
             </div>
 
-            <span className="inline-block text-silver-dark font-sans text-[10px] uppercase tracking-[0.2em] font-medium mb-2">
+            <span className="inline-block text-night-soft font-sans text-[10px] uppercase tracking-[0.2em] font-medium mb-2">
               Fiesta & Recepción
             </span>
 
-            <h4 className="font-serif text-2xl text-night-soft font-light italic mb-2">
+            <h4 className="font-serif text-2xl text-night font-light italic mb-2">
               {eventDetails?.hall_name}
             </h4>
 
-            <p className="font-serif text-base text-silver font-normal mb-3 border-l-2 border-silver pl-3 italic">
+            <p className="font-serif text-base text-night-soft font-normal mb-3 border-l-2 border-silver pl-3 italic">
               {eventDetails?.hall_time}
             </p>
 
-            <p className="font-sans text-xs text-night-soft opacity-70 leading-relaxed mb-6">
+            <p className="font-sans text-xs text-night opacity-70 leading-relaxed mb-6">
               {eventDetails?.hall_address}
             </p>
           </div>
