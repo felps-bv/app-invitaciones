@@ -229,7 +229,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-serif text-6xl sm:text-7xl lg:text-8xl text-plumbago title-shadow italic font-light tracking-tight mb-4 leading-tight"
+            className="font-serif text-6xl sm:text-7xl lg:text-8xl plumbago-shimmer title-shadow italic font-light tracking-tight mb-4 leading-tight"
           >
             {eventDetails.quinceanera_name}
           </motion.h1>
@@ -272,9 +272,9 @@ export default function App() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="#rsvp-section"
-              className="w-full sm:w-auto bg-silver-light hover:bg-night hover:text-silver text-night font-sans text-[10px] uppercase tracking-[0.2em] px-8 py-4 rounded-sm shadow-md transition-all duration-300 flex items-center justify-center gap-2"
+              className="w-full sm:w-auto golder-shimmer hover:bg-night hover:text-silver text-night font-sans text-[10px] uppercase tracking-[0.2em] px-8 py-4 rounded-sm shadow-md transition-all duration-300 flex items-center justify-center gap-2"
             >
-              <Mail className="w-4 h-4 text-silver" />
+              <Mail className="w-4 h-4 text-night-soft" />
               <span>Confirmar Asistencia</span>
             </a>
           </div>

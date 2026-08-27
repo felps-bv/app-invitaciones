@@ -76,6 +76,14 @@
   -webkit-text-fill-color: transparent;
 }
 
+.plumbago-shimmer {
+  background: linear-gradient(90deg, #6B8CAA 0%, #8F9FAE 50%, #6B8CAA 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .title-shadow {
   text-shadow: 5px 5px 25px #86949F;
 }
