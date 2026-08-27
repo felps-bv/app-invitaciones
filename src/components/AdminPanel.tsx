@@ -559,7 +559,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         {activeTab === 'rsvps' && (
           <div className="space-y-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-4 gap-4">
-              <h2 className="text-2xl font-serif text-silver-light">Gestión de Invitados</h2>
+              <h2 className="text-2xl font-serif text-night">Gestión de Invitados</h2>
               
               {/* Barra de Búsqueda */}
               <div className="relative w-full sm:w-64">
@@ -828,7 +828,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     type="text"
                     value={eventDetails.quinceanera_name}
                     onChange={(e) => setEventDetails({...eventDetails, quinceanera_name: e.target.value})}
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
+                    className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                     required
                   />
                 </div>
@@ -838,7 +838,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     type="text"
                     value={eventDetails.subtitle}
                     onChange={(e) => setEventDetails({...eventDetails, subtitle: e.target.value})}
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
+                    className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                     required
                   />
                 </div>
@@ -848,7 +848,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     type="datetime-local"
                     value={eventDetails.date}
                     onChange={(e) => setEventDetails({...eventDetails, date: e.target.value})}
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
+                    className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                     required
                   />
                 </div>
@@ -868,7 +868,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       type="text"
                       value={eventDetails.church_name}
                       onChange={(e) => setEventDetails({...eventDetails, church_name: e.target.value})}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
+                      className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                     />
                   </div>
                   <div>
@@ -877,7 +877,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       type="text"
                       value={eventDetails.church_address}
                       onChange={(e) => setEventDetails({...eventDetails, church_address: e.target.value})}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
+                      className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                     />
                   </div>
                   <div>
@@ -886,7 +886,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       type="text"
                       value={eventDetails.church_time}
                       onChange={(e) => setEventDetails({...eventDetails, church_time: e.target.value})}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
+                      className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                     />
                   </div>
                   <div>
@@ -895,7 +895,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       type="url"
                       value={eventDetails.church_map_url}
                       onChange={(e) => setEventDetails({...eventDetails, church_map_url: e.target.value})}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
+                      className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                     />
                   </div>
                 </div>
@@ -915,7 +915,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       type="text"
                       value={eventDetails.hall_name}
                       onChange={(e) => setEventDetails({...eventDetails, hall_name: e.target.value})}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
+                      className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                     />
                   </div>
                   <div>
@@ -924,7 +924,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       type="text"
                       value={eventDetails.hall_address}
                       onChange={(e) => setEventDetails({...eventDetails, hall_address: e.target.value})}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
+                      className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                     />
                   </div>
                   <div>
@@ -933,7 +933,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       type="text"
                       value={eventDetails.hall_time}
                       onChange={(e) => setEventDetails({...eventDetails, hall_time: e.target.value})}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
+                      className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                     />
                   </div>
                   <div>
@@ -942,7 +942,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       type="url"
                       value={eventDetails.hall_map_url}
                       onChange={(e) => setEventDetails({...eventDetails, hall_map_url: e.target.value})}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
+                      className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                     />
                   </div>
                 </div>
@@ -962,7 +962,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       value={eventDetails.welcomemessage}
                       onChange={(e) => setEventDetails({...eventDetails, welcomemessage: e.target.value})}
                       rows={3}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
+                      className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                     />
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -972,7 +972,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         type="text"
                         value={eventDetails.parents_names}
                         onChange={(e) => setEventDetails({...eventDetails, parents_names: e.target.value})}
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
+                        className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                       />
                     </div>
                     <div>
@@ -981,7 +981,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         type="text"
                         value={eventDetails.godparents_names}
                         onChange={(e) => setEventDetails({...eventDetails, godparents_names: e.target.value})}
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
+                        className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                       />
                     </div>
                   </div>
@@ -992,7 +992,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         type="text"
                         value={eventDetails.dress_code}
                         onChange={(e) => setEventDetails({...eventDetails, dress_code: e.target.value})}
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
+                        className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                       />
                     </div>
                     <div>
@@ -1001,7 +1001,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                         type="text"
                         value={eventDetails.gift_registry}
                         onChange={(e) => setEventDetails({...eventDetails, gift_registry: e.target.value})}
-                        className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver"
+                        className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                       />
                     </div>
 
@@ -1047,7 +1047,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 <button
                   type="submit"
                   disabled={loading}
-                  className="bg-silver-light hover:bg-night text-white px-6 py-2 rounded flex items-center gap-2 transition-colors disabled:opacity-70"
+                  className="bg-silver-light hover:bg-night text-night hover:text-silver-light px-6 py-2 rounded flex items-center gap-2 transition-colors disabled:opacity-70"
                 >
                   {loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                   Guardar Cambios
@@ -1091,7 +1091,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                     <select 
                       value={photoCategory}
                       onChange={(e) => setPhotoCategory(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver text-sm"
+                      className="w-full px-3 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night text-sm"
                     >
                       <option value="Sesión Principal">Sesión Principal</option>
                       <option value="Detalles">Detalles (Vestido, Flores...)</option>
@@ -1107,7 +1107,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       value={photoCaption}
                       onChange={(e) => setPhotoCaption(e.target.value)}
                       placeholder="Ej: Preparativos antes de la iglesia..."
-                      className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver text-sm"
+                      className="w-full px-3 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night text-sm"
                     />
                   </div>
                   
@@ -1218,7 +1218,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       value={audioTitle}
                       onChange={(e) => setAudioTitle(e.target.value)}
                       placeholder="Ej: Vals de las Mariposas"
-                      className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver text-sm"
+                      className="w-full px-3 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night text-sm"
                     />
                   </div>
                   
@@ -1334,7 +1334,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       value={postTitle}
                       onChange={(e) => setPostTitle(e.target.value)}
                       placeholder="Ej: Aviso importante sobre el itinerario"
-                      className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver text-sm"
+                      className="w-full px-3 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night text-sm"
                       required
                     />
                   </div>
@@ -1346,7 +1346,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       onChange={(e) => setPostContent(e.target.value)}
                       rows={4}
                       placeholder="Escribe aquí los detalles para tus invitados..."
-                      className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-silver focus:border-silver text-sm"
+                      className="w-full px-3 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night text-sm"
                       required
                     />
                   </div>
