@@ -214,7 +214,8 @@ export default function App() {
       </header>
 
       <main className="space-y-12 pb-20">
-        <section className="relative pt-12 sm:pt-20 pb-12 px-6 text-center max-w-4xl mx-auto overflow-hidden">
+        <section className="relative sm:pt-20 pb-12 px-6 text-center max-w-4xl mx-auto overflow-hidden"
+          style="padding-top: 350px;">
           {/* <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -268,16 +269,6 @@ export default function App() {
               </div>
             </motion.div>
           )} */}
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="#rsvp-section"
-              className="w-full sm:w-auto bg-silver-light hover:bg-secondary hover:text-night font-sans text-[10px] uppercase tracking-[0.2em] px-8 py-4 rounded-sm shadow-md transition-all duration-300 flex items-center justify-center gap-2"
-            >
-              <Mail className="w-4 h-4 text-night" />
-              <span class="plumbago-shimmer">Confirmar Asistencia</span>
-            </a>
-          </div>
         </section>
 
         <CountdownTimer
