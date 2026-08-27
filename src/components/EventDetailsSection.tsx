@@ -56,9 +56,9 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ eventD
       <div className="grid md:grid-cols-2 gap-8">
         
         {/* Religious Ceremony Card */}
-        <div className="bg-white border border-plumbago-light rounded-sm p-8 shadow-sm flex flex-col justify-between hover:border-silver transition-all duration-300">
+        <div className="bg-secondary border border-plumbago-light rounded-sm p-8 shadow-sm flex flex-col justify-between hover:border-silver transition-all duration-300">
           <div>
-            <div className="w-12 h-12 rounded-full border border-silver flex items-center justify-center text-silver mb-6">
+            <div className="w-12 h-12 rounded-full border border-silver flex items-center justify-center text-night mb-6">
               <Church className="w-6 h-6" />
             </div>
 
@@ -66,7 +66,7 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ eventD
               Ceremonia Religiosa
             </span>
 
-            <h4 className="font-serif text-2xl text-silver-light font-light italic mb-2">
+            <h4 className="font-serif text-2xl text-night-soft font-light italic mb-2">
               {eventDetails?.church_name}
             </h4>
 
@@ -74,7 +74,7 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ eventD
               {eventDetails?.church_time}
             </p>
 
-            <p className="font-sans text-xs text-silver-light opacity-70 leading-relaxed mb-6">
+            <p className="font-sans text-xs text-night-soft opacity-70 leading-relaxed mb-6">
               {eventDetails?.church_address}
             </p>
           </div>
@@ -83,7 +83,7 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ eventD
             href={eventDetails?.church_map_url || '#'}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 border border-silver-light text-silver-light hover:bg-silver-light hover:text-white font-sans text-[10px] uppercase tracking-[0.2em] py-3 px-6 rounded-sm transition-colors"
+            className="inline-flex items-center justify-center gap-2 border border-silver-light text-night-soft hover:bg-plumbago hover:text-night font-sans text-[10px] uppercase tracking-[0.2em] py-3 px-6 rounded-sm transition-colors"
           >
             <MapPin className="w-3.5 h-3.5 text-silver" />
             <span>Ver Ubicación en Mapa</span>
@@ -91,7 +91,7 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ eventD
         </div>
 
         {/* Reception Hall Card */}
-        <div className="bg-white border border-plumbago-light rounded-sm p-8 shadow-sm flex flex-col justify-between hover:border-silver transition-all duration-300">
+        <div className="bg-secondary border border-plumbago-light rounded-sm p-8 shadow-sm flex flex-col justify-between hover:border-silver transition-all duration-300">
           <div>
             <div className="w-12 h-12 rounded-full border border-silver flex items-center justify-center text-silver mb-6">
               <PartyPopper className="w-6 h-6" />
@@ -101,7 +101,7 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ eventD
               Fiesta & Recepción
             </span>
 
-            <h4 className="font-serif text-2xl text-silver-light font-light italic mb-2">
+            <h4 className="font-serif text-2xl text-night-soft font-light italic mb-2">
               {eventDetails?.hall_name}
             </h4>
 
@@ -109,7 +109,7 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ eventD
               {eventDetails?.hall_time}
             </p>
 
-            <p className="font-sans text-xs text-silver-light opacity-70 leading-relaxed mb-6">
+            <p className="font-sans text-xs text-night-soft opacity-70 leading-relaxed mb-6">
               {eventDetails?.hall_address}
             </p>
           </div>
@@ -118,7 +118,7 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ eventD
             href={eventDetails?.hall_map_url || '#'}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-silver-light text-white hover:bg-night font-sans text-[10px] uppercase tracking-[0.2em] py-3 px-6 rounded-sm transition-colors shadow-sm"
+            className="inline-flex items-center justify-center gap-2 bg-silver-light text-night hover:bg-night hover:text-silver font-sans text-[10px] uppercase tracking-[0.2em] py-3 px-6 rounded-sm transition-colors shadow-sm"
           >
             <MapPin className="w-3.5 h-3.5 text-silver" />
             <span>Ver Ubicación del Salón</span>

@@ -76,7 +76,7 @@ export const EnvelopeCover: React.FC<EnvelopeCoverProps> = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
             // absolute inset-0 garantiza el centrado perfecto independientemente del contenedor padre
-            className="absolute inset-0 flex flex-col items-center justify-center text-center text-night-soft"
+            className="absolute inset-0 flex flex-col items-center justify-center text-center text-night"
           >
             <div className="w-20 h-20 rounded-full bg-silver/20 border border-silver flex items-center justify-center mb-4 animate-ping">
               <Heart className="w-10 h-10 text-silver fill-current" />
