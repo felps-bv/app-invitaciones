@@ -145,7 +145,7 @@ export default function App() {
   if (isValidLink === false) {
     return (
       <div className="min-h-screen bg-plumbago flex flex-col items-center justify-center text-silver-light p-6">
-        <div className="bg-white p-8 rounded-sm shadow-xl border border-plumbago max-w-md w-full text-center">
+        <div className="bg-night p-8 rounded-sm shadow-xl border border-plumbago max-w-md w-full text-center">
           <AlertCircle className="w-12 h-12 text-silver-dark mx-auto mb-4 opacity-50" />
           <h1 className="font-serif text-2xl mb-3 text-silver-light">Acceso Reservado</h1>
           <p className="text-silver-light text-sm opacity-80 mb-6 leading-relaxed">
