@@ -6,6 +6,7 @@
   --color-plumbago-light: #8F9FAE;
 
   --color-secondary: #e9e4de;
+  --color-gold: #e6c24;
 
   --color-night: #0C141A;
   --color-night-soft: #16242F;
@@ -76,7 +77,7 @@
 }
 
 .title-shadow {
-  text-shadow: 5px 5px 25px #16242F;
+  text-shadow: 5px 5px 25px #86949F;
 }
 
 

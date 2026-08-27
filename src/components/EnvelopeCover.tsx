@@ -35,23 +35,23 @@ export const EnvelopeCover: React.FC<EnvelopeCoverProps> = ({
             className="relative w-full max-w-lg mx-auto"
           >
             {/* Envelope Outer Card */}
-            <div className="relative bg-white shadow-2xl p-8 sm:p-12 text-center flex flex-col items-center border border-plumbago transform -rotate-1 rounded-sm">
+            <div className="relative bg-secondary shadow-2xl p-8 sm:p-12 text-center flex flex-col items-center border border-plumbago transform -rotate-1 rounded-sm">
               
               {/* Wax Seal */}
-              <div className="absolute -top-8 w-16 h-16 bg-silver rounded-full border-4 border-white shadow-md flex items-center justify-center text-white text-2xl font-serif italic">
+              <div className="absolute -top-8 w-16 h-16 bg-silver rounded-full border-4 border-plumbago shadow-md flex items-center justify-center text-gold text-2xl font-serif italic">
                 {eventDetails?.quinceanera_name?.charAt(0) || 'V'}
               </div>
 
               <div className="border border-plumbago w-full py-8 sm:py-10 px-6 flex flex-col items-center justify-center">
-                <span className="text-xs uppercase tracking-[0.4em] text-silver-dark font-medium mb-3">
+                <span className="text-xs uppercase tracking-[0.4em] text-night font-medium mb-3">
                   Mis Quince Años
                 </span>
 
-                <h2 className="text-3xl sm:text-4xl font-light mb-6 italic font-serif text-silver-light">
+                <h2 className="text-3xl sm:text-4xl font-light mb-6 italic font-serif text-night">
                   Estás invitado
                 </h2>
 
-                <p className="text-xs font-sans text-silver-light opacity-70 mb-8 max-w-xs">
+                <p className="text-xs font-sans text-night opacity-70 mb-8 max-w-xs">
                   Te invito a celebrar conmigo una noche mágica llena de sueños y alegría.
                 </p>
 
@@ -59,7 +59,7 @@ export const EnvelopeCover: React.FC<EnvelopeCoverProps> = ({
                 <button
                   type="button"
                   onClick={handleOpenClick}
-                  className="px-8 py-3.5 border border-silver-light text-silver-light text-[11px] uppercase tracking-[0.3em] font-medium hover:bg-silver-light hover:text-white transition-colors rounded-sm flex items-center gap-2 cursor-pointer"
+                  className="px-8 py-3.5 border border-silver-light text-silver-light text-[11px] uppercase tracking-[0.3em] font-medium hover:bg-plumbago hover:text-white transition-colors rounded-sm flex items-center gap-2 cursor-pointer"
                 >
                   <MailOpen className="w-4 h-4 text-silver" />
                   <span>Abrir Invitación</span>
