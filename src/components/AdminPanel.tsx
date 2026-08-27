@@ -1368,7 +1368,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   <button 
                     type="submit" 
                     disabled={loading || !postTitle.trim() || !postContent.trim()}
-                    className="w-full bg-silver-light hover:bg-night text-white py-2 rounded flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
+                    className="w-full bg-silver-light hover:bg-night text-night hover:text-silver-light py-2 rounded flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
                   >
                     {loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
                     Publicar Anuncio
