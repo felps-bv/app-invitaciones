@@ -68,10 +68,10 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
 
   return (
     <section className="py-10 px-4 max-w-4xl mx-auto text-center">
-      <div className="bg-night border border-plumbago-light rounded-sm p-8 sm:p-12 relative overflow-hidden">
+      <div className="bg-plumbago border border-plumbago-light rounded-sm p-8 sm:p-12 relative overflow-hidden">
         
-        <div className="inline-flex items-center gap-2 bg-[#e9e4de] text-silver-dark px-4 py-1.5 rounded-full text-[10px] font-sans uppercase tracking-[0.3em] font-medium mb-4 border border-plumbago-light">
-          <Clock className="w-3.5 h-3.5 text-silver" />
+        <div className="inline-flex items-center gap-2 bg-secondary text-silver-dark px-4 py-1.5 rounded-full text-[10px] font-sans uppercase tracking-[0.3em] font-medium mb-4 border border-plumbago-light">
+          <Clock className="w-3.5 h-3.5 text-night" />
           <span>Faltan muy pocos días</span>
         </div>
 
@@ -143,7 +143,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
           href={getGoogleCalendarUrl()}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-silver-light hover:bg-night text-white font-sans text-[10px] uppercase tracking-[0.2em] font-medium py-3.5 px-6 rounded-sm transition-all duration-300 shadow-sm"
+          className="inline-flex items-center gap-2 bg-silver-light hover:bg-secondary text-night font-sans text-[10px] uppercase tracking-[0.2em] font-medium py-3.5 px-6 rounded-sm transition-all duration-300 shadow-sm"
         >
           <Calendar className="w-4 h-4 text-silver" />
           <span>Agendar en Google Calendar</span>

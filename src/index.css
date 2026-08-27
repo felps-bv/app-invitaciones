@@ -5,6 +5,8 @@
   --color-plumbago: #6B8CAA;
   --color-plumbago-light: #8F9FAE;
 
+  --color-secondary: #e9e4de;
+
   --color-night: #0C141A;
   --color-night-soft: #16242F;
 
@@ -66,7 +68,7 @@
 }
 
 .gold-shimmer {
-  background: linear-gradient(90deg, #D4AF37 0%, #F1E5AC 50%, #CFB53B 100%);
+  background: linear-gradient(90deg, #e6c24f 0%, #F1E5AC 50%, #e6bf42 100%);
   background-size: 200% 100%;
   animation: shimmer 3s infinite;
   -webkit-background-clip: text;
