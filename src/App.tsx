@@ -274,7 +274,7 @@ export default function App() {
               href="#rsvp-section"
               className="w-full sm:w-auto bg-silver-light hover:bg-secondary hover:text-night font-sans text-[10px] uppercase tracking-[0.2em] px-8 py-4 rounded-sm shadow-md transition-all duration-300 flex items-center justify-center gap-2"
             >
-              <Mail className="w-4 h-4" />
+              <Mail className="w-4 h-4 text-night" />
               <span class="plumbago-shimmer">Confirmar Asistencia</span>
             </a>
           </div>

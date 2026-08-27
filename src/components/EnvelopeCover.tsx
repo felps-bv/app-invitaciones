@@ -32,7 +32,7 @@ export const EnvelopeCover: React.FC<EnvelopeCoverProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 1.1, y: -20 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="relative w-full max-w-lg mx-auto"
+            className="relative w-full max-w-lg mx-auto text-night"
           >
             {/* Envelope Outer Card */}
             <div className="relative bg-secondary shadow-2xl p-8 sm:p-12 text-center flex flex-col items-center border border-plumbago transform -rotate-1 rounded-sm">
