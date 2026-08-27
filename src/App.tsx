@@ -214,7 +214,7 @@ export default function App() {
       </header>
 
       <main className="space-y-12 pb-20">
-        <section className="relative sm:pt-20 pb-12 px-6 text-center max-w-4xl mx-auto overflow-hidden">
+        <section className="relative pt-20 md:pt-[350px] px-6 text-center max-w-4xl mx-auto overflow-hidden">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
