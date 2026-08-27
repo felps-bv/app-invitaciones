@@ -1005,7 +1005,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       />
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                    {/* <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
                       <div className="flex justify-between items-center mb-6">
                         <h3 className="text-lg font-medium text-gray-800">Imagen de Portada</h3>
                       </div>
@@ -1034,7 +1034,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                           />
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
