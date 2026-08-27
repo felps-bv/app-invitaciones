@@ -21,21 +21,21 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos = [] }) => {
     : photos.filter(p => (p?.category || 'General') === selectedCategory);
 
   return (
-    <section className="py-12 px-4 max-w-6xl mx-auto">
+    <section className="py-12 px-4 max-w-6xl mx-auto bg-gold">
       <div className="text-center mb-10">
-        <div className="w-12 h-12 mx-auto rounded-full border border-silver flex items-center justify-center text-silver mb-3">
+        <div className="w-12 h-12 mx-auto rounded-full border border-silver flex items-center justify-center text-night-soft mb-3">
           <Camera className="w-6 h-6" />
         </div>
 
-        <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-silver-dark font-medium">
+        <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-night font-medium">
           Recuerdos e Imágenes
         </span>
 
-        <h3 className="font-serif text-3xl sm:text-4xl text-silver-light font-light italic mt-1">
+        <h3 className="font-serif text-3xl sm:text-4xl text-night font-light italic mt-1">
           Galería de Fotos
         </h3>
 
-        <p className="font-sans text-xs text-silver-light opacity-70 mt-1">
+        <p className="font-sans text-xs text-night opacity-70 mt-1">
           Un vistazo a la emoción de esta bella etapa
         </p>
 
@@ -49,8 +49,8 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos = [] }) => {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-4 py-2 rounded-sm font-sans text-[10px] uppercase tracking-[0.2em] font-medium transition-all cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-silver-light text-white shadow-sm'
-                    : 'bg-[#e9e4de] text-silver-light hover:bg-[#d4cbbd]'
+                    ? 'bg-night text-white shadow-sm'
+                    : 'bg-[#e9e4de] text-night hover:bg-[#d4cbbd]'
                 }`}
               >
                 {cat}
