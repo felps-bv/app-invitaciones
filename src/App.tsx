@@ -214,18 +214,7 @@ export default function App() {
       </header>
 
       <main className="space-y-12 pb-20">
-        <section className="relative sm:pt-20 pb-12 px-6 text-center max-w-4xl mx-auto overflow-hidden"
-          style="padding-top: 350px;">
-          {/* <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-night text-silver-dark px-5 py-2 rounded-full text-[10px] uppercase tracking-[0.4em] font-medium mb-6 border border-plumbago-light"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-silver" />
-            <span>Mis Quince Años</span>
-          </motion.div> */}
-
+        <section className="relative sm:pt-20 pb-12 px-6 text-center max-w-4xl mx-auto overflow-hidden">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -243,32 +232,6 @@ export default function App() {
           >
             {eventDetails.subtitle}
           </motion.p>
-
-          {/* {eventDetails.cover_image_url && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative max-w-2xl mx-auto mb-10 rounded-sm overflow-hidden shadow-xl border border-plumbago-light bg-[#e9e4de]"
-            >
-              <img
-                src={eventDetails.cover_image_url}
-                alt={`Mis XV Años - ${eventDetails.quinceanera_name}`}
-                referrerPolicy="no-referrer"
-                className="w-full h-[350px] sm:h-[450px] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent flex items-end justify-center p-6 text-white">
-                <p className="font-serif text-lg sm:text-xl font-light italic tracking-wider">
-                  {new Date(eventDetails.date).toLocaleDateString('es-ES', {
-                    weekday: 'long',
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric',
-                  })}
-                </p>
-              </div>
-            </motion.div>
-          )} */}
         </section>
 
         <CountdownTimer
