@@ -2,12 +2,12 @@
 
 /* NUEVO: Así se declaran los colores personalizados en Tailwind v4 */
 @theme {
-  --color-plumbago: #6B8CA4;
-  --color-plumbago-light: #8F9FA8;
-  
+  --color-plumbago: #6B8CAA;
+  --color-plumbago-light: #8F9FAE;
+
   --color-night: #0C141A;
   --color-night-soft: #16242F;
-  
+
   --color-silver: #C0C7CB;
   --color-silver-dark: #9EA4A2;
   --color-silver-light: #F4F6F8;
@@ -65,6 +65,19 @@
   -webkit-text-fill-color: transparent;
 }
 
+.gold-shimmer {
+  background: linear-gradient(90deg, #D4AF37 0%, #F1E5AC 50%, #CFB53B 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.title-shadow {
+  text-shadow: 10px 10px 25px #16242F;
+}
+
+
 /* Scrollbar con temática Plumbago/Night */
 ::-webkit-scrollbar {
   width: 6px;
@@ -78,4 +91,11 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #8F9FA8;
+}
+
+main {
+  background-image: url("https://klmrmvrjdcqkgtcofokw.supabase.co/storage/v1/object/public/xv_media/WhatsApp%20Image%202026-08-26%20at%2010.49.37.jpeg");
+  /* background-repeat: no-repeat; */
+  /* background-position: center; */
+  background-size: contain;
 }

@@ -218,7 +218,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-serif text-6xl sm:text-7xl lg:text-8xl text-silver-light italic font-light tracking-tight mb-4 leading-tight"
+            className="font-serif text-6xl sm:text-7xl lg:text-8xl text-gold-shimmer title-shadow italic font-light tracking-tight mb-4 leading-tight"
           >
             {eventDetails.quinceanera_name}
           </motion.h1>
@@ -232,7 +232,7 @@ export default function App() {
             {eventDetails.subtitle}
           </motion.p>
 
-          {eventDetails.cover_image_url && (
+          {/* {eventDetails.cover_image_url && (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -256,7 +256,7 @@ export default function App() {
                 </p>
               </div>
             </motion.div>
-          )}
+          )} */}
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
