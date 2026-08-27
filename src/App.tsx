@@ -215,7 +215,7 @@ export default function App() {
 
       <main className="space-y-12 pb-20">
         <section className="relative pt-12 sm:pt-20 pb-12 px-6 text-center max-w-4xl mx-auto overflow-hidden">
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -223,13 +223,13 @@ export default function App() {
           >
             <Sparkles className="w-3.5 h-3.5 text-silver" />
             <span>Mis Quince Años</span>
-          </motion.div>
+          </motion.div> */}
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-serif text-6xl sm:text-7xl lg:text-8xl gold-shimmer title-shadow italic font-light tracking-tight mb-4 leading-tight"
+            className="font-serif text-6xl sm:text-7xl lg:text-8xl silver-shimmer title-shadow italic font-light tracking-tight mb-4 leading-tight"
           >
             {eventDetails.quinceanera_name}
           </motion.h1>
