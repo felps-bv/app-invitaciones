@@ -70,12 +70,12 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
     <section className="py-10 px-4 max-w-4xl mx-auto text-center">
       <div className="bg-plumbago border border-plumbago-light rounded-sm p-8 sm:p-12 relative overflow-hidden">
         
-        <div className="inline-flex items-center gap-2 bg-secondary text-silver-dark px-4 py-1.5 rounded-full text-[10px] font-sans uppercase tracking-[0.3em] font-medium mb-4 border border-plumbago-light">
+        <div className="inline-flex items-center gap-2 bg-secondary text-night px-4 py-1.5 rounded-full text-[10px] font-sans uppercase tracking-[0.3em] font-medium mb-4 border border-plumbago-light">
           <Clock className="w-3.5 h-3.5 text-night" />
           <span>Faltan muy pocos días</span>
         </div>
 
-        <h3 className="font-serif text-3xl sm:text-4xl text-night font-light italic mb-2">
+        <h3 className="font-serif text-3xl sm:text-4xl text-silver-light font-light italic mb-2">
           Cuenta Regresiva
         </h3>
         
