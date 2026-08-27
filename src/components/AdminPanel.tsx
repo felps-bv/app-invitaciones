@@ -471,11 +471,11 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-plumbago flex flex-col items-center justify-center px-4">
-        <div className="max-w-md w-full bg-night p-8 rounded-lg shadow-xl border border-plumbago-light">
+        <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-xl border border-plumbago-light">
           <div className="flex justify-center mb-6">
             <Lock className="w-12 h-12 text-silver" />
           </div>
-          <h2 className="text-2xl font-serif text-center text-silver-light mb-6">Acceso Administrativo</h2>
+          <h2 className="text-2xl font-serif text-center text-night-soft mb-6">Acceso Administrativo</h2>
           
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
@@ -504,7 +504,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full bg-silver-light text-white py-3 rounded hover:bg-night transition-colors flex items-center justify-center gap-2"
+              className="w-full bg-night-soft text-white py-3 rounded hover:bg-night transition-colors flex items-center justify-center gap-2"
             >
               {loading ? <RefreshCw className="w-5 h-5 animate-spin" /> : 'Iniciar Sesión'}
             </button>
@@ -525,7 +525,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
       <aside className="w-full md:w-64 bg-white border-r border-gray-200 p-4 flex flex-col h-full">
         <div className="flex items-center gap-2 mb-8 px-2 py-4 border-b">
           <Settings className="w-6 h-6 text-silver" />
-          <h1 className="font-serif text-xl text-silver-light">Panel XV Años</h1>
+          <h1 className="font-serif text-xl text-night-soft">Panel XV Años</h1>
         </div>
 
         <nav className="flex-1 space-y-2">
