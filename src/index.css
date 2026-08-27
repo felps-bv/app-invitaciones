@@ -106,7 +106,5 @@
 
 main {
   background-image: url("https://klmrmvrjdcqkgtcofokw.supabase.co/storage/v1/object/public/xv_media/WhatsApp%20Image%202026-08-26%20at%2010.49.37.jpeg");
-  /* background-repeat: no-repeat; */
-  /* background-position: center; */
   background-size: contain;
 }
