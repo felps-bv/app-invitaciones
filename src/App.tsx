@@ -261,7 +261,7 @@ export default function App() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="#rsvp-section"
-              className="w-full sm:w-auto bg-silver-light hover:bg-night hover:text-silver text-night font-sans text-[10px] uppercase tracking-[0.2em] px-8 py-4 rounded-sm shadow-md transition-all duration-300 flex items-center justify-center gap-2"
+              className="w-full sm:w-auto bg-silver-light hover:bg-secondary hover:text-silver text-night font-sans text-[10px] uppercase tracking-[0.2em] px-8 py-4 rounded-sm shadow-md transition-all duration-300 flex items-center justify-center gap-2"
             >
               <Mail className="w-4 h-4 text-silver" />
               <span>Confirmar Asistencia</span>

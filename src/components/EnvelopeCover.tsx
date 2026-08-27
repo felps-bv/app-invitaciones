@@ -59,7 +59,7 @@ export const EnvelopeCover: React.FC<EnvelopeCoverProps> = ({
                 <button
                   type="button"
                   onClick={handleOpenClick}
-                  className="px-8 py-3.5 border border-silver-light text-silver-light text-[11px] uppercase tracking-[0.3em] font-medium hover:bg-plumbago hover:text-white transition-colors rounded-sm flex items-center gap-2 cursor-pointer"
+                  className="px-8 py-3.5 border border-silver-light text-silver-light text-[11px] uppercase tracking-[0.3em] font-medium hover:bg-gold hover:text-white transition-colors rounded-sm flex items-center gap-2 cursor-pointer"
                 >
                   <MailOpen className="w-4 h-4 text-silver" />
                   <span>Abrir Invitación</span>
