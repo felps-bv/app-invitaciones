@@ -83,7 +83,7 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ eventD
             href={eventDetails?.church_map_url || '#'}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 border border-silver-light text-night-soft hover:bg-plumbago hover:text-night font-sans text-[10px] uppercase tracking-[0.2em] py-3 px-6 rounded-sm transition-colors"
+            className="inline-flex items-center justify-center gap-2 border border-silver-light text-night-soft hover:bg-plumbago hover:text-silver font-sans text-[10px] uppercase tracking-[0.2em] py-3 px-6 rounded-sm transition-colors"
           >
             <MapPin className="w-3.5 h-3.5 text-silver" />
             <span>Ver Ubicación en Mapa</span>
@@ -131,30 +131,30 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ eventD
       <div className="grid md:grid-cols-2 gap-6">
         
         {/* Dress Code */}
-        <div className="bg-night border border-plumbago-light rounded-sm p-6 flex items-start gap-4">
-          <div className="w-10 h-10 rounded-full border border-silver flex items-center justify-center text-silver shrink-0">
+        <div className="bg-secondary border border-plumbago-light rounded-sm p-6 flex items-start gap-4">
+          <div className="w-10 h-10 rounded-full border border-silver flex items-center justify-center text-night shrink-0">
             <Shirt className="w-5 h-5" />
           </div>
           <div>
-            <h5 className="font-serif text-lg text-silver-light mb-1 italic">
+            <h5 className="font-serif text-lg text-night-soft mb-1 italic">
               Código de Vestimenta
             </h5>
-            <p className="font-sans text-xs text-silver-light opacity-80">
+            <p className="font-sans text-xs text-night-soft opacity-80">
               {eventDetails?.dress_code}
             </p>
           </div>
         </div>
 
         {/* Gift Registry / Envelope Rain */}
-        <div className="bg-night border border-plumbago-light rounded-sm p-6 flex items-start gap-4">
-          <div className="w-10 h-10 rounded-full border border-silver flex items-center justify-center text-silver shrink-0">
+        <div className="bg-secondary border border-plumbago-light rounded-sm p-6 flex items-start gap-4">
+          <div className="w-10 h-10 rounded-full border border-silver flex items-center justify-center text-night shrink-0">
             <Gift className="w-5 h-5" />
           </div>
           <div>
-            <h5 className="font-serif text-lg text-silver-light mb-1 italic">
+            <h5 className="font-serif text-lg text-night-soft mb-1 italic">
               Sugerencia de Regalo
             </h5>
-            <p className="font-sans text-xs text-silver-light opacity-80">
+            <p className="font-sans text-xs text-night-soft opacity-80">
               {eventDetails?.gift_registry}
             </p>
           </div>
