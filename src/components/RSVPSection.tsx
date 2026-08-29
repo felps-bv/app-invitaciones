@@ -189,7 +189,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
               
               <div className="space-y-3 bg-secondary p-4 border border-plumbago rounded-sm">
                 {attendees.map((attendee, index) => (
-                  <div key={index} className="flex items-center gap-3 pb-3 border-b border-[#faf9f7] last:border-0 last:pb-0">
+                  <div key={index} className="flex items-center gap-3 pb-3 last:pb-0">
                     
                     {/* Checkbox de asistencia */}
                     <label className="flex-shrink-0 cursor-pointer relative flex items-center justify-center">
