@@ -10,7 +10,7 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({ post
   if (!posts || posts.length === 0) return null;
 
   return (
-    <section className="py-12 px-4 max-w-4xl mx-auto">
+    <section className="py-2 px-4 max-w-4xl mx-auto">
       <div className="bg-night border border-plumbago-light rounded-sm p-6 sm:p-10 shadow-sm">
         
         <div className="flex items-center gap-3 mb-6">

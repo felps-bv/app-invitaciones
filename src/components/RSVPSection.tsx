@@ -128,7 +128,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
   };
 
   return (
-    <section id="rsvp-section" className="py-12 px-4 max-w-3xl mx-auto scroll-mt-20">
+    <section id="rsvp-section" className="py-4 px-4 max-w-3xl mx-auto scroll-mt-20">
       <div className="bg-night border border-plumbago-light rounded-sm p-8 sm:p-12 shadow-sm relative overflow-hidden">
         
         {/* Banner if personalized link loaded */}
