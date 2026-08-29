@@ -83,12 +83,12 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         type="button"
         onClick={togglePlay}
         aria-label={isPlaying ? 'Pausar música' : 'Reproducir música'}
-        className="w-8 h-8 rounded-full border border-silver bg-silver text-white hover:bg-silver-dark hover:border-silver-dark flex items-center justify-center transition-transform hover:scale-105 active:scale-95 cursor-pointer shadow-sm"
+        className="w-8 h-8 rounded-full border border-silver bg-silver text-night-soft hover:bg-silver-dark hover:border-silver-dark flex items-center justify-center transition-transform hover:scale-105 active:scale-95 cursor-pointer shadow-sm"
       >
         {isPlaying ? (
-          <Pause className="w-3.5 h-3.5 text-white fill-current" />
+          <Pause className="w-3.5 h-3.5 text-night-soft fill-current" />
         ) : (
-          <Play className="w-3.5 h-3.5 text-white fill-current translate-x-0.5" />
+          <Play className="w-3.5 h-3.5 text-night-soft fill-current translate-x-0.5" />
         )}
       </button>
 

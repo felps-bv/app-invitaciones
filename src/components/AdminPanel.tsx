@@ -680,14 +680,14 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                                   type="text" 
                                   value={editFormData.nombre} 
                                   onChange={(e) => setEditFormData({...editFormData, nombre: e.target.value})}
-                                  className="w-full border border-plumbago-light p-1.5 rounded focus:outline-none focus:border-silver"
+                                  className="text-night w-full border border-plumbago-light p-1.5 rounded focus:outline-none focus:border-silver"
                                   placeholder="Nombre"
                                 />
                                 <input 
                                   type="email" 
                                   value={editFormData.email} 
                                   onChange={(e) => setEditFormData({...editFormData, email: e.target.value})}
-                                  className="w-full border border-plumbago-light p-1.5 rounded focus:outline-none focus:border-silver"
+                                  className="text-night w-full border border-plumbago-light p-1.5 rounded focus:outline-none focus:border-silver"
                                   placeholder="Correo (opcional)"
                                 />
                                 <input 
@@ -695,7 +695,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                                   min="0"
                                   value={editFormData.acompanantes} 
                                   onChange={(e) => setEditFormData({...editFormData, acompanantes: Number(e.target.value)})}
-                                  className="w-16 border border-plumbago-light p-1.5 rounded focus:outline-none focus:border-silver"
+                                  className="text-night w-16 border border-plumbago-light p-1.5 rounded focus:outline-none focus:border-silver"
                                 />
                               </div>
                             </div>
