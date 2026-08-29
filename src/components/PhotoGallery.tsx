@@ -72,7 +72,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos = [] }) => {
               src={photo?.url || (photo as any)?.image_url} // Fallback por si en BD se llama image_url
               alt={photo?.caption || 'Foto XV Años'}
               referrerPolicy="no-referrer"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-contain bg-secondary group-hover:scale-105 transition-transform duration-500"
             />
             
             {/* Hover overlay with zoom icon and caption */}
