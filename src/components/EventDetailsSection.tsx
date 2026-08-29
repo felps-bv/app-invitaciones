@@ -83,9 +83,9 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ eventD
             href={eventDetails?.church_map_url || '#'}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-silver-light text-night border border-silver-light text-night-soft hover:bg-plumbago hover:text-silver font-sans text-[10px] uppercase tracking-[0.2em] py-3 px-6 rounded-sm transition-colors"
+            className="inline-flex items-center justify-center gap-2 bg-silver-light text-night border border-silver-light text-night-soft hover:bg-gold-soft hover:text-silver font-sans text-[10px] uppercase tracking-[0.2em] py-3 px-6 rounded-sm transition-colors"
           >
-            <MapPin className="w-3.5 h-3.5 text-silver" />
+            <MapPin className="w-3.5 h-3.5 text-night-soft" />
             <span>Ver Ubicación en Mapa</span>
           </a>
         </div>
@@ -118,9 +118,9 @@ export const EventDetailsSection: React.FC<EventDetailsSectionProps> = ({ eventD
             href={eventDetails?.hall_map_url || '#'}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-silver-light text-night hover:bg-plumbago hover:text-silver font-sans text-[10px] uppercase tracking-[0.2em] py-3 px-6 rounded-sm transition-colors shadow-sm"
+            className="inline-flex items-center justify-center gap-2 bg-silver-light text-night hover:bg-gold-soft hover:text-silver font-sans text-[10px] uppercase tracking-[0.2em] py-3 px-6 rounded-sm transition-colors shadow-sm"
           >
-            <MapPin className="w-3.5 h-3.5 text-silver" />
+            <MapPin className="w-3.5 h-3.5 text-night-soft" />
             <span>Ver Ubicación del Salón</span>
           </a>
         </div>

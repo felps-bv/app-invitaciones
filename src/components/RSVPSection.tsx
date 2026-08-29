@@ -261,7 +261,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
             <button
               type="submit"
               disabled={loading}
-              className="mt-6 w-full bg-secondary text-night text-[18px] uppercase tracking-[0.2em] py-4 rounded-sm hover:bg-white transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 shadow-sm"
+              className="mt-6 w-full bg-gold-soft text-night text-[18px] uppercase tracking-[0.2em] py-4 rounded-sm hover:bg-gold hover:text-silver transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 shadow-sm"
             >
               {loading ? (
                 <>
