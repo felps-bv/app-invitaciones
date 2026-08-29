@@ -27,15 +27,15 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos = [] }) => {
           <Camera className="w-6 h-6" />
         </div>
 
-        <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-silver font-medium">
+        <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-white font-medium">
           Recuerdos e Imágenes
         </span>
 
-        <h3 className="font-serif text-3xl sm:text-4xl text-silver font-light italic mt-1">
+        <h3 className="font-serif text-3xl sm:text-4xl text-white font-light italic mt-1">
           Galería de Fotos
         </h3>
 
-        <p className="font-sans text-xs text-silver opacity-70 mt-1">
+        <p className="font-sans text-xs text-white opacity-70 mt-1">
           Un vistazo a la emoción de esta bella etapa
         </p>
 

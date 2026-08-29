@@ -134,7 +134,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
         {/* Banner if personalized link loaded */}
         {activeInvitation && (
           <div className="mb-8 p-4 bg-secondary border border-silver rounded-sm flex items-start gap-3">
-            <Sparkles className="w-5 h-5 text-silver-dark shrink-0 mt-0.5" />
+            <Sparkles className="w-5 h-5 text-night shrink-0 mt-0.5" />
             <div>
               <p className="font-serif text-lg text-night font-light italic">
                 ¡Bienvenid@, {activeInvitation.nombre}!
