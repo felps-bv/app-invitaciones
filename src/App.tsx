@@ -242,7 +242,6 @@ export default function App() {
         <EventDetailsSection eventDetails={eventDetails} />
         <PhotoGallery photos={photos} />
         <AnnouncementsSection posts={posts} />
-        <AnnouncementsSection posts={posts} />
 
         <RSVPSection
           activeInvitation={activeInvitation}

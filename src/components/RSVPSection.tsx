@@ -156,7 +156,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
             Confirma tu Asistencia
           </span>
 
-          <h3 className="font-serif text-3xl sm:text-4xl text-silver-light font-light italic mt-1">
+          <h3 className="font-serif text-3xl sm:text-4xl text-gold font-light italic mt-1">
             RSVP
           </h3>
 

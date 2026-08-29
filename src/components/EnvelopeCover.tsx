@@ -38,7 +38,7 @@ export const EnvelopeCover: React.FC<EnvelopeCoverProps> = ({
             <div className="relative bg-secondary shadow-2xl p-8 sm:p-12 text-center flex flex-col items-center border border-plumbago transform -rotate-1 rounded-sm">
               
               {/* Wax Seal */}
-              <div className="absolute -top-8 w-16 h-16 bg-silver rounded-full border-4 border-plumbago shadow-md flex items-center justify-center text-gold text-2xl font-serif italic">
+              <div className="absolute -top-8 w-16 h-16 bg-silver rounded-full border-4 border-plumbago shadow-md flex items-center justify-center text-white text-2xl font-serif italic">
                 {eventDetails?.quinceanera_name?.charAt(0) || 'V'}
               </div>
 
@@ -78,8 +78,8 @@ export const EnvelopeCover: React.FC<EnvelopeCoverProps> = ({
             // absolute inset-0 garantiza el centrado perfecto independientemente del contenedor padre
             className="absolute inset-0 flex flex-col items-center justify-center text-center text-night"
           >
-            <div className="w-20 h-20 rounded-full bg-silver/20 border border-silver flex items-center justify-center mb-4 animate-ping">
-              <Heart className="w-10 h-10 text-silver fill-current" />
+            <div className="w-20 h-20 rounded-full bg-gold-soft border border-gold flex items-center justify-center mb-4 animate-ping">
+              <Heart className="w-10 h-10 text-gold fill-current" />
             </div>
             <p className="font-serif text-2xl tracking-widest text-night italic font-light z-10">
               Abriendo invitación...
