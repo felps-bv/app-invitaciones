@@ -239,14 +239,15 @@ export default function App() {
           quinceanera_name={eventDetails.quinceanera_name}
         />
 
-        <AnnouncementsSection posts={posts} />
         <EventDetailsSection eventDetails={eventDetails} />
         <PhotoGallery photos={photos} />
-        
+
         <RSVPSection
           activeInvitation={activeInvitation}
           onRSVPSubmitted={loadData}
         />
+
+        <AnnouncementsSection posts={posts} />
       </main>
 
       <footer className="bg-night text-[#f5f2ed] py-14 px-6 text-center border-t border-silver-light">

@@ -187,7 +187,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                 </span>
               </div>
               
-              <div className="space-y-3 bg-white p-4 border border-plumbago rounded-sm">
+              <div className="space-y-3 bg-secondary p-4 border border-plumbago rounded-sm">
                 {attendees.map((attendee, index) => (
                   <div key={index} className="flex items-center gap-3 pb-3 border-b border-[#faf9f7] last:border-0 last:pb-0">
                     
@@ -199,8 +199,8 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                         onChange={(e) => handleAttendeeChange(index, 'asistira', e.target.checked)}
                         className="peer sr-only"
                       />
-                      <div className="w-6 h-6 border-2 border-plumbago-light rounded-sm peer-checked:bg-silver peer-checked:border-silver transition-all flex items-center justify-center">
-                        {attendee.asistira && <CheckCircle2 className="w-4 h-4 text-white" />}
+                      <div className="w-6 h-6 border-2 border-plumbago-light rounded-sm peer-checked:bg-silver peer-checked:border-silver-dark transition-all flex items-center justify-center">
+                        {attendee.asistira && <CheckCircle2 className="w-4 h-4 text-secondary" />}
                       </div>
                     </label>
 
@@ -214,7 +214,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                         placeholder={attendee.es_titular ? "Nombre del titular" : `Nombre del acompañante ${index}`}
                         value={attendee.nombre}
                         onChange={(e) => handleAttendeeChange(index, 'nombre', e.target.value)}
-                        className={`w-full pl-7 bg-white border-b border-plumbago-light py-2 text-sm text-night focus:outline-none focus:border-silver transition-all ${
+                        className={`w-full pl-7 bg-secondary border-b border-plumbago-light py-2 text-sm text-night focus:outline-none focus:border-silver-dark transition-all ${
                           attendee.es_titular && activeInvitation?.nombre ? 'opacity-80 cursor-not-allowed font-medium' : ''
                         } ${!attendee.asistira ? 'opacity-40 line-through' : ''}`}
                       />
@@ -237,7 +237,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                   placeholder="ejemplo@correo.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-7 bg-white border-b border-plumbago-light py-2 text-sm text-night focus:outline-none focus:border-silver transition-all"
+                  className="w-full pl-7 bg-secondary border-b border-plumbago-light py-2 text-sm text-night focus:outline-none focus:border-silver transition-all"
                 />
               </div>
             </div>
@@ -253,7 +253,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                 placeholder="Escribe un mensaje cariñoso..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full bg-white border-b border-plumbago-light py-2 text-sm text-night focus:outline-none focus:border-silver resize-none px-2 rounded-sm"
+                className="w-full bg-secondary border-b border-plumbago-light py-2 text-sm text-night focus:outline-none focus:border-silver resize-none px-2 rounded-sm"
               />
             </div>
 
