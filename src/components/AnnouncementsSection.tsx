@@ -37,10 +37,10 @@ export const AnnouncementsSection: React.FC<AnnouncementsSectionProps> = ({ post
                 <h4 className="font-serif text-lg font-light italic text-night-soft">
                   {post.title}
                 </h4>
-                <div className="flex items-center gap-1 text-[10px] font-sans text-night uppercase tracking-wider">
+                {/* <div className="flex items-center gap-1 text-[10px] font-sans text-night uppercase tracking-wider">
                   <Calendar className="w-3.5 h-3.5 text-night" />
                   <span>{new Date(post.created_at).toLocaleDateString('es-ES', { month: 'short', day: 'numeric' })}</span>
-                </div>
+                </div> */}
               </div>
 
               <p className="font-sans text-xs text-night-soft opacity-80 leading-relaxed mb-3">
