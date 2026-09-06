@@ -123,7 +123,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos = [] }) => {
       )}
 
       {/* Album en google fotos */}
-      <div className="w-full flex items-center justify-center">
+      <div className="w-full flex items-center justify-center pt-8">
         <a
           href="https://photos.app.goo.gl/D8LKpW2hnKXTvgxk9"
           target="_blank"
