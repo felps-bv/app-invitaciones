@@ -66,11 +66,11 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
     setErrorMsg('');
 
     // Validación: Si alguien tiene marcado "asistirá", debe tener un nombre escrito
-    const missingNames = attendees.some(a => a.asistira && !a.nombre.trim());
-    if (missingNames) {
-      setErrorMsg('Por favor asegúrate de escribir el nombre de todas las personas que asistirán.');
-      return;
-    }
+    // const missingNames = attendees.some(a => a.asistira && !a.nombre.trim());
+    // if (missingNames) {
+    //   setErrorMsg('Por favor asegúrate de escribir el nombre de todas las personas que asistirán.');
+    //   return;
+    // }
 
     setLoading(true);
 
