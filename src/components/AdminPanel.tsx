@@ -6,7 +6,7 @@ import {
   Check, Share2, MessageCircle, LogOut
 } from 'lucide-react';
 import {
-  EventDetails, RSVPRecord, GalleryPhoto, AdminPost, AudioTrack, AttendeesDetails
+  EventDetails, RSVPRecord, GalleryPhoto, AdminPost, AudioTrack
 } from '../types';
 // IMPORTANTE: Asegúrate de exportar 'supabase' desde tu archivo lib/supabase.ts
 import { 
@@ -41,7 +41,6 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   
   const [eventDetails, setEventDetails] = useState<EventDetails | null>(null);
   const [rsvps, setRsvps] = useState<RSVPRecord[]>([]);
-  const [attendeesDetails, setAttendeesDetails] = useState<AttendeesDetails[]>([]);
   const [photos, setPhotos] = useState<GalleryPhoto[]>([]);
   const [posts, setPosts] = useState<AdminPost[]>([]);
   const [audioTracks, setAudioTracks] = useState<AudioTrack[]>([]);
