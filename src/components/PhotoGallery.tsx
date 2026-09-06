@@ -123,12 +123,12 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos = [] }) => {
       )}
 
       {/* Album en google fotos */}
-      <div className="w-full">
+      <div className="w-full flex items-center justify-center">
         <a
           href="https://photos.app.goo.gl/D8LKpW2hnKXTvgxk9"
           target="_blank"
           rel="noopener noreferrer"
-          className="mx-auto inline-flex items-center gap-2 bg-silver-light hover:bg-secondary text-night font-sans text-[10px] uppercase tracking-[0.2em] font-medium py-3.5 px-6 rounded-sm transition-all duration-300 shadow-sm"
+          className="inline-flex items-center gap-2 bg-silver-light hover:bg-secondary text-night font-sans text-[10px] uppercase tracking-[0.2em] font-medium py-3.5 px-6 rounded-sm transition-all duration-300 shadow-sm"
         >
           <Camera className="w-4 h-4 text-silver" />
           <span>Sube tus fotos aquí</span>
