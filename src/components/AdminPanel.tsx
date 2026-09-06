@@ -459,12 +459,35 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
     }
   };
 
-  // --- 5. MÉTRICAS (Tal cual las tenías) ---
+  // --- 5. MÉTRICAS ---
   const totalRSVPs = rsvps.length;
-  //const attendingRSVPs = rsvps.filter(r => r.confirmado === true || r.attending === 'Asistiré');
-  const attendingCount = attendeesDetails.filter((attendee) => attendee.confirmado).length;
-  const notAttendingCount = attendeesDetails.length - attendingCount;
-  const pendingCount = rsvps.filter(r => r.confirmado === null && (r.attending === 'Pendiente' || !r.attending)).length;
+
+  const totalGuestsCount = rsvps.reduce((total, rsvp) => {
+    // Si la familia ya respondió y tiene desglose, sumamos solo los que tienen asistira en true
+    if (rsvp.asistentes_detalle && rsvp.asistentes_detalle.length > 0) {
+      return total + rsvp.asistentes_detalle.filter(a => a.asistira === true).length;
+    }
+    // Respaldo: Si confirmaron antes de implementar la tabla secundaria
+    if (rsvp.confirmado === true) {
+      return total + 1 + (rsvp.acompanantes || 0);
+    }
+    return total;
+  }, 0);
+
+  const notAttendingCount = rsvps.reduce((total, rsvp) => {
+    // Sumamos los acompañantes individuales que desmarcaron su casilla
+    if (rsvp.asistentes_detalle && rsvp.asistentes_detalle.length > 0) {
+      return total + rsvp.asistentes_detalle.filter(a => a.asistira === false).length;
+    }
+    // Respaldo: Si toda la familia rechazó la invitación
+    if (rsvp.confirmado === false) {
+      return total + 1 + (rsvp.acompanantes || 0);
+    }
+    return total;
+  }, 0);
+
+  // Familias que no han interactuado con su enlace
+  const pendingCount = rsvps.filter(r => r.confirmado === null).length;
 
   const filteredRSVPs = rsvps.filter(r => 
     (r.nombre || '').toLowerCase().includes(rsvpSearch.toLowerCase()) || 
