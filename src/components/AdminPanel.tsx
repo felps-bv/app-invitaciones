@@ -488,7 +488,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
 
   // Familias que no han interactuado con su enlace
   const pendingCount = rsvps.filter(r => r.confirmado === null)
-  .reduce((sum, r) => sum + r.acompanantes, 0);
+  .reduce((sum, r) => sum + r.acompanantes, 1);
 
   const filteredRSVPs = rsvps.filter(r => 
     (r.nombre || '').toLowerCase().includes(rsvpSearch.toLowerCase()) || 
