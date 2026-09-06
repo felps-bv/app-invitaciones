@@ -76,6 +76,9 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   const [postContent, setPostContent] = useState('');
   const [postImageFile, setPostImageFile] = useState<File | null>(null);
 
+  // helpers:
+  const capitalize = (text: string) => text.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1));
+
   // --- 3. LÓGICA DE SUPABASE AUTH ---
   useEffect(() => {
     // Revisar si ya hay una sesión activa al cargar la página
@@ -147,7 +150,10 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
     e.preventDefault();
     if (!eventDetails) return;
 
-    const updatedDetails = { ...eventDetails };
+    const updatedDetails = {
+      ...eventDetails,
+      quinceanera_name: capitalize(eventDetails.quinceanera_name)
+    };
 
     setLoading(true);
     setStatusMsg('');
@@ -827,7 +833,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   <input
                     type="text"
                     value={eventDetails.quinceanera_name}
-                    onChange={(e) => setEventDetails({...eventDetails, quinceanera_name: e.target.value})}
+                    onChange={(e) => setEventDetails({...eventDetails, quinceanera_name: capitalize(e.target.value)})}
                     className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                     required
                   />
@@ -971,7 +977,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       <input
                         type="text"
                         value={eventDetails.parents_names}
-                        onChange={(e) => setEventDetails({...eventDetails, parents_names: e.target.value})}
+                        onChange={(e) => setEventDetails({...eventDetails, parents_names: capitalize(e.target.value)})}
                         className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                       />
                     </div>
@@ -980,7 +986,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       <input
                         type="text"
                         value={eventDetails.godparents_names}
-                        onChange={(e) => setEventDetails({...eventDetails, godparents_names: e.target.value})}
+                        onChange={(e) => setEventDetails({...eventDetails, godparents_names: capitalize(e.target.value)})}
                         className="w-full px-4 py-2 border border-gray-300 rounded text-night focus:ring-night focus:border-night"
                       />
                     </div>
