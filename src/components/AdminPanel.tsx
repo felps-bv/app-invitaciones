@@ -462,7 +462,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   // --- 5. MÉTRICAS ---
   const totalRSVPs = rsvps.length;
 
-  const totalGuestsCount = rsvps.reduce((total, rsvp) => {
+  const attendingCount = rsvps.reduce((total, rsvp) => {
     // Si la familia ya respondió y tiene desglose, sumamos solo los que tienen asistira en true
     if (rsvp.asistentes_detalle && rsvp.asistentes_detalle.length > 0) {
       return total + rsvp.asistentes_detalle.filter(a => a.asistira === true).length;
