@@ -212,12 +212,12 @@ export const confirmGuestRSVP = async (
     }
 
     // 3. Preparar el arreglo para la inserción masiva (Tabla: asistentes_detalle)
-    const detallesInsert = data.attendeesList.filter((attendee) => attendee.nombre)
+    const detallesInsert = data.attendeesList //.filter((attendee) => attendee.nombre)
     .map((attendee) => ({
       rsvp_id: id,
-      nombre: attendee.nombre,
+      nombre: attendee.nombre.trim() === '' ? 'Acompañante sin nombre' : attendee.nombre,
       es_titular: attendee.es_titular,
-      asistira: attendee.asistira,
+      asistira: attendee.nombre.trim() === '' ? false : attendee.asistira
     }));
 
     // 4. Insertar todos los asistentes de un solo golpe
