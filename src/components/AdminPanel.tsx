@@ -5,7 +5,9 @@ import {
   X, RefreshCw, Volume2, Sparkles, Database, Link as LinkIcon, Copy, 
   Check, Share2, MessageCircle, LogOut
 } from 'lucide-react';
-import { EventDetails, RSVPRecord, GalleryPhoto, AdminPost, AudioTrack } from '../types';
+import {
+  EventDetails, RSVPRecord, GalleryPhoto, AdminPost, AudioTrack, AttendeesDetails
+} from '../types';
 // IMPORTANTE: Asegúrate de exportar 'supabase' desde tu archivo lib/supabase.ts
 import { 
   supabase,
@@ -39,6 +41,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   
   const [eventDetails, setEventDetails] = useState<EventDetails | null>(null);
   const [rsvps, setRsvps] = useState<RSVPRecord[]>([]);
+  const [attendeesDetails, setAttendeesDetails] = useState<AttendeesDetails[]>([]);
   const [photos, setPhotos] = useState<GalleryPhoto[]>([]);
   const [posts, setPosts] = useState<AdminPost[]>([]);
   const [audioTracks, setAudioTracks] = useState<AudioTrack[]>([]);
@@ -458,9 +461,9 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
 
   // --- 5. MÉTRICAS (Tal cual las tenías) ---
   const totalRSVPs = rsvps.length;
-  const attendingRSVPs = rsvps.filter(r => r.confirmado === true || r.attending === 'Asistiré');
-  const totalGuestsCount = attendingRSVPs.reduce((sum, r) => sum + 1 + (r.acompanantes || 0), 0);
-  const notAttendingCount = rsvps.filter(r => r.confirmado === false || r.attending === 'No podré asistir').length;
+  //const attendingRSVPs = rsvps.filter(r => r.confirmado === true || r.attending === 'Asistiré');
+  const attendingCount = attendeesDetails.filter((attendee) => attendee.confirmado).length;
+  const notAttendingCount = attendeesDetails.length - attendingCount;
   const pendingCount = rsvps.filter(r => r.confirmado === null && (r.attending === 'Pendiente' || !r.attending)).length;
 
   const filteredRSVPs = rsvps.filter(r => 
@@ -587,7 +590,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 <span className="text-xs text-gray-500 uppercase tracking-wider mt-1">Total Enlaces</span>
               </div>
               <div className="bg-white p-4 rounded-lg shadow-sm border border-green-100 flex flex-col items-center text-center">
-                <span className="text-3xl font-serif text-green-600">{totalGuestsCount}</span>
+                <span className="text-3xl font-serif text-green-600">{attendingCount}</span>
                 <span className="text-xs text-green-700/70 uppercase tracking-wider mt-1">Personas Asistirán</span>
               </div>
               <div className="bg-white p-4 rounded-lg shadow-sm border border-yellow-100 flex flex-col items-center text-center">
