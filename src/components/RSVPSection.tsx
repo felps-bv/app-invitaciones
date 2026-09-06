@@ -209,7 +209,6 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                       <User className="w-4 h-4 absolute left-0 top-1/2 -translate-y-1/2 text-silver-dark ml-2" />
                       <input
                         type="text"
-                        required={attendee.asistira} // Solo es obligatorio si marcó que sí asiste
                         readOnly={attendee.es_titular && Boolean(activeInvitation?.nombre)}
                         placeholder={attendee.es_titular ? "Nombre del titular" : `Nombre del acompañante ${index}`}
                         value={attendee.nombre}
@@ -313,7 +312,7 @@ export const RSVPSection: React.FC<RSVPSectionProps> = ({ activeInvitation, onRS
                 <div className="border-b border-plumbago-light pb-2 pt-1">
                   <span className="opacity-90 block mb-1">Lugares Confirmados:</span>
                   <ul className="list-disc pl-5 space-y-0.5">
-                    {attendees.filter(a => a.asistira).map((a, i) => (
+                    {attendees.filter(a => a.asistira && a.name.trim() !== '').map((a, i) => (
                       <li key={i} className="font-medium text-silver-light">{a.nombre}</li>
                     ))}
                   </ul>
