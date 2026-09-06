@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS rsvps (
   mensaje TEXT DEFAULT '',
   "URLinvitacion" TEXT DEFAULT '', -- Mantenemos las mayúsculas porque así está en tu types.ts
   token TEXT NOT NULL,
-  attending TEXT DEFAULT 'Pendiente',
+  -- attending TEXT DEFAULT 'Pendiente',
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );

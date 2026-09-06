@@ -75,7 +75,7 @@ export interface AudioTrack {
 export interface RSVPVerificationRequest {
   name: string;
   email: string;
-  attending: 'Asistiré' | 'No podré asistir';
+  //attending: 'Asistiré' | 'No podré asistir';
   companionsCount: number;
   message?: string;
 }

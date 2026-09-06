@@ -104,7 +104,7 @@ export async function createInvitationLink(nombre: string, acompanantes: number,
     email: email ? email.trim() : '',
     token: token,
     "URLinvitacion": URLinvitacion,
-    attending: 'Pendiente',
+    //attending: 'Pendiente',
     confirmado: null,
     is_verified: false,
     acompanantes: acompanantes,
@@ -132,7 +132,10 @@ const getStorageFilePath = (publicUrl: string) => {
   return urlParts.length > 1 ? urlParts[1] : null;
 };
 
-export const updateRSVPAdmin = async (id: string, updates: { nombre: string; email?: string; acompanantes: number }) => {
+export const updateRSVPAdmin = async (id: string, updates: {
+  nombre: string; email?: string;
+  acompanantes: number
+}) => {
   try {
     const { error } = await supabase
       .from('rsvps')
