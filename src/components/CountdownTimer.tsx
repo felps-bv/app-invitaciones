@@ -136,10 +136,13 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
               </div>
             </div>
           </div>
-          <div>
-              {targetDate}
-          </div>
         )}
+
+        <div className="flex items-center justify-center w-full bold">
+          <p>
+            {targetDate}
+          </p>
+        </div>
 
         {/* Add to Google Calendar Action */}
         <a
