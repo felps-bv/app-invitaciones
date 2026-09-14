@@ -140,7 +140,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
 
         <div className="flex items-center justify-center w-full bold">
           <p>
-            {targetDate}
+            {new Date(targetDate).toLocaleString()}
           </p>
         </div>
 
