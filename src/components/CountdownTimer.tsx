@@ -89,7 +89,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
             ¡El gran día ha llegado! 🎉
           </div>
         ) : (
-          <div className="flex items-center justify-center gap-4 sm:gap-8 max-w-xl mx-auto mb-8 py-4 border-y border-plumbago-light">
+          <div className="flex items-center justify-center gap-4 sm:gap-8 max-w-xl mx-auto py-4 border-y border-plumbago-light">
             {/* Days */}
             <div className="text-center min-w-[60px]">
               <div className="font-serif text-3xl sm:text-4xl font-light text-silver-light mb-1">
@@ -138,7 +138,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
           </div>
         )}
 
-        <div className="flex items-center justify-center w-full mt-4">
+        <div className="flex items-center justify-center w-full my-8">
           <p>
             Fecha del evento: {new Date(targetDate).toLocaleString()}
           </p>
